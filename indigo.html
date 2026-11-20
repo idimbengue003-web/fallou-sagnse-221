@@ -89,9 +89,8 @@ section{padding:110px 0}
 .section-head h2 em{font-style:italic;color:var(--clay)}
 .section-head p{color:var(--muted);font-size:16px;max-width:580px;margin:0 auto}
 
-.cta{background:var(--indigo-deep);color:#fff;text-align:center;padding:96px 0;position:relative;overflow:hidden}
-.cta::before,.cta::after{content:"";position:absolute;top:0;bottom:0;width:36%;background:url('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b7858ca590e8.jpg') center/cover;opacity:.18}
-.cta::before{left:0}.cta::after{right:0}
+.cta{background:var(--espresso);color:#fff;text-align:center;padding:96px 0;position:relative;overflow:hidden}
+.cta::before,.cta::after{display:none}
 @media(max-width:900px){.cta::before,.cta::after{display:none}}
 .cta-inner{position:relative;z-index:2;max-width:680px;margin:0 auto;padding:0 32px}
 .cta .eyebrow-c{color:var(--ochre-soft)}
@@ -108,8 +107,8 @@ section{padding:110px 0}
 .cta-note{font-size:12px;color:rgba(255,255,255,.55);margin-top:18px}
 .cta-ok{margin-top:18px;color:var(--ochre-soft);font-size:14px;display:none}
 .cta-ok.show{display:block}
-.cta-wa{display:inline-flex;align-items:center;gap:10px;margin-top:30px;color:#fff;background:var(--kente);padding:13px 26px;font-size:13px;letter-spacing:.1em;font-weight:500;transition:.3s}
-.cta-wa:hover{background:#0a5240;transform:translateY(-2px)}
+.cta-wa{display:inline-flex;align-items:center;gap:10px;margin-top:30px;color:#fff;background:var(--clay);padding:13px 26px;font-size:13px;letter-spacing:.1em;font-weight:500;transition:.3s}
+.cta-wa:hover{background:var(--clay-deep);transform:translateY(-2px)}
 
 footer{background:var(--espresso);color:rgba(255,255,255,.72);padding:80px 0 30px}
 .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:56px}
