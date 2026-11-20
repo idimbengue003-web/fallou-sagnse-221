@@ -373,7 +373,9 @@ footer{background:var(--espresso);color:rgba(255,255,255,.72);padding:80px 0 30p
 <script>
 (function(){
   var nav=document.getElementById('nav');
-  function onScroll(){if(window.scrollY>60){nav.classList.add('scrolled')}else{nav.classList.remove('scrolled')}}
+  var topbarKs=document.querySelector('.kente-stripe'),topbarAn=document.querySelector('.announce');
+  function topbarH(){return (topbarKs?topbarKs.getBoundingClientRect().height:0)+(topbarAn?topbarAn.getBoundingClientRect().height:0);}
+  function onScroll(){var y=window.scrollY||window.pageYOffset;nav.style.top=Math.max(0,topbarH()-y)+'px';if(y>60){nav.classList.add('scrolled')}else{nav.classList.remove('scrolled')}}
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
   var hero=document.querySelector('.cat-hero');
   if(hero){requestAnimationFrame(function(){hero.classList.add('loaded')})}

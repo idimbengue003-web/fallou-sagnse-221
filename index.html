@@ -70,7 +70,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.05;letter-spa
   .burger{display:flex}
 }
 
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;color:#fff;overflow:hidden}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;color:#fff;overflow:hidden;padding-top:40px}
 .hero-bg{position:absolute;inset:0;background:url('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/13622f815868.jpg') center/cover no-repeat;transform:scale(1.08);transition:transform 6s ease-out}
 .hero.loaded .hero-bg{transform:scale(1)}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(100deg,rgba(26,16,10,.85) 0%,rgba(26,16,10,.55) 45%,rgba(26,16,10,.25) 100%)}
@@ -537,7 +537,9 @@ footer{background:var(--espresso);color:rgba(255,255,255,.72);padding:80px 0 30p
 <script>
 (function(){
   var nav=document.getElementById('nav');
-  function onScroll(){if(window.scrollY>60){nav.classList.add('scrolled')}else{nav.classList.remove('scrolled')}}
+  var topbarKs=document.querySelector('.kente-stripe'),topbarAn=document.querySelector('.announce');
+  function topbarH(){return (topbarKs?topbarKs.getBoundingClientRect().height:0)+(topbarAn?topbarAn.getBoundingClientRect().height:0);}
+  function onScroll(){var y=window.scrollY||window.pageYOffset;nav.style.top=Math.max(0,topbarH()-y)+'px';if(y>60){nav.classList.add('scrolled')}else{nav.classList.remove('scrolled')}}
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
 
   var hero=document.querySelector('.hero');
