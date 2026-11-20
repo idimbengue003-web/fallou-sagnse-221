@@ -141,7 +141,7 @@ section{padding:110px 0}
 .mosaic .m4{grid-column:2;grid-row:3}
 .affiche-mosaic .frame{position:absolute;inset:-14px -14px auto auto;width:90px;height:90px;border-top:3px solid var(--ochre);border-right:3px solid var(--ochre);z-index:2;pointer-events:none}
 .affiche.flip .affiche-mosaic .frame{inset:-14px auto auto -14px;border:0;border-bottom:3px solid var(--ochre);border-left:3px solid var(--ochre)}
-.mosaic-label{position:absolute;left:0;bottom:0;background:var(--clay);color:#fff;padding:8px 18px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;z-index:3}
+.mosaic-label{position:absolute;left:0;bottom:0;background:var(--clay);color:#fff;padding:8px 18px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;z-index:3;display:block;transition:background .3s}.mosaic-label:hover{background:var(--clay-deep)}
 .mosaic-label .ar{color:var(--ochre-soft)}
 
 .values{background:var(--sand)}
@@ -308,7 +308,7 @@ footer{background:var(--espresso);color:rgba(255,255,255,.72);padding:80px 0 30p
         <h3>Le pagne <em>wax</em>, roi des célébrations</h3>
         <p>Motifs flamboyants imprimés à la cire, symboles de vie, de joie et de palabre. Coton tissé serré, couleurs profondes qui ne craignent ni le soleil ni le temps. Pour les mariages, les baptêmes, les fêtes et le quotidien qui a du caractère.</p>
         <div class="affiche-tags"><span>Coton wax</span><span>Ankara</span><span>Imprimé cire</span><span>6 yards</span></div>
-        <a href="#contact" class="btn">Découvrir le wax <span class="arrow">→</span></a>
+        <a href="wax.html" class="btn">Découvrir le wax <span class="arrow">→</span></a>
       </div>
       <div class="affiche-mosaic reveal d1">
         <div class="frame"></div>
@@ -318,7 +318,7 @@ footer{background:var(--espresso);color:rgba(255,255,255,.72);padding:80px 0 30p
           <div class="m m3"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/8ef576e9a9bd.jpg" alt="Wax imprimé"></div>
           <div class="m m4"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c3b860bd748d.jpeg" alt="Tissu wax africain"></div>
         </div>
-        <div class="mosaic-label">Wax &amp; Ankara <span class="ar">→</span></div>
+        <a class="mosaic-label" href="wax.html">Wax &amp; Ankara <span class="ar">→</span></a>
       </div>
     </article>
 
@@ -329,7 +329,7 @@ footer{background:var(--espresso);color:rgba(255,255,255,.72);padding:80px 0 30p
         <h3>Le <em>bazin riche</em>, drapé de gala</h3>
         <p>Tissu damassé teint puis repassé au fer à marteler, éclat soyeux et tombé noble. L'étoffe des grandes cérémonies et du dimanche. Noir, bleu nuit, vert émeraude, bordeaux : des couleurs profondes sublimées par la lumière.</p>
         <div class="affiche-tags"><span>Bazin riche</span><span>Damassé</span><span>Grand boubou</span><span>Gala</span></div>
-        <a href="#contact" class="btn">Découvrir le bazin <span class="arrow">→</span></a>
+        <a href="bazin.html" class="btn">Découvrir le bazin <span class="arrow">→</span></a>
       </div>
       <div class="affiche-mosaic reveal d1">
         <div class="frame"></div>
@@ -339,7 +339,7 @@ footer{background:var(--espresso);color:rgba(255,255,255,.72);padding:80px 0 30p
           <div class="m m3"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3184ce222fa5.jpg" alt="Étoffe bazin"></div>
           <div class="m m4"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c90dc98e6d7c.jpg" alt="Bazin soyeux"></div>
         </div>
-        <div class="mosaic-label">Bazin Riche <span class="ar">→</span></div>
+        <a class="mosaic-label" href="bazin.html">Bazin Riche <span class="ar">→</span></a>
       </div>
     </article>
 
@@ -350,7 +350,7 @@ footer{background:var(--espresso);color:rgba(255,255,255,.72);padding:80px 0 30p
         <h3>Le <em>bogolan</em>, toile de terre</h3>
         <p>Tissu de coton teint à la boue et aux écorces, motifs géométriques tracés à la main par les artisans du Mali. Plus qu'un tissu, une écriture : chaque signe raconte un proverbe, une lignée, un événement. Élégant brut, contemporain et ancestral.</p>
         <div class="affiche-tags"><span>Coton boue</span><span>Fait main</span><span>Teinture végétale</span><span>Mali</span></div>
-        <a href="#contact" class="btn">Découvrir le bogolan <span class="arrow">→</span></a>
+        <a href="bogolan.html" class="btn">Découvrir le bogolan <span class="arrow">→</span></a>
       </div>
       <div class="affiche-mosaic reveal d1">
         <div class="frame"></div>
@@ -360,7 +360,7 @@ footer{background:var(--espresso);color:rgba(255,255,255,.72);padding:80px 0 30p
           <div class="m m3"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/714454855e67.jpg" alt="Toile de terre"></div>
           <div class="m m4"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c72c02ec354e.jpg" alt="Tissu malien"></div>
         </div>
-        <div class="mosaic-label">Bogolan <span class="ar">→</span></div>
+        <a class="mosaic-label" href="bogolan.html">Bogolan <span class="ar">→</span></a>
       </div>
     </article>
 
@@ -371,7 +371,7 @@ footer{background:var(--espresso);color:rgba(255,255,255,.72);padding:80px 0 30p
         <h3>Le <em>kente</em>, tissage royal</h3>
         <p>Bandes de soie et de coton entrelacées à la main par les tisserands d'Ashanti, au Ghana. Chaque couleur et chaque motif porte un proverbe, un rang, une histoire. L'étoffe des rois, devenue symbole de toute la diaspora africaine.</p>
         <div class="affiche-tags"><span>Tissage main</span><span>Soie &amp; coton</span><span>Ghana</span><span>Symbole royal</span></div>
-        <a href="#contact" class="btn">Découvrir le kente <span class="arrow">→</span></a>
+        <a href="kente.html" class="btn">Découvrir le kente <span class="arrow">→</span></a>
       </div>
       <div class="affiche-mosaic reveal d1">
         <div class="frame"></div>
@@ -381,7 +381,7 @@ footer{background:var(--espresso);color:rgba(255,255,255,.72);padding:80px 0 30p
           <div class="m m3"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/9e23ba202e7e.jpg" alt="Tissage ashanti"></div>
           <div class="m m4"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7413b3260157.jpg" alt="Étoffe royale"></div>
         </div>
-        <div class="mosaic-label">Kente <span class="ar">→</span></div>
+        <a class="mosaic-label" href="kente.html">Kente <span class="ar">→</span></a>
       </div>
     </article>
 
@@ -392,7 +392,7 @@ footer{background:var(--espresso);color:rgba(255,255,255,.72);padding:80px 0 30p
         <h3>L'<em>indigo</em>, bleu de tradition</h3>
         <p>Teinture végétale aux mille nuances, du bleu nuit au bleu ciel, patinée par les mains des teinturières du Mali et du Nigeria. La mémoire textile de l'Afrique de l'Ouest, précieuse et profondément contemporaine. Pour les pièces qui traversent les modes.</p>
         <div class="affiche-tags"><span>Indigo végétal</span><span>Teint main</span><span>Bazin indigo</span><span>Basse-côte</span></div>
-        <a href="#contact" class="btn">Découvrir l'indigo <span class="arrow">→</span></a>
+        <a href="indigo.html" class="btn">Découvrir l'indigo <span class="arrow">→</span></a>
       </div>
       <div class="affiche-mosaic reveal d1">
         <div class="frame"></div>
@@ -402,7 +402,7 @@ footer{background:var(--espresso);color:rgba(255,255,255,.72);padding:80px 0 30p
           <div class="m m3"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/1fabbb33c053.jpg" alt="Bleu indigo"></div>
           <div class="m m4"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/59ddc22fc51f.jpg" alt="Étoffe indigo"></div>
         </div>
-        <div class="mosaic-label">Indigo <span class="ar">→</span></div>
+        <a class="mosaic-label" href="indigo.html">Indigo <span class="ar">→</span></a>
       </div>
     </article>
 
@@ -501,11 +501,11 @@ footer{background:var(--espresso);color:rgba(255,255,255,.72);padding:80px 0 30p
       <div class="foot-col">
         <h4>Catégories</h4>
         <ul>
-          <li><a href="#categories">Wax &amp; Ankara</a></li>
-          <li><a href="#categories">Bazin Riche</a></li>
-          <li><a href="#categories">Bogolan</a></li>
-          <li><a href="#categories">Kente</a></li>
-          <li><a href="#categories">Indigo</a></li>
+          <li><a href="wax.html">Wax &amp; Ankara</a></li>
+          <li><a href="bazin.html">Bazin Riche</a></li>
+          <li><a href="bogolan.html">Bogolan</a></li>
+          <li><a href="kente.html">Kente</a></li>
+          <li><a href="indigo.html">Indigo</a></li>
         </ul>
       </div>
       <div class="foot-col">

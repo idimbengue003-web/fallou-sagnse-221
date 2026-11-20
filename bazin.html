@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bazin Riche — FALLOU SAGNSÉ 221 · Tissus africains à Dakar</title>
+<meta name="description" content="Bazin Riche : coton damassé teint puis martelé, éclat soyeux pour grands boubous et cérémonies. FALLOU SAGNSÉ 221, Dakar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --sand:#F6EBD3;--sand-2:#F1E2C2;--cream:#FBF4E2;--paper:#FDF7E9;
+  --clay:#B23A1B;--clay-deep:#8A2A12;--ochre:#D4A12B;--ochre-soft:#E6C46A;
+  --indigo:#1B3A6B;--indigo-deep:#102544;--kente:#0E6B53;
+  --espresso:#2A1810;--wood:#3D2415;--muted:#6B5237;--line:#E2CFA6;
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  --sans:'Outfit','Helvetica Neue',Arial,sans-serif;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);font-weight:400;color:var(--espresso);background:var(--sand);line-height:1.7;font-size:16px;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.05;letter-spacing:-.01em}
+.wrap{max-width:1320px;margin:0 auto;padding:0 36px}
+@media(max-width:640px){.wrap{padding:0 20px}}
+
+.kente-stripe{height:8px;width:100%;background:repeating-linear-gradient(90deg,var(--clay) 0 28px,var(--ochre) 28px 56px,var(--indigo) 56px 84px,var(--kente) 84px 112px,var(--espresso) 112px 140px)}
+
+.announce{background:var(--espresso);color:var(--ochre-soft);font-size:12px;letter-spacing:.18em;text-transform:uppercase;text-align:center;padding:9px 16px;font-weight:400}
+.announce span{margin:0 16px}
+.announce .dot{color:var(--ochre);opacity:.7}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .4s ease,box-shadow .4s ease,padding .4s;padding:24px 0}
+.nav.scrolled{background:rgba(246,235,211,.97);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line);padding:13px 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;flex-direction:column;align-items:center;gap:4px;line-height:1;text-align:center}
+.brand .eks{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.42em;text-indent:.42em;color:var(--ochre);margin-bottom:3px}
+.nav.scrolled .brand .eks{color:var(--clay)}
+.brand .nameline{position:relative;display:inline-block}
+.brand .name{font-family:var(--serif);font-size:23px;font-weight:500;letter-spacing:.06em;color:#fff}
+.nav.scrolled .brand .name{color:var(--espresso)}
+.brand .num{position:absolute;left:calc(100% + 10px);top:50%;transform:translateY(-50%);font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--ochre);border:1.5px solid var(--ochre);padding:2px 8px;white-space:nowrap}
+.brand .tag{font-size:9px;letter-spacing:.32em;text-transform:uppercase;margin-top:4px;color:var(--ochre-soft)}
+.nav.scrolled .brand .tag{color:var(--clay)}
+.menu{display:flex;gap:34px;align-items:center}
+.menu a{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:400;position:relative;padding:6px 0;transition:color .3s}
+.nav:not(.scrolled) .menu a{color:#FBF4E2}
+.nav.scrolled .menu a{color:var(--espresso)}
+.menu a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--ochre);transition:width .35s ease}
+.menu a:hover::after{width:100%}
+.nav-cta{background:var(--clay);color:#fff!important;padding:10px 22px;letter-spacing:.16em;font-size:11px;font-weight:500;transition:.3s}
+.nav-cta:hover{background:var(--clay-deep);transform:translateY(-2px)}
+.nav-cta::after{display:none}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:0;position:relative;z-index:102;padding:6px}
+.burger span{width:26px;height:2px;background:#fff;transition:.3s}
+.nav.scrolled .burger span{background:var(--espresso)}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--espresso)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--espresso)}
+.menu-backdrop{position:fixed;inset:0;background:rgba(20,12,6,.55);z-index:99;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}
+.menu-backdrop.show{opacity:1;visibility:visible}
+@media(max-width:980px){
+  .menu{position:fixed;top:0;right:-100%;height:100vh;width:82%;max-width:360px;background:var(--cream);flex-direction:column;justify-content:center;gap:30px;box-shadow:-20px 0 60px rgba(0,0,0,.25);transition:right .45s ease}
+  .menu.open{right:0}
+  .menu a{color:var(--espresso)!important;font-size:17px}
+  .nav-cta{color:#fff!important}
+  .burger{display:flex}
+}
+
+.btn{display:inline-flex;align-items:center;gap:12px;padding:17px 34px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;cursor:pointer;transition:all .35s ease;border:0}
+.btn-primary{background:var(--clay);color:#fff}
+.btn-primary:hover{background:var(--clay-deep);transform:translateY(-2px)}
+.btn-gold{background:var(--ochre);color:var(--espresso)}
+.btn-gold:hover{background:var(--ochre-soft);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.55)}
+.btn-ghost:hover{background:#fff;color:var(--espresso);border-color:#fff}
+.btn .arrow{transition:transform .35s}
+.btn:hover .arrow{transform:translateX(5px)}
+
+section{padding:110px 0}
+.section-head{text-align:center;max-width:700px;margin:0 auto 70px}
+.eyebrow-c{display:inline-flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--clay);margin-bottom:20px}
+.eyebrow-c::before,.eyebrow-c::after{content:"";width:30px;height:1px;background:var(--ochre)}
+.section-head h2{font-size:clamp(34px,4.6vw,58px);color:var(--espresso);margin-bottom:18px}
+.section-head h2 em{font-style:italic;color:var(--clay)}
+.section-head p{color:var(--muted);font-size:16px;max-width:580px;margin:0 auto}
+
+.cta{background:var(--indigo-deep);color:#fff;text-align:center;padding:96px 0;position:relative;overflow:hidden}
+.cta::before,.cta::after{content:"";position:absolute;top:0;bottom:0;width:36%;background:url('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b7858ca590e8.jpg') center/cover;opacity:.18}
+.cta::before{left:0}.cta::after{right:0}
+@media(max-width:900px){.cta::before,.cta::after{display:none}}
+.cta-inner{position:relative;z-index:2;max-width:680px;margin:0 auto;padding:0 32px}
+.cta .eyebrow-c{color:var(--ochre-soft)}
+.cta .eyebrow-c::before,.cta .eyebrow-c::after{background:var(--ochre)}
+.cta h2{font-size:clamp(32px,4.5vw,50px);color:#fff;margin-bottom:18px}
+.cta h2 em{font-style:italic;color:var(--ochre-soft)}
+.cta p{color:rgba(255,255,255,.85);margin-bottom:34px;font-size:16px}
+.cta-form{display:flex;gap:12px;max-width:480px;margin:0 auto;flex-wrap:wrap}
+.cta-form input{flex:1;min-width:220px;padding:16px 20px;border:1px solid rgba(255,255,255,.32);background:rgba(255,255,255,.06);color:#fff;font-family:var(--sans);font-size:14px}
+.cta-form input::placeholder{color:rgba(255,255,255,.6)}
+.cta-form input:focus{outline:0;border-color:var(--ochre-soft);background:rgba(255,255,255,.12)}
+.cta-form button{padding:16px 30px;background:var(--ochre);color:var(--espresso);border:0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;cursor:pointer;transition:.3s}
+.cta-form button:hover{background:var(--ochre-soft)}
+.cta-note{font-size:12px;color:rgba(255,255,255,.55);margin-top:18px}
+.cta-ok{margin-top:18px;color:var(--ochre-soft);font-size:14px;display:none}
+.cta-ok.show{display:block}
+.cta-wa{display:inline-flex;align-items:center;gap:10px;margin-top:30px;color:#fff;background:var(--kente);padding:13px 26px;font-size:13px;letter-spacing:.1em;font-weight:500;transition:.3s}
+.cta-wa:hover{background:#0a5240;transform:translateY(-2px)}
+
+footer{background:var(--espresso);color:rgba(255,255,255,.72);padding:80px 0 30px}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:56px}
+@media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.foot-grid{grid-template-columns:1fr}}
+.foot-brand .eks{font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.42em;text-indent:.42em;color:var(--ochre);margin-bottom:10px}
+.foot-brand .name{font-family:var(--serif);font-size:26px;color:#fff;letter-spacing:.04em;margin-bottom:4px;font-weight:500}
+.foot-brand .num2{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--ochre);letter-spacing:.12em;margin-bottom:18px;display:inline-block}
+.foot-brand p{font-size:14px;line-height:1.7;color:rgba(255,255,255,.6);max-width:330px}
+.foot-col h4{color:#fff;font-family:var(--sans);font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-bottom:22px}
+.foot-col ul li{margin-bottom:12px;font-size:14px}
+.foot-col ul li a{transition:color .3s}
+.foot-col ul li a:hover{color:var(--ochre-soft)}
+.foot-col .cl{display:flex;gap:10px;font-size:14px;margin-bottom:12px;align-items:flex-start}
+.foot-col .cl .k{color:var(--ochre);flex:0 0 auto;font-weight:700}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:12px;color:rgba(255,255,255,.5)}
+.foot-social{display:flex;gap:14px}
+.foot-social a{width:32px;height:32px;border:1px solid rgba(255,255,255,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;transition:.3s}
+.foot-social a:hover{background:var(--ochre);color:var(--espresso);border-color:var(--ochre)}
+
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}.reveal.d4{transition-delay:.4s}.reveal.d5{transition-delay:.5s}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important}.cat-hero-bg{transform:none!important}html{scroll-behavior:auto}}
+
+
+.cat-hero{position:relative;min-height:78vh;display:flex;align-items:center;color:#fff;overflow:hidden}
+.cat-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.08);transition:transform 6s ease-out}
+.cat-hero.loaded .cat-hero-bg{transform:scale(1)}
+.cat-hero-overlay{position:absolute;inset:0;background:linear-gradient(100deg,rgba(26,16,10,.88) 0%,rgba(26,16,10,.62) 45%,rgba(26,16,10,.32) 100%)}
+.cat-hero-content{position:relative;z-index:2;padding:150px 0 96px;max-width:780px}
+.crumb{display:flex;gap:10px;align-items:center;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:24px;flex-wrap:wrap}
+.crumb a{color:var(--ochre-soft);transition:color .3s}
+.crumb a:hover{color:#fff}
+.crumb .sep{color:var(--ochre);opacity:.55}
+.crumb .cur{color:#fff}
+.cat-eyebrow{display:inline-flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.36em;text-transform:uppercase;color:var(--ochre-soft);margin-bottom:24px}
+.cat-eyebrow::before{content:"";width:42px;height:1px;background:var(--accent,var(--ochre))}
+.cat-hero h1{font-size:clamp(40px,6vw,76px);font-weight:400;line-height:.98;margin-bottom:24px}
+.cat-hero h1 em{font-style:italic;color:var(--ochre-soft)}
+.cat-hero p.lead{font-size:clamp(16px,1.6vw,19px);max-width:560px;font-weight:300;color:rgba(255,255,255,.9);margin-bottom:40px;line-height:1.6}
+.cat-hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.cat-hero .btn-primary{background:var(--accent,var(--clay))}
+.cat-hero .btn-primary:hover{filter:brightness(.9);transform:translateY(-2px)}
+
+.cat-intro{background:var(--cream);padding:110px 0}
+.cat-intro-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:64px;align-items:start}
+@media(max-width:900px){.cat-intro-grid{grid-template-columns:1fr;gap:40px}}
+.cat-intro-text h2{font-size:clamp(30px,3.6vw,46px);color:var(--espresso);margin-bottom:24px}
+.cat-intro-text h2 em{font-style:italic;color:var(--accent,var(--clay))}
+.cat-intro-text p{color:var(--muted);font-size:16px;margin-bottom:18px;max-width:560px}
+.cat-tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.cat-tags span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border:1px solid var(--line);color:var(--wood);background:var(--paper)}
+.cat-facts{background:var(--paper);border:1px solid var(--line);padding:38px 30px;position:sticky;top:104px}
+@media(max-width:900px){.cat-facts{position:static}}
+.cat-facts h4{color:var(--espresso);font-family:var(--sans);font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.cat-facts dl{margin-bottom:26px}
+.cat-facts dt{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--clay);font-weight:600;margin-bottom:4px}
+.cat-facts dd{font-size:14px;color:var(--espresso);margin-bottom:16px;line-height:1.5}
+.cat-facts .btn{width:100%;justify-content:center;background:var(--accent,var(--clay));color:#fff}
+.cat-facts .btn:hover{filter:brightness(.9)}
+
+.cat-gallery{background:var(--sand);padding:110px 0}
+.gallery{column-count:3;column-gap:16px}
+@media(max-width:900px){.gallery{column-count:2}}
+@media(max-width:560px){.gallery{column-count:1}}
+.gallery .g{break-inside:avoid;margin-bottom:16px;overflow:hidden;position:relative;background:var(--sand-2)}
+.gallery .g img{width:100%;display:block;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.gallery .g:hover img{transform:scale(1.07)}
+.gallery .g figcaption{position:absolute;left:0;right:0;bottom:0;padding:16px 16px 12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:linear-gradient(transparent,rgba(26,16,10,.88));opacity:0;transition:opacity .4s}
+.gallery .g:hover figcaption{opacity:1}
+
+.cat-usages{background:var(--cream);padding:110px 0}
+.usage-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+@media(max-width:900px){.usage-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.usage-grid{grid-template-columns:1fr}}
+.usage{background:var(--paper);border:1px solid var(--line);padding:32px 24px;transition:transform .4s,box-shadow .4s}
+.usage:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(42,24,16,.12)}
+.usage .ico{width:50px;height:50px;border-radius:50%;background:var(--accent,var(--clay));color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:22px;margin-bottom:16px}
+.usage h3{font-size:17px;color:var(--espresso);margin-bottom:8px}
+.usage p{font-size:13px;color:var(--muted);line-height:1.55}
+
+.cat-quote{background:var(--espresso);color:#fff;text-align:center;padding:104px 0;position:relative;overflow:hidden}
+.cat-quote::before{content:"";position:absolute;inset:0;background:var(--accent,var(--clay));opacity:.12}
+.cat-quote .wrap{position:relative;z-index:2;max-width:780px}
+.cat-quote .eyebrow-c{color:var(--ochre-soft)}
+.cat-quote .eyebrow-c::before,.cat-quote .eyebrow-c::after{background:var(--ochre)}
+.cat-quote blockquote{font-family:var(--serif);font-size:clamp(22px,3vw,34px);font-style:italic;line-height:1.45;color:#fff;margin-bottom:26px}
+.cat-quote .sig{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--ochre-soft)}
+
+.cat-related{background:var(--sand);padding:110px 0}
+.related-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+@media(max-width:900px){.related-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.related-grid{grid-template-columns:1fr}}
+.related-card{display:block;position:relative;overflow:hidden;background:var(--espresso);aspect-ratio:3/4;color:#fff}
+.related-card img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1);opacity:.82}
+.related-card:hover img{transform:scale(1.08);opacity:1}
+.related-card .rc-info{position:absolute;left:0;right:0;bottom:0;padding:24px 20px 20px;background:linear-gradient(transparent,rgba(26,16,10,.92))}
+.related-card .rc-num{font-family:var(--serif);font-style:italic;font-size:28px;color:var(--ochre);line-height:1}
+.related-card h3{font-size:18px;color:#fff;margin-top:6px}
+.related-card .rc-go{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ochre-soft);margin-top:10px;display:block}
+
+</style>
+</head>
+<body>
+<div class="kente-stripe"></div>
+<div class="announce">
+  <span>Livraison Dakar en 24&nbsp;h</span><span class="dot">◆</span>
+  <span>Expédition internationale</span><span class="dot">◆</span>
+  <span>+221 78 100 65 21 · WhatsApp</span>
+</div>
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="brand">
+      <span class="eks">EKS</span>
+      <span class="nameline"><span class="name">FALLOU SAGNSÉ</span><span class="num">221</span></span>
+      <span class="tag">Tissus d'Afrique · Dakar</span>
+    </a>
+    <ul class="menu" id="menu">
+      <li><a href="index.html#categories">Catégories</a></li>
+      <li><a href="index.html#savoir-faire">Savoir-faire</a></li>
+      <li><a href="index.html#story">La maison</a></li>
+      <li><a href="index.html#testi">Clients</a></li>
+      <li><a href="#contact" class="nav-cta">Commander · WhatsApp</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<header class="cat-hero" id="top" style="--accent:#102544">
+  <div class="cat-hero-bg" style="background-image:url('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6074a60cc05b.jpg')"></div>
+  <div class="cat-hero-overlay"></div>
+  <div class="wrap cat-hero-content">
+    <div class="crumb"><a href="index.html">Accueil</a><span class="sep">›</span><a href="index.html#categories">Catégories</a><span class="sep">›</span><span class="cur">Bazin Riche</span></div>
+    <span class="cat-eyebrow">Catégorie 02 / 05 · FALLOU SAGNSÉ 221</span>
+    <h1>Bazin Riche<br><em>le drapé de gala</em></h1>
+    <p class="lead">Coton damassé, teint puis martelé jusqu'à l'éclat soyeux. L'étoffe des grands boubous et des dimanches solennels — noir, bleu nuit, vert, bordeaux, sublimés par la lumière.</p>
+    <div class="cat-hero-cta">
+      <a href="https://wa.me/221781006521?text=Bonjour%20FALLOU%20SAGNS%C3%89%2C%20je%20cherche%20du%20bazin%20riche%20%28grand%20boubou%20/%20gala%29.%20Pouvez-vous%20m%27envoyer%20les%20couleurs%20disponibles%20et%20les%20tarifs%20%3F" class="btn btn-primary" target="_blank" rel="noopener">Commander en WhatsApp <span class="arrow">→</span></a>
+      <a href="#galerie" class="btn btn-ghost">Voir la galerie</a>
+    </div>
+  </div>
+</header>
+
+<section class="cat-intro" id="apropos">
+  <div class="wrap cat-intro-grid">
+    <div class="cat-intro-text reveal">
+      <span class="eyebrow-c">Le tissu</span>
+      <h2>Le bazin riche, <em>noblesse du drapé</em></h2>
+      <p>Le bazin riche est un coton damassé à l'armure complexe, qui révère la lumière. Originaire du Mali et adopté dans toute l'Afrique de l'Ouest, il est l'étoffe de prédilection du grand boubou, du takki et des tenues de cérémonie.</p><p>Sa noblesse vient du geste : après teinture — souvent par nouage pour obtenir des halos de couleur — le tissu est repassé au fer à marteler. Sous les coups répétés, la surface se lisse, les motifs damassés émergent en miroir, et l'étoffe gagne son éclat de soyeux.</p><p>Noir de gala, bleu nuit, vert émeraude, bordeaux, violet : le bazin riche aime les couleurs profondes, où la lumière dessine le motif. Le « bazin libre » ou bazin teint offre, lui, des dégradés nuageux très prisés.</p><p>À FALLOU SAGNSÉ, nous choisissons des bazins au tissage serré et au martelage soigné, pour un tombé impeccable et un éclat qui dure.</p>
+      <div class="cat-tags"><span>Bazin riche</span><span>Damassé</span><span>Grand boubou</span><span>Gala</span></div>
+    </div>
+    <aside class="cat-facts reveal d1">
+      <h4>Caractéristiques</h4>
+      <dl><dt>Matière</dt><dd>Coton damassé</dd><dt>Largeur</dt><dd>≈ 150 cm</dd><dt>Poids</dt><dd>Lourd (≈ 250–300 g/m²)</dd><dt>Technique</dt><dd>Teinture + repassage au fer à marteler</dd><dt>Origine</dt><dd>Mali (et Afrique de l'Ouest)</dd><dt>Entretien</dt><dd>Lavage à la main froid ; repassage doux côté envers ; ne pas tordre</dd></dl>
+      <a href="https://wa.me/221781006521?text=Bonjour%20FALLOU%20SAGNS%C3%89%2C%20je%20cherche%20du%20bazin%20riche%20%28grand%20boubou%20/%20gala%29.%20Pouvez-vous%20m%27envoyer%20les%20couleurs%20disponibles%20et%20les%20tarifs%20%3F" class="btn btn-gold" target="_blank" rel="noopener">Demander un devis <span class="arrow">→</span></a>
+    </aside>
+  </div>
+</section>
+
+<section class="cat-gallery" id="galerie">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow-c reveal">Galerie</span>
+      <h2 class="reveal d1">Le bazin, <em>la lumière sur le damas</em></h2>
+      <p class="reveal d2">Éclat martelé, motifs damassés et couleurs profondes : la matière du bazin riche.</p>
+    </div>
+    <div class="gallery"><figure class="g"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6074a60cc05b.jpg" alt="Bazin riche damassé" loading="lazy"><figcaption>Bazin riche, éclat martelé</figcaption></figure><figure class="g"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/9ff20626dce1.jpg" alt="Bazin teint" loading="lazy"><figcaption>Bazin teint, halos de couleur</figcaption></figure><figure class="g"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3184ce222fa5.jpg" alt="Étoffe bazin damassée" loading="lazy"><figcaption>Damas et reflets</figcaption></figure><figure class="g"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c90dc98e6d7c.jpg" alt="Bazin soyeux" loading="lazy"><figcaption>Bazin soyeux, profondeur</figcaption></figure></div>
+  </div>
+</section>
+
+<section class="cat-usages">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow-c reveal">Usages &amp; occasions</span>
+      <h2 class="reveal d1">Quand le porter, <em>comment l'oser</em></h2>
+    </div>
+    <div class="usage-grid"><div class="usage reveal"><div class="ico">✦</div><h3>Grand boubou</h3><p>La tenue du dimanche et des fêtes solennelles.</p></div><div class="usage reveal"><div class="ico">✂</div><h3>Cérémonies & gala</h3><p>Mariages, Tabaski, conventions, remises.</p></div><div class="usage reveal"><div class="ico">➤</div><h3>Tenue d'apparat</h3><p>Costume, takki, accessoires d'exception.</p></div><div class="usage reveal"><div class="ico">⌂</div><h3>Décoration</h3><p>Drapés, jetés, housses pour l'intérieur.</p></div></div>
+  </div>
+</section>
+
+<section class="cat-quote">
+  <div class="wrap">
+    <span class="eyebrow-c reveal">Le conseil de Fallou</span>
+    <blockquote class="reveal d1">« Le bazin ne se porte pas, il se drape. Et quand il tombe bien, tout le reste suit. »</blockquote>
+    <div class="sig reveal d2">— Fallou Sagnsé, fondateur · Marché HLM, Dakar</div>
+  </div>
+</section>
+
+<section class="cat-related">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow-c reveal">Autres familles</span>
+      <h2 class="reveal d1">Explorez les <em>autres catégories</em></h2>
+      <p class="reveal d2">Cinq familles de tissus, cent façons d'oser. Poursuivez la visite.</p>
+    </div>
+    <div class="related-grid"><a class="related-card reveal" href="wax.html" style="--accent:#B23A1B"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/13622f815868.jpg" alt="Wax & Ankara" loading="lazy"><div class="rc-info"><div class="rc-num">01</div><h3>Wax &amp; Ankara</h3><span class="rc-go">Découvrir →</span></div></a><a class="related-card reveal" href="bogolan.html" style="--accent:#3D2415"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/67cabd41412d.jpg" alt="Bogolan" loading="lazy"><div class="rc-info"><div class="rc-num">03</div><h3>Bogolan · Mudcloth</h3><span class="rc-go">Découvrir →</span></div></a><a class="related-card reveal" href="kente.html" style="--accent:#0E6B53"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/30fe7aba278e.jpg" alt="Kente" loading="lazy"><div class="rc-info"><div class="rc-num">04</div><h3>Kente · Ghana</h3><span class="rc-go">Découvrir →</span></div></a><a class="related-card reveal" href="indigo.html" style="--accent:#1B3A6B"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d7425b0d7375.jpg" alt="Indigo" loading="lazy"><div class="rc-info"><div class="rc-num">05</div><h3>Indigo · Teinture végétale</h3><span class="rc-go">Découvrir →</span></div></a></div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="cta-inner">
+    <span class="eyebrow-c reveal">Commander du Bazin Riche</span>
+    <h2 class="reveal d1">Envie d'un <em>Bazin Riche</em> choisi pour vous ?</h2>
+    <p class="reveal d2">Recevez notre catalogue Bazin Riche et les nouveautés de la saison, ou écrivez-nous directement sur WhatsApp pour commander votre pièce dès aujourd'hui. Livraison 24&nbsp;h à Dakar, expédition internationale.</p>
+    <form class="cta-form reveal d3" id="ctaForm">
+      <input type="email" id="ctaEmail" placeholder="Votre adresse e-mail" required>
+      <button type="submit">Recevoir le catalogue</button>
+    </form>
+    <div class="cta-note reveal d3">Une lettre par saison. Pas de spam.</div>
+    <div class="cta-ok" id="ctaOk">✓ Merci, votre demande est enregistrée. Nous vous écrivons sous 24&nbsp;h.</div>
+    <a href="https://wa.me/221781006521?text=Bonjour%20FALLOU%20SAGNS%C3%89%2C%20je%20cherche%20du%20bazin%20riche%20%28grand%20boubou%20/%20gala%29.%20Pouvez-vous%20m%27envoyer%20les%20couleurs%20disponibles%20et%20les%20tarifs%20%3F" class="cta-wa reveal d4" target="_blank" rel="noopener">WhatsApp · +221 78 100 65 21</a>
+  </div>
+</section>
+
+<div class="kente-stripe"></div>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="eks">EKS</div>
+        <div class="name">FALLOU SAGNSÉ</div>
+        <span class="num2">221</span>
+        <p>Boutique de tissus africains d'exception à Dakar. Wax, bazin riche, bogolan, kente et indigo, sélectionnés à la main en Afrique de l'Ouest. Pour les grandes occasions et le quotidien qui a du caractère.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Catégories</h4>
+        <ul>
+          <li><a href="wax.html">Wax &amp; Ankara</a></li>
+          <li><a href="bazin.html">Bazin Riche</a></li>
+          <li><a href="bogolan.html">Bogolan</a></li>
+          <li><a href="kente.html">Kente</a></li>
+          <li><a href="indigo.html">Indigo</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Maison</h4>
+        <ul>
+          <li><a href="index.html#story">Notre histoire</a></li>
+          <li><a href="index.html#savoir-faire">Savoir-faire</a></li>
+          <li><a href="index.html#testi">Nos clients</a></li>
+          <li><a href="#contact">Commander</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Nous trouver</h4>
+        <div class="cl"><span class="k">⌖</span><span>Marché HLM<br>Dakar · Sénégal</span></div>
+        <div class="cl"><span class="k">☎</span><span>+221 78 100 65 21</span></div>
+        <div class="cl"><span class="k">✉</span><span>contact@fallou-sagnse.sn</span></div>
+        <div class="cl"><span class="k">◷</span><span>Lun&nbsp;–&nbsp;Sam · 9h&nbsp;–&nbsp;19h</span></div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2024 FALLOU SAGNSÉ 221 — Dakar, Sénégal · Tous droits réservés</div>
+      <div class="foot-social">
+        <a href="#" aria-label="Instagram">Ig</a>
+        <a href="#" aria-label="Facebook">Fb</a>
+        <a href="https://wa.me/221781006521" aria-label="WhatsApp">Wa</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  function onScroll(){if(window.scrollY>60){nav.classList.add('scrolled')}else{nav.classList.remove('scrolled')}}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  var hero=document.querySelector('.cat-hero');
+  if(hero){requestAnimationFrame(function(){hero.classList.add('loaded')})}
+  var burger=document.getElementById('burger');var menu=document.getElementById('menu');
+  if(burger&&menu){
+    var backdrop=document.createElement('div');backdrop.className='menu-backdrop';document.body.appendChild(backdrop);
+    function openMenu(){menu.classList.add('open');burger.classList.add('open');backdrop.classList.add('show');document.body.style.overflow='hidden'}
+    function closeMenu(){menu.classList.remove('open');burger.classList.remove('open');backdrop.classList.remove('show');document.body.style.overflow=''}
+    burger.addEventListener('click',function(e){e.stopPropagation();if(menu.classList.contains('open')){closeMenu()}else{openMenu()}});
+    backdrop.addEventListener('click',closeMenu);
+    menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMenu)});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMenu()}});
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  var form=document.getElementById('ctaForm');var ok=document.getElementById('ctaOk');
+  if(form&&ok){
+    form.addEventListener('submit',function(e){
+      e.preventDefault();var email=document.getElementById('ctaEmail');
+      if(email.value&&email.checkValidity()){form.style.display='none';ok.classList.add('show')}else{email.focus()}
+    });
+  }
+  if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+    window.addEventListener('scroll',function(){
+      var y=window.scrollY;
+      if(y<window.innerHeight){
+        var bg=document.querySelector('.cat-hero-bg');
+        if(bg){bg.style.transform='scale('+(1+y*0.0004)+') translateY('+(y*0.18)+'px)';}
+      }
+    },{passive:true});
+  }
+})();
+</script>
+</body>
+</html>
