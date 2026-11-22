@@ -3,581 +3,339 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FALLOU SAGNSÉ 221 — Tissus africains d'exception · Dakar</title>
-<meta name="description" content="FALLOU SAGNSÉ 221, boutique de tissus africains à Dakar. Wax, bazin riche, bogolan, kente et indigo sélectionnés à la main en Afrique de l'Ouest. Livraison Dakar et internationale.">
+<title>FALLOU SAGNSÉ 221 — Tissus africains à Dakar</title>
+<meta name="description" content="Boutique de tissus africains à Dakar : wax, bazin riche, bogolan, kente et indigo. Sélectionnés à la main, livraison Dakar 24h et internationale.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
 :root{
-  --sand:#F6EBD3;--sand-2:#F1E2C2;--cream:#FBF4E2;--paper:#FDF7E9;
-  --clay:#B23A1B;--clay-deep:#8A2A12;--ochre:#D4A12B;--ochre-soft:#E6C46A;
-  --indigo:#1B3A6B;--indigo-deep:#102544;--kente:#0E6B53;
-  --espresso:#2A1810;--wood:#3D2415;--muted:#6B5237;--line:#E2CFA6;
-  --serif:'Fraunces',Georgia,'Times New Roman',serif;
-  --sans:'Outfit','Helvetica Neue',Arial,sans-serif;
+  --bg:#FAF7F2;--surface:#FFFFFF;--ink:#1A1410;--muted:#6B6258;--line:#EAE1D4;
+  --accent:#B23A1B;--accent-deep:#8E2C13;--accent-soft:#F6E9DF;
+  --ok:#0E6B53;--ok-soft:#E6F4EE;
+  --radius:16px;--radius-sm:12px;
+  --serif:'Fraunces',Georgia,serif;--sans:'Outfit',system-ui,-apple-system,sans-serif;
+  --max:1120px;
 }
+*{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{font-family:var(--sans);font-weight:400;color:var(--espresso);background:var(--sand);line-height:1.7;font-size:16px;overflow-x:hidden}
-img{max-width:100%;display:block}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
 a{color:inherit;text-decoration:none}
-ul{list-style:none}
-h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.05;letter-spacing:-.01em}
-.wrap{max-width:1320px;margin:0 auto;padding:0 36px}
-@media(max-width:640px){.wrap{padding:0 20px}}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 16px}
+@media(min-width:640px){.wrap{padding:0 24px}}
 
-.kente-stripe{height:8px;width:100%;background:var(--clay)}
-
-.announce{background:var(--espresso);color:var(--ochre-soft);font-size:12px;letter-spacing:.18em;text-transform:uppercase;text-align:center;padding:9px 16px;font-weight:400}.announce a{color:inherit;text-decoration:none;transition:color .3s}.announce a:hover{color:#fff}
-.announce span{margin:0 16px}
-.announce .dot{color:var(--ochre);opacity:.7}
-
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .4s ease,box-shadow .4s ease,padding .4s;padding:24px 0}
-.nav.scrolled{background:rgba(246,235,211,.97);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line);padding:13px 0}
-.nav-inner{display:flex;align-items:center;justify-content:space-between}
-.brand{display:flex;flex-direction:column;align-items:center;gap:4px;line-height:1;text-align:center}
-.brand .eks{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.42em;text-indent:.42em;color:var(--ochre);margin-bottom:3px}
-.nav.scrolled .brand .eks{color:var(--clay)}
-.brand .nameline{position:relative;display:inline-block}
-.brand .name{font-family:var(--serif);font-size:23px;font-weight:500;letter-spacing:.06em;color:#fff}
-.nav.scrolled .brand .name{color:var(--espresso)}
-.brand .num{position:absolute;left:calc(100% + 10px);top:50%;transform:translateY(-50%);font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--ochre);border:1.5px solid var(--ochre);padding:2px 8px;white-space:nowrap}
-.brand .tag{font-size:9px;letter-spacing:.32em;text-transform:uppercase;margin-top:4px;color:var(--ochre-soft)}
-.nav.scrolled .brand .tag{color:var(--clay)}
-.menu{display:flex;gap:34px;align-items:center}
-.menu a{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:400;position:relative;padding:6px 0;transition:color .3s}
-.nav:not(.scrolled) .menu a{color:#FBF4E2}
-.nav.scrolled .menu a{color:var(--espresso)}
-.menu a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--ochre);transition:width .35s ease}
-.menu a:hover::after{width:100%}
-.nav-cta{background:var(--clay);color:#fff!important;padding:10px 22px;letter-spacing:.16em;font-size:11px;font-weight:500;transition:.3s}
-.nav-cta:hover{background:var(--clay-deep);transform:translateY(-2px)}
-.nav-cta::after{display:none}
-.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:0;position:relative;z-index:102;padding:6px}
-.burger span{width:26px;height:2px;background:#fff;transition:.3s}
-.nav.scrolled .burger span{background:var(--espresso)}
-.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--espresso)}
+/* Top bar */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(250,247,242,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transition:background .3s,box-shadow .3s}
+.topbar.scrolled{background:rgba(250,247,242,.97);box-shadow:0 2px 16px rgba(26,20,16,.06)}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{display:flex;align-items:baseline;gap:7px}
+.brand .name{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:.01em;color:var(--ink)}
+.brand .num{font-size:10px;font-weight:700;color:var(--accent);border:1.3px solid var(--accent);padding:2px 6px;border-radius:999px;letter-spacing:.06em}
+.nav-links-desktop{display:flex;align-items:center;gap:24px}
+.nav-links-desktop a,.menu-drawer a{font-size:14px;font-weight:500;color:var(--ink);transition:color .2s}
+.nav-links-desktop a:hover,.menu-drawer a:hover{color:var(--accent)}
+.nav-links-desktop .btn-wa,.menu-drawer .btn-wa{background:var(--accent);color:#fff;padding:9px 18px;border-radius:999px;font-size:13px;font-weight:600;transition:.25s}
+.nav-links-desktop .btn-wa:hover,.menu-drawer .btn-wa:hover{background:var(--accent-deep);color:#fff}
+.burger{display:none;width:44px;height:44px;border:0;background:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer}
+.burger span{display:block;width:22px;height:2px;background:var(--ink);transition:.3s}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .burger.open span:nth-child(2){opacity:0}
-.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--espresso)}
-.menu-backdrop{position:fixed;inset:0;background:rgba(20,12,6,.55);z-index:99;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.menu-backdrop{position:fixed;inset:0;background:rgba(26,20,16,.45);z-index:55;opacity:0;visibility:hidden;transition:.3s}
 .menu-backdrop.show{opacity:1;visibility:visible}
-@media(max-width:980px){
-  .menu{position:fixed;top:0;right:-100%;height:100vh;width:82%;max-width:360px;background:var(--cream);flex-direction:column;justify-content:center;gap:30px;box-shadow:-20px 0 60px rgba(0,0,0,.25);transition:right .45s ease}
-  .menu.open{right:0}
-  .menu a{color:var(--espresso)!important;font-size:17px}
-  .nav-cta{color:#fff!important}
+.menu-clip{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:60}
+.menu-clip.show{pointer-events:auto}
+.menu-drawer{position:absolute;top:0;right:0;height:100vh;width:80%;max-width:320px;background:var(--surface);display:flex;flex-direction:column;justify-content:center;gap:26px;padding:30px;box-shadow:-16px 0 44px rgba(0,0,0,.18);transform:translateX(100%);transition:transform .42s ease}
+.menu-clip.show .menu-drawer{transform:translateX(0)}
+@media(max-width:820px){
   .burger{display:flex}
+  .nav-links-desktop{display:none}
+  .menu-drawer a{font-size:20px}
+  .menu-drawer .btn-wa{font-size:16px;padding:12px 22px}
+}
+@media(min-width:821px){
+  .menu-clip{display:none}
 }
 
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;color:#fff;overflow:hidden;padding-top:40px}
-.hero-bg{position:absolute;inset:0;background:url('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/13622f815868.jpg') center/cover no-repeat;transform:scale(1.08);transition:transform 6s ease-out}
-.hero.loaded .hero-bg{transform:scale(1)}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(100deg,rgba(26,16,10,.85) 0%,rgba(26,16,10,.55) 45%,rgba(26,16,10,.25) 100%)}
-.hero-content{position:relative;z-index:2;max-width:780px;padding:150px 0 90px}
-.hero .eyebrow{display:inline-flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.36em;text-transform:uppercase;color:var(--ochre-soft);margin-bottom:26px}
-.hero .eyebrow::before{content:"";width:42px;height:1px;background:var(--ochre)}
-.hero h1{font-size:clamp(46px,7vw,98px);font-weight:400;line-height:.96;margin-bottom:26px}
-.hero h1 em{font-style:italic;color:var(--ochre-soft)}
-.hero p.lead{font-size:clamp(16px,1.6vw,19px);max-width:540px;font-weight:300;color:rgba(255,255,255,.88);margin-bottom:42px;line-height:1.6}
-.hero-cta{display:flex;gap:16px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:12px;padding:17px 34px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;cursor:pointer;transition:all .35s ease;border:0}
-.btn-primary{background:var(--clay);color:#fff}
-.btn-primary:hover{background:var(--clay-deep);transform:translateY(-2px)}
-.btn-gold{background:var(--ochre);color:var(--espresso)}
-.btn-gold:hover{background:var(--ochre-soft);transform:translateY(-2px)}
-.btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.55)}
-.btn-ghost:hover{background:#fff;color:var(--espresso);border-color:#fff}
-.btn .arrow{transition:transform .35s}
-.btn:hover .arrow{transform:translateX(5px)}
-.scroll-cue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:3;color:rgba(255,255,255,.7);font-size:10px;letter-spacing:.3em;text-transform:uppercase;text-align:center}
-.scroll-cue::after{content:"";display:block;width:1px;height:44px;background:rgba(255,255,255,.4);margin:12px auto 0;animation:cue 2s infinite}
-@keyframes cue{0%{transform:scaleY(.3);transform-origin:top}50%{transform:scaleY(1)}100%{transform:scaleY(.3);transform-origin:bottom}}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 24px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer;transition:.25s;border:0;font-family:var(--sans)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-deep);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn .arrow{transition:transform .25s}
+.btn:hover .arrow{transform:translateX(4px)}
 
-.stats{background:var(--espresso);color:var(--ochre-soft);padding:38px 0}
-.stats-inner{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
-.stat{display:flex;align-items:center;gap:14px}
-.stat .num{font-family:var(--serif);font-size:34px;color:#fff;font-weight:400;line-height:1}
-.stat .lbl{color:var(--ochre-soft);font-size:11px;letter-spacing:.16em;text-transform:uppercase;line-height:1.5}
+/* Hero (devanture) */
+.hero{padding:44px 0 36px}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:24px;align-items:center}
+@media(min-width:880px){.hero-grid{grid-template-columns:1.1fr .9fr;gap:40px}}
+.hero-text{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:12px;font-weight:600;letter-spacing:.03em}
+.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.hero h1{font-family:var(--serif);font-size:clamp(30px,8vw,50px);font-weight:500;line-height:1.04;letter-spacing:-.01em}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero .sub{font-size:clamp(15px,3.6vw,17px);color:var(--muted);max-width:46ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.hero-img{border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3;background:var(--line);box-shadow:0 16px 40px rgba(26,20,16,.12)}
+.hero-img img{width:100%;height:100%;object-fit:cover}
 
-section{padding:110px 0}
-.section-head{text-align:center;max-width:700px;margin:0 auto 70px}
-.eyebrow-c{display:inline-flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--clay);margin-bottom:20px}
-.eyebrow-c::before,.eyebrow-c::after{content:"";width:30px;height:1px;background:var(--ochre)}
-.section-head h2{font-size:clamp(34px,4.6vw,58px);color:var(--espresso);margin-bottom:18px}
-.section-head h2 em{font-style:italic;color:var(--clay)}
-.section-head p{color:var(--muted);font-size:16px;max-width:580px;margin:0 auto}
+/* Photos strip */
+.photos{padding:10px 0 40px}
+.photos-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:640px){.photos-grid{grid-template-columns:repeat(4,1fr);gap:14px}}
+.photos-grid figure{border-radius:var(--radius-sm);overflow:hidden;aspect-ratio:1/1;background:var(--line)}
+.photos-grid img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.photos-grid figure:hover img{transform:scale(1.06)}
 
-.categories{background:var(--cream);padding:110px 0}
-.affiche{display:grid;grid-template-columns:1.05fr 1fr;gap:60px;align-items:center;margin-bottom:90px}
-.affiche:last-child{margin-bottom:0}
-.affiche.flip{grid-template-columns:1fr 1.05fr}
-.affiche.flip .affiche-text{order:2}
-.affiche.flip .affiche-mosaic{order:1}
-@media(max-width:900px){
-  .affiche,.affiche.flip{grid-template-columns:1fr;gap:34px}
-  .affiche.flip .affiche-text{order:1}
-  .affiche.flip .affiche-mosaic{order:2}
-}
-.affiche-text{padding:10px 0}
-.affiche-text .catnum{font-family:var(--serif);font-style:italic;font-size:64px;line-height:1;color:var(--ochre);opacity:.7;margin-bottom:6px;font-weight:400}
-.affiche-text .catname{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--clay);margin-bottom:14px;font-weight:600}
-.affiche-text h3{font-size:clamp(32px,3.8vw,46px);color:var(--espresso);margin-bottom:18px}
-.affiche-text h3 em{font-style:italic;color:var(--clay)}
-.affiche-text p{color:var(--muted);font-size:16px;margin-bottom:20px;max-width:520px}
-.affiche-tags{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
-.affiche-tags span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border:1px solid var(--line);color:var(--wood);background:var(--paper)}
-.affiche-text .btn{background:var(--espresso);color:#fff}
-.affiche-text .btn:hover{background:var(--clay)}
-.affiche-text .btn .arrow{color:var(--ochre)}
-.affiche-mosaic{position:relative}
-.mosaic{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:repeat(3,1fr);gap:12px;aspect-ratio:5/4}
-.mosaic .m{overflow:hidden;background:var(--sand-2);position:relative}
-.mosaic .m img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
-.mosaic .m:hover img{transform:scale(1.07)}
-.mosaic .m1{grid-column:1;grid-row:1 / span 3}
-.mosaic .m2{grid-column:2;grid-row:1}
-.mosaic .m3{grid-column:2;grid-row:2}
-.mosaic .m4{grid-column:2;grid-row:3}
-.affiche-mosaic .frame{position:absolute;inset:-14px -14px auto auto;width:90px;height:90px;border-top:3px solid var(--ochre);border-right:3px solid var(--ochre);z-index:2;pointer-events:none}
-.affiche.flip .affiche-mosaic .frame{inset:-14px auto auto -14px;border:0;border-bottom:3px solid var(--ochre);border-left:3px solid var(--ochre)}
-.mosaic-label{position:absolute;left:0;bottom:0;background:var(--clay);color:#fff;padding:8px 18px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;z-index:3;display:block;transition:background .3s}.mosaic-label:hover{background:var(--clay-deep)}
-.mosaic-label .ar{color:var(--ochre-soft)}
+/* Section heads */
+.section-head{text-align:center;max-width:60ch;margin:0 auto 22px}
+.section-head .eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.section-head h2{font-family:var(--serif);font-size:clamp(22px,5.4vw,32px);font-weight:500;line-height:1.1}
+.section-head p{font-size:14px;color:var(--muted);margin-top:6px}
 
-.values{background:var(--sand)}
-.val-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-@media(max-width:900px){.val-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.val-grid{grid-template-columns:1fr}}
-.val{background:var(--paper);border:1px solid var(--line);padding:38px 28px;text-align:center;transition:transform .4s,box-shadow .4s}
-.val:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(42,24,16,.12)}
-.val .ico{width:64px;height:64px;margin:0 auto 20px;border-radius:50%;background:var(--espresso);color:var(--ochre);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:30px;font-weight:500}
-.val h3{font-size:21px;color:var(--espresso);margin-bottom:10px}
-.val p{font-size:14px;color:var(--muted);line-height:1.6}
+/* Categories 2x2 */
+.cats{padding:36px 0}
+.cats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:820px){.cats-grid{grid-template-columns:repeat(3,1fr);gap:20px}}
+.cat-card{position:relative;border-radius:var(--radius);overflow:hidden;background:var(--surface);border:1px solid var(--line);transition:.25s;display:block}
+.cat-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 14px 32px rgba(178,58,27,.13)}
+.cat-card .ph{aspect-ratio:4/5;overflow:hidden;background:var(--line)}
+.cat-card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.cat-card:hover .ph img{transform:scale(1.06)}
+.cat-card .info{padding:12px 14px 16px}
+.cat-card .num{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.1em}
+.cat-card h3{font-family:var(--serif);font-size:17px;font-weight:600;margin-top:2px;line-height:1.2}
+.cat-card .go{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600;color:var(--accent);margin-top:8px}
+.cat-card .go .arrow{transition:transform .25s}
+.cat-card:hover .go .arrow{transform:translateX(4px)}
 
-.savoir{background:var(--cream);padding:0}
-.savoir-inner{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;min-height:620px}
-@media(max-width:900px){.savoir-inner{grid-template-columns:1fr}}
-.savoir-img{position:relative;overflow:hidden;min-height:460px}
-.savoir-img img{width:100%;height:100%;object-fit:cover}
-.savoir-img .badge{position:absolute;top:28px;left:28px;background:var(--clay);color:#fff;padding:10px 18px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;font-weight:600}
-.savoir-text{padding:90px 70px;display:flex;flex-direction:column;justify-content:center}
-@media(max-width:900px){.savoir-text{padding:60px 32px}}
-.savoir-text .eyebrow-c{margin-bottom:18px}
-.savoir-text h2{font-size:clamp(32px,4vw,46px);color:var(--espresso);margin-bottom:24px}
-.savoir-text h2 em{font-style:italic;color:var(--clay)}
-.savoir-text p{color:var(--muted);margin-bottom:20px;font-size:16px}
-.savoir-list{margin:18px 0 30px;display:flex;flex-direction:column;gap:14px}
-.savoir-list li{display:flex;gap:14px;align-items:flex-start;font-size:14px;color:var(--espresso)}
-.savoir-list li .ico{flex:0 0 26px;height:26px;border:1.5px solid var(--ochre);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--clay);font-size:12px;font-weight:700}
-.savoir-text .sig{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--clay);margin-top:18px}
+/* How to order */
+.how{padding:40px 0;background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.how-grid{display:grid;grid-template-columns:1fr;gap:22px}
+@media(min-width:760px){.how-grid{grid-template-columns:repeat(3,1fr);gap:30px}}
+.how-step{text-align:center;padding:0 6px}
+.how-step .n{width:38px;height:38px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:15px}
+.how-step h4{font-size:16px;font-weight:600;margin-bottom:4px}
+.how-step p{font-size:14px;color:var(--muted)}
 
-.story{position:relative;color:#fff;text-align:center;padding:130px 0;overflow:hidden}
-.story-bg{position:absolute;inset:0;background:url('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/0fee3e388463.jpg') center/cover no-repeat fixed}
-@media(max-width:900px){.story-bg{background-attachment:scroll}}
-.story-overlay{position:absolute;inset:0;background:rgba(26,16,10,.66)}
-.story-content{position:relative;z-index:2;max-width:780px;margin:0 auto;padding:0 32px}
-.story .eyebrow-c{color:var(--ochre-soft)}
-.story .eyebrow-c::before,.story .eyebrow-c::after{background:var(--ochre)}
-.story h2{font-size:clamp(32px,5vw,58px);color:#fff;margin-bottom:24px}
-.story h2 em{font-style:italic;color:var(--ochre-soft)}
-.story p{color:rgba(255,255,255,.88);font-size:17px;margin:0 auto 32px;max-width:600px}
-.story .sig{font-family:var(--serif);font-style:italic;font-size:24px;color:var(--ochre-soft)}
+/* Category page : header + product grid */
+.cat-head{padding:30px 0 14px}
+.crumb{font-size:12px;color:var(--muted);margin-bottom:10px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.crumb a:hover{color:var(--accent)}
+.crumb .sep{opacity:.5}
+.cat-head h1{font-family:var(--serif);font-size:clamp(26px,7vw,38px);font-weight:500;line-height:1.05}
+.cat-head h1 em{font-style:italic;color:var(--accent)}
+.cat-head .lead{color:var(--muted);max-width:60ch;margin-top:8px;font-size:15px}
+.cat-head .wa-cat{display:inline-flex;margin-top:14px}
 
-.testi{background:var(--sand)}
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-@media(max-width:900px){.testi-grid{grid-template-columns:1fr}}
-.testi-card{background:var(--paper);border:1px solid var(--line);padding:38px 32px;position:relative}
-.testi-card .quote{font-family:var(--serif);font-size:56px;color:var(--ochre);line-height:.6;height:28px;margin-bottom:10px}
-.testi-card p{font-size:16px;color:var(--espresso);font-style:italic;font-family:var(--serif);line-height:1.5;margin-bottom:24px}
-.testi-card .who{display:flex;align-items:center;gap:14px}
-.testi-card .who .av{width:46px;height:46px;border-radius:50%;background:var(--clay);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:20px}
-.testi-card .who .meta .n{font-size:14px;color:var(--espresso);font-weight:600;letter-spacing:.02em}
-.testi-card .who .meta .r{font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+.products{padding:14px 0 48px}
+.prod-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:820px){.prod-grid{grid-template-columns:repeat(4,1fr);gap:18px}}
+.prod{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:.25s}
+.prod:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 14px 30px rgba(178,58,27,.12)}
+.prod .ph{aspect-ratio:1/1;overflow:hidden;background:var(--line)}
+.prod .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.prod:hover .ph img{transform:scale(1.06)}
+.prod .body{padding:12px;display:flex;flex-direction:column;gap:6px;flex:1}
+.prod .name{font-size:13.5px;font-weight:600;line-height:1.3;color:var(--ink)}
+.prod .price{font-size:17px;font-weight:700;color:var(--accent);font-family:var(--serif)}
+.prod .stock{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;width:fit-content}
+.prod .stock::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.prod .stock.ok{background:var(--ok-soft);color:var(--ok)}
+.prod .stock.low{background:var(--accent-soft);color:var(--accent)}
+.prod .stock.order{background:#EEEADE;color:var(--muted)}
+.prod .order{margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px;border-radius:var(--radius-sm);background:var(--accent);color:#fff;font-size:13px;font-weight:600;transition:.25s}
+.prod .order:hover{background:var(--accent-deep)}
 
-.cta{background:var(--espresso);color:#fff;text-align:center;padding:96px 0;position:relative;overflow:hidden}
-.cta::before,.cta::after{display:none}
-@media(max-width:900px){.cta::before,.cta::after{display:none}}
-.cta-inner{position:relative;z-index:2;max-width:680px;margin:0 auto;padding:0 32px}
-.cta .eyebrow-c{color:var(--ochre-soft)}
-.cta .eyebrow-c::before,.cta .eyebrow-c::after{background:var(--ochre)}
-.cta h2{font-size:clamp(32px,4.5vw,50px);color:#fff;margin-bottom:18px}
-.cta h2 em{font-style:italic;color:var(--ochre-soft)}
-.cta p{color:rgba(255,255,255,.85);margin-bottom:34px;font-size:16px}
-.cta-form{display:flex;gap:12px;max-width:480px;margin:0 auto;flex-wrap:wrap}
-.cta-form input{flex:1;min-width:220px;padding:16px 20px;border:1px solid rgba(255,255,255,.32);background:rgba(255,255,255,.06);color:#fff;font-family:var(--sans);font-size:14px}
-.cta-form input::placeholder{color:rgba(255,255,255,.6)}
-.cta-form input:focus{outline:0;border-color:var(--ochre-soft);background:rgba(255,255,255,.12)}
-.cta-form button{padding:16px 30px;background:var(--ochre);color:var(--espresso);border:0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;cursor:pointer;transition:.3s}
-.cta-form button:hover{background:var(--ochre-soft)}
-.cta-note{font-size:12px;color:rgba(255,255,255,.55);margin-top:18px}
-.cta-ok{margin-top:18px;color:var(--ochre-soft);font-size:14px;display:none}
-.cta-ok.show{display:block}
-.cta-wa{display:inline-flex;align-items:center;gap:10px;margin-top:30px;color:#fff;background:var(--clay);padding:13px 26px;font-size:13px;letter-spacing:.1em;font-weight:500;transition:.3s}
-.cta-wa:hover{background:var(--clay-deep);transform:translateY(-2px)}
+/* Footer */
+.footer{background:var(--ink);color:#EAE1D4;padding:42px 0 22px}
+.foot-grid{display:grid;grid-template-columns:1fr;gap:26px}
+@media(min-width:640px){.foot-grid{grid-template-columns:1.5fr 1fr 1.1fr;gap:34px}}
+.foot-brand .name{font-family:var(--serif);font-size:22px;color:#fff;font-weight:600}
+.foot-brand .num2{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.1em}
+.foot-brand p{font-size:13.5px;color:rgba(234,225,212,.7);margin-top:8px;max-width:34ch;line-height:1.6}
+.foot-col h4{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:#fff;margin-bottom:12px;font-weight:600}
+.foot-col a,.foot-col .cl{display:flex;gap:8px;font-size:14px;color:rgba(234,225,212,.78);margin-bottom:9px;align-items:flex-start;transition:color .2s}
+.foot-col a:hover{color:var(--accent)}
+.foot-col .k{color:var(--accent);flex:0 0 auto}
+.foot-social{display:flex;gap:10px;margin-top:14px}
+.foot-social a{width:36px;height:36px;border-radius:50%;border:1px solid rgba(234,225,212,.25);display:flex;align-items:center;justify-content:center;font-size:12px;transition:.25s}
+.foot-social a:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.foot-bottom{border-top:1px solid rgba(234,225,212,.15);margin-top:30px;padding-top:16px;font-size:12px;color:rgba(234,225,212,.55);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
-footer{background:var(--espresso);color:rgba(255,255,255,.72);padding:80px 0 30px}
-.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:56px}
-@media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.foot-grid{grid-template-columns:1fr}}
-.foot-brand .eks{font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.42em;text-indent:.42em;color:var(--ochre);margin-bottom:10px}
-.foot-brand .name{font-family:var(--serif);font-size:26px;color:#fff;letter-spacing:.04em;margin-bottom:4px;font-weight:500}
-.foot-brand .num2{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--ochre);letter-spacing:.12em;margin-bottom:18px;display:inline-block}
-.foot-brand p{font-size:14px;line-height:1.7;color:rgba(255,255,255,.6);max-width:330px}
-.foot-col h4{color:#fff;font-family:var(--sans);font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-bottom:22px}
-.foot-col ul li{margin-bottom:12px;font-size:14px}
-.foot-col ul li a{transition:color .3s}
-.foot-col ul li a:hover{color:var(--ochre-soft)}
-.foot-col .cl{display:flex;gap:10px;font-size:14px;margin-bottom:12px;align-items:flex-start}
-.foot-col .cl .k{color:var(--ochre);flex:0 0 auto;font-weight:700}.foot-col .cl a{color:inherit;text-decoration:none;transition:color .3s}.foot-col .cl a:hover{color:var(--ochre-soft)}
-.foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:12px;color:rgba(255,255,255,.5)}
-.foot-social{display:flex;gap:14px}
-.foot-social a{width:32px;height:32px;border:1px solid rgba(255,255,255,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;transition:.3s}
-.foot-social a:hover{background:var(--ochre);color:var(--espresso);border-color:var(--ochre)}
-
-.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+/* Reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
 .reveal.in{opacity:1;transform:none}
-.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}.reveal.d4{transition-delay:.4s}.reveal.d5{transition-delay:.5s}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important}.hero-bg{transform:none!important}html{scroll-behavior:auto}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important}html{scroll-behavior:auto}}
+
 </style>
 </head>
 <body>
-
-<div class="kente-stripe"></div>
-<div class="announce">
-  <span>Livraison Dakar en 24&nbsp;h</span><span class="dot">◆</span>
-  <span>Expédition internationale</span><span class="dot">◆</span>
-  <a href="https://wa.me/221781006521" target="_blank" rel="noopener">+221 78 100 65 21 · WhatsApp</a>
-</div>
-
-<nav class="nav" id="nav">
-  <div class="wrap nav-inner">
-    <a href="#top" class="brand">
-      <span class="eks">EKS</span>
-      <span class="nameline"><span class="name">FALLOU SAGNSÉ</span><span class="num">221</span></span>
-      <span class="tag">Tissus d'Afrique · Dakar</span>
+<nav class="topbar">
+  <div class="wrap topbar-inner">
+    <a href="index.html" class="brand">
+      <span class="name">Fallou Sagnsé</span>
+      <span class="num">221</span>
     </a>
-    <ul class="menu" id="menu">
-      <li><a href="#categories">Catégories</a></li>
-      <li><a href="#savoir-faire">Savoir-faire</a></li>
-      <li><a href="#story">La maison</a></li>
-      <li><a href="#testi">Clients</a></li>
-      <li><a href="#contact" class="nav-cta">Commander · WhatsApp</a></li>
-    </ul>
+    <div class="nav-links-desktop">
+      <a href="wax.html">Wax</a>
+      <a href="bazin.html">Bazin</a>
+      <a href="bogolan.html">Bogolan</a>
+      <a href="kente.html">Kente</a>
+      <a href="indigo.html">Indigo</a>
+      <a href="https://wa.me/221781006521" class="btn-wa" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
-
-<header class="hero" id="top">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="wrap hero-content">
-    <span class="eyebrow reveal">Boutique de tissus · Dakar, Sénégal</span>
-    <h1 class="reveal d1">L'étoffe de l'Afrique,<br><em>tissée de fierté</em></h1>
-    <p class="lead reveal d2">Wax flamboyant, bazin riche, bogolan, kente et indigo : des tissus authentiques sélectionnés à la main chez les manufactures et coopératives d'Afrique de l'Ouest. Pour habiller les grandes occasions comme le quotidien qui a du caractère.</p>
-    <div class="hero-cta reveal d3">
-      <a href="#categories" class="btn btn-primary">Voir les catégories <span class="arrow">→</span></a>
-      <a href="#contact" class="btn btn-ghost">Commander sur WhatsApp</a>
-    </div>
+<div class="menu-backdrop" id="backdrop"></div>
+<div class="menu-clip" id="menuClip">
+  <div class="menu-drawer" id="menu">
+    <a href="wax.html">Wax</a>
+    <a href="bazin.html">Bazin</a>
+    <a href="bogolan.html">Bogolan</a>
+    <a href="kente.html">Kente</a>
+    <a href="indigo.html">Indigo</a>
+    <a href="https://wa.me/221781006521" class="btn-wa" target="_blank" rel="noopener">WhatsApp</a>
   </div>
-  <div class="scroll-cue">Défiler</div>
+</div>
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <span class="badge">Tissus africains · Dakar</span>
+      <h1>L'Afrique, <em>tissée à la main</em></h1>
+      <p class="sub">Wax, bazin riche, bogolan, kente et indigo — sélectionnés à la main en Afrique de l'Ouest. Choisissez une catégorie, commandez en un clic sur WhatsApp.</p>
+      <div class="hero-cta">
+        <a href="#cats" class="btn btn-primary">Voir les catégories <span class="arrow">↓</span></a>
+        <a href="https://wa.me/221781006521?text=Bonjour%20FALLOU%20SAGNS%C3%89%2C%20je%20souhaite%20d%C3%A9couvrir%20vos%20tissus%20africains.%20Pouvez-vous%20m%27envoyer%20le%20catalogue%20%3F" class="btn btn-ghost" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+    <div class="hero-img reveal d1"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/13622f815868.jpg" alt="Tissus africains FALLOU SAGNSÉ"></div>
+  </div>
 </header>
 
-<section class="stats" style="padding:38px 0">
-  <div class="wrap stats-inner">
-    <div class="stat reveal"><span class="num">5</span><span class="lbl">Catégories<br>de tissus</span></div>
-    <div class="stat reveal d1"><span class="num">800+</span><span class="lbl">Références<br>en boutique</span></div>
-    <div class="stat reveal d2"><span class="num">6</span><span class="lbl">Pays<br>d'origine</span></div>
-    <div class="stat reveal d3"><span class="num">+221</span><span class="lbl">Dakar<br>Sénégal</span></div>
+<section class="photos">
+  <div class="wrap">
+    <div class="photos-grid"><figure><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6074a60cc05b.jpg" alt="Tissu africain FALLOU SAGNSÉ" loading="lazy"></figure><figure><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/67cabd41412d.jpg" alt="Tissu africain FALLOU SAGNSÉ" loading="lazy"></figure><figure><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/30fe7aba278e.jpg" alt="Tissu africain FALLOU SAGNSÉ" loading="lazy"></figure><figure><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d7425b0d7375.jpg" alt="Tissu africain FALLOU SAGNSÉ" loading="lazy"></figure></div>
   </div>
 </section>
 
-<section class="categories" id="categories">
+<section class="cats" id="cats">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow-c reveal">Nos catégories</span>
-      <h2 class="reveal d1">Cinq familles de tissus, <em>cent façons d'oser</em></h2>
-      <p class="reveal d2">Chaque catégorie est une affiche : un univers de motifs, de matières et de couleurs. Touchez, choisissez, et laissez l'étoffe parler.</p>
+      <span class="eyebrow">Nos catégories</span>
+      <h2>Cinq familles de tissus</h2>
+      <p>Chaque catégorie ouvre sa boutique : les pièces, les prix, le stock et un bouton pour commander.</p>
     </div>
-
-    <article class="affiche">
-      <div class="affiche-text reveal">
-        <div class="catnum">01</div>
-        <div class="catname">Wax &amp; Ankara</div>
-        <h3>Le pagne <em>wax</em>, roi des célébrations</h3>
-        <p>Motifs flamboyants imprimés à la cire, symboles de vie, de joie et de palabre. Coton tissé serré, couleurs profondes qui ne craignent ni le soleil ni le temps. Pour les mariages, les baptêmes, les fêtes et le quotidien qui a du caractère.</p>
-        <div class="affiche-tags"><span>Coton wax</span><span>Ankara</span><span>Imprimé cire</span><span>6 yards</span></div>
-        <a href="wax.html" class="btn">Découvrir le wax <span class="arrow">→</span></a>
-      </div>
-      <div class="affiche-mosaic reveal d1">
-        <div class="frame"></div>
-        <div class="mosaic">
-          <div class="m m1"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/f696fb8cdb1c.jpg" alt="Pagne wax coloré"></div>
-          <div class="m m2"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/9acd34caa9f7.jpg" alt="Motif ankara"></div>
-          <div class="m m3"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/8ef576e9a9bd.jpg" alt="Wax imprimé"></div>
-          <div class="m m4"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c3b860bd748d.jpeg" alt="Tissu wax africain"></div>
-        </div>
-        <a class="mosaic-label" href="wax.html">Wax &amp; Ankara <span class="ar">→</span></a>
-      </div>
-    </article>
-
-    <article class="affiche flip">
-      <div class="affiche-text reveal">
-        <div class="catnum">02</div>
-        <div class="catname">Bazin Riche</div>
-        <h3>Le <em>bazin riche</em>, drapé de gala</h3>
-        <p>Tissu damassé teint puis repassé au fer à marteler, éclat soyeux et tombé noble. L'étoffe des grandes cérémonies et du dimanche. Noir, bleu nuit, vert émeraude, bordeaux : des couleurs profondes sublimées par la lumière.</p>
-        <div class="affiche-tags"><span>Bazin riche</span><span>Damassé</span><span>Grand boubou</span><span>Gala</span></div>
-        <a href="bazin.html" class="btn">Découvrir le bazin <span class="arrow">→</span></a>
-      </div>
-      <div class="affiche-mosaic reveal d1">
-        <div class="frame"></div>
-        <div class="mosaic">
-          <div class="m m1"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6074a60cc05b.jpg" alt="Bazin riche damassé"></div>
-          <div class="m m2"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/9ff20626dce1.jpg" alt="Bazin teint"></div>
-          <div class="m m3"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3184ce222fa5.jpg" alt="Étoffe bazin"></div>
-          <div class="m m4"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c90dc98e6d7c.jpg" alt="Bazin soyeux"></div>
-        </div>
-        <a class="mosaic-label" href="bazin.html">Bazin Riche <span class="ar">→</span></a>
-      </div>
-    </article>
-
-    <article class="affiche">
-      <div class="affiche-text reveal">
-        <div class="catnum">03</div>
-        <div class="catname">Bogolan · Mudcloth</div>
-        <h3>Le <em>bogolan</em>, toile de terre</h3>
-        <p>Tissu de coton teint à la boue et aux écorces, motifs géométriques tracés à la main par les artisans du Mali. Plus qu'un tissu, une écriture : chaque signe raconte un proverbe, une lignée, un événement. Élégant brut, contemporain et ancestral.</p>
-        <div class="affiche-tags"><span>Coton boue</span><span>Fait main</span><span>Teinture végétale</span><span>Mali</span></div>
-        <a href="bogolan.html" class="btn">Découvrir le bogolan <span class="arrow">→</span></a>
-      </div>
-      <div class="affiche-mosaic reveal d1">
-        <div class="frame"></div>
-        <div class="mosaic">
-          <div class="m m1"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/67cabd41412d.jpg" alt="Bogolan mudcloth"></div>
-          <div class="m m2"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/f57905b771c1.jpg" alt="Motif bogolan"></div>
-          <div class="m m3"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/714454855e67.jpg" alt="Toile de terre"></div>
-          <div class="m m4"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c72c02ec354e.jpg" alt="Tissu malien"></div>
-        </div>
-        <a class="mosaic-label" href="bogolan.html">Bogolan <span class="ar">→</span></a>
-      </div>
-    </article>
-
-    <article class="affiche flip">
-      <div class="affiche-text reveal">
-        <div class="catnum">04</div>
-        <div class="catname">Kente · Ghana</div>
-        <h3>Le <em>kente</em>, tissage royal</h3>
-        <p>Bandes de soie et de coton entrelacées à la main par les tisserands d'Ashanti, au Ghana. Chaque couleur et chaque motif porte un proverbe, un rang, une histoire. L'étoffe des rois, devenue symbole de toute la diaspora africaine.</p>
-        <div class="affiche-tags"><span>Tissage main</span><span>Soie &amp; coton</span><span>Ghana</span><span>Symbole royal</span></div>
-        <a href="kente.html" class="btn">Découvrir le kente <span class="arrow">→</span></a>
-      </div>
-      <div class="affiche-mosaic reveal d1">
-        <div class="frame"></div>
-        <div class="mosaic">
-          <div class="m m1"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/30fe7aba278e.jpg" alt="Kente ghanéen"></div>
-          <div class="m m2"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6240e3e9631f.jpg" alt="Motif kente"></div>
-          <div class="m m3"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/9e23ba202e7e.jpg" alt="Tissage ashanti"></div>
-          <div class="m m4"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7413b3260157.jpg" alt="Étoffe royale"></div>
-        </div>
-        <a class="mosaic-label" href="kente.html">Kente <span class="ar">→</span></a>
-      </div>
-    </article>
-
-    <article class="affiche">
-      <div class="affiche-text reveal">
-        <div class="catnum">05</div>
-        <div class="catname">Indigo · Teinture végétale</div>
-        <h3>L'<em>indigo</em>, bleu de tradition</h3>
-        <p>Teinture végétale aux mille nuances, du bleu nuit au bleu ciel, patinée par les mains des teinturières du Mali et du Nigeria. La mémoire textile de l'Afrique de l'Ouest, précieuse et profondément contemporaine. Pour les pièces qui traversent les modes.</p>
-        <div class="affiche-tags"><span>Indigo végétal</span><span>Teint main</span><span>Bazin indigo</span><span>Basse-côte</span></div>
-        <a href="indigo.html" class="btn">Découvrir l'indigo <span class="arrow">→</span></a>
-      </div>
-      <div class="affiche-mosaic reveal d1">
-        <div class="frame"></div>
-        <div class="mosaic">
-          <div class="m m1"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d7425b0d7375.jpg" alt="Indigo teint main"></div>
-          <div class="m m2"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b7858ca590e8.jpg" alt="Tissu indigo"></div>
-          <div class="m m3"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/1fabbb33c053.jpg" alt="Bleu indigo"></div>
-          <div class="m m4"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/59ddc22fc51f.jpg" alt="Étoffe indigo"></div>
-        </div>
-        <a class="mosaic-label" href="indigo.html">Indigo <span class="ar">→</span></a>
-      </div>
-    </article>
-
+    <div class="cats-grid"><a class="cat-card reveal" href="wax.html">
+  <div class="ph"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/13622f815868.jpg" alt="Wax & Ankara" loading="lazy"></div>
+  <div class="info">
+    <div class="num">Catégorie 01</div>
+    <h3>Wax &amp; Ankara</h3>
+    <span class="go">Découvrir <span class="arrow">→</span></span>
+  </div>
+</a>
+<a class="cat-card reveal" href="bazin.html">
+  <div class="ph"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6074a60cc05b.jpg" alt="Bazin Riche" loading="lazy"></div>
+  <div class="info">
+    <div class="num">Catégorie 02</div>
+    <h3>Bazin Riche</h3>
+    <span class="go">Découvrir <span class="arrow">→</span></span>
+  </div>
+</a>
+<a class="cat-card reveal" href="bogolan.html">
+  <div class="ph"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/67cabd41412d.jpg" alt="Bogolan" loading="lazy"></div>
+  <div class="info">
+    <div class="num">Catégorie 03</div>
+    <h3>Bogolan · Mudcloth</h3>
+    <span class="go">Découvrir <span class="arrow">→</span></span>
+  </div>
+</a>
+<a class="cat-card reveal" href="kente.html">
+  <div class="ph"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/30fe7aba278e.jpg" alt="Kente" loading="lazy"></div>
+  <div class="info">
+    <div class="num">Catégorie 04</div>
+    <h3>Kente · Ghana</h3>
+    <span class="go">Découvrir <span class="arrow">→</span></span>
+  </div>
+</a>
+<a class="cat-card reveal" href="indigo.html">
+  <div class="ph"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d7425b0d7375.jpg" alt="Indigo" loading="lazy"></div>
+  <div class="info">
+    <div class="num">Catégorie 05</div>
+    <h3>Indigo · Teinture végétale</h3>
+    <span class="go">Découvrir <span class="arrow">→</span></span>
+  </div>
+</a></div>
   </div>
 </section>
 
-<section class="values">
+<section class="how">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow-c reveal">Pourquoi FALLOU SAGNSÉ</span>
-      <h2 class="reveal d1">La qualité <em>qui porte l'Afrique</em> haut</h2>
-      <p class="reveal d2">Une boutique pensée pour celles et ceux qui veulent du vrai tissu africain, choisi avec soin et livré sans complication.</p>
+      <span class="eyebrow">Commander</span>
+      <h2>Simple comme un message</h2>
     </div>
-    <div class="val-grid">
-      <div class="val reveal"><div class="ico">✦</div><h3>Tissus authentiques</h3><p>Importés directement des manufactures et coopératives d'Afrique de l'Ouest, jamais d'imitation.</p></div>
-      <div class="val reveal d1"><div class="ico">✂</div><h3>Coupe sur mesure</h3><p>Nos couturiers découpent votre pagne à la mesure et à votre modèle, prêt à coudre.</p></div>
-      <div class="val reveal d2"><div class="ico">➤</div><h3>Livraison Dakar &amp; monde</h3><p>Livraison 24&nbsp;h à Dakar et expédition internationale vers la diaspora, suivi inclus.</p></div>
-      <div class="val reveal d3"><div class="ico">✺</div><h3>Conseil expert</h3><p>Notre équipe vous guide dans le choix des motifs, des couleurs et des matières selon l'occasion.</p></div>
+    <div class="how-grid">
+      <div class="how-step reveal"><div class="n">1</div><h4>Choisissez</h4><p>Sélectionnez votre tissu et sa catégorie dans la boutique.</p></div>
+      <div class="how-step reveal d1"><div class="n">2</div><h4>WhatsApp</h4><p>Cliquez sur « Commander ». Le message est déjà prêt, envoyé à Fallou.</p></div>
+      <div class="how-step reveal d2"><div class="n">3</div><h4>Livré</h4><p>Livraison 24h à Dakar, expédition internationale pour la diaspora.</p></div>
     </div>
   </div>
 </section>
 
-<section class="savoir" id="savoir-faire">
-  <div class="savoir-inner">
-    <div class="savoir-img reveal">
-      <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/eb8bfc7b8c94.jpg" alt="Marché de tissus africains">
-      <div class="badge">Marché HLM · Dakar</div>
-    </div>
-    <div class="savoir-text reveal d1">
-      <span class="eyebrow-c">Notre savoir-faire</span>
-      <h2>Choisir la belle étoffe, <em>geste après geste</em></h2>
-      <p>Chez FALLOU SAGNSÉ, chaque tissu est vérifié à la main : régularité du tissage, solidité de la teinture, vivacité des couleurs, tombé de la matière. Rien ne part en rayon sans avoir passé l'épreuve du regard et du toucher.</p>
-      <ul class="savoir-list">
-        <li><span class="ico">✓</span><span>Sélection directe chez les tisserands et teinturières d'Afrique de l'Ouest.</span></li>
-        <li><span class="ico">✓</span><span>Contrôle qualité au mètre : couleurs, tissage, fini, régularité.</span></li>
-        <li><span class="ico">✓</span><span>Conseil personnalisé selon l'occasion, le modèle et la morphologie.</span></li>
-      </ul>
-      <a href="#contact" class="btn btn-gold" style="align-self:flex-start">Visiter la boutique <span class="arrow">→</span></a>
-      <div class="sig">— Fallou Sagnsé, fondateur</div>
-    </div>
-  </div>
-</section>
-
-<section class="story" id="story">
-  <div class="story-bg"></div>
-  <div class="story-overlay"></div>
-  <div class="story-content">
-    <span class="eyebrow-c reveal">La maison</span>
-    <h2 class="reveal d1">Né à <em>Dakar</em>, au cœur du Marché HLM, là où le tissu respire l'Afrique</h2>
-    <p class="reveal d2">FALLOU SAGNSÉ 221 est né de cette conviction simple : le tissu africain mérite mieux que l'imitation. Il mérite d'être choisi, touché, raconté. De Dakar à la diaspora, nous portons l'étoffe de l'Afrique, une pièce à la fois.</p>
-    <div class="sig reveal d3">— Le tissu, c'est notre fierté commune</div>
-  </div>
-</section>
-
-<section class="testi" id="testi">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow-c reveal">Ils créent avec nous</span>
-      <h2 class="reveal d1">La parole à <em>nos clients</em></h2>
-      <p class="reveal d2">Couturiers, mariées, membres de la diaspora : ils nous font confiance pour leurs plus belles occasions.</p>
-    </div>
-    <div class="testi-grid">
-      <article class="testi-card reveal"><div class="quote">"</div><p>Le wax de FALLOU SAGNSÉ a habillé tout mon mariage. Couleurs éclatantes, qualité irréprochable, et des conseils précieux sur les motifs. Merci Fallou&nbsp;!</p><div class="who"><div class="av">A</div><div class="meta"><div class="n">Awa Diop</div><div class="r">Mariée · Dakar</div></div></div></article>
-      <article class="testi-card reveal d1"><div class="quote">"</div><p>Je taille des grands boubous pour une clientèle exigeante. Le bazin riche de la maison n'a pas d'égal à Dakar, éclat et tombé impeccables.</p><div class="who"><div class="av">C</div><div class="meta"><div class="n">Cheikh Ndiaye</div><div class="r">Couturier · Thiès</div></div></div></article>
-      <article class="testi-card reveal d2"><div class="quote">"</div><p>J'habite à Paris et je reçois mes pagnes en moins d'une semaine, emballés avec soin. L'Afrique arrive chez moi, toute en couleurs.</p><div class="who"><div class="av">M</div><div class="meta"><div class="n">Mariama Touré</div><div class="r">Diaspora · Paris</div></div></div></article>
-    </div>
-  </div>
-</section>
-
-<section class="cta" id="contact">
-  <div class="cta-inner">
-    <span class="eyebrow-c reveal">Commander</span>
-    <h2 class="reveal d1">Envie d'un <em>tissu qui vous ressemble</em> ?</h2>
-    <p class="reveal d2">Recevez notre catalogue et les nouveautés de la saison, ou écrivez-nous directement sur WhatsApp pour commander votre pagne dès aujourd'hui.</p>
-    <form class="cta-form reveal d3" id="ctaForm">
-      <input type="email" id="ctaEmail" placeholder="Votre adresse e-mail" required>
-      <button type="submit">Recevoir le catalogue</button>
-    </form>
-    <div class="cta-note reveal d3">Une lettre par saison. Pas de spam.</div>
-    <div class="cta-ok" id="ctaOk">✓ Merci, votre demande est enregistrée. Nous vous écrivons sous 24&nbsp;h.</div>
-    <a href="https://wa.me/221781006521" class="cta-wa reveal d4">WhatsApp · +221 78 100 65 21</a>
-  </div>
-</section>
-
-<div class="kente-stripe"></div>
-
-<footer>
+<footer class="footer">
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <div class="eks">EKS</div>
-        <div class="name">FALLOU SAGNSÉ</div>
-        <span class="num2">221</span>
-        <p>Boutique de tissus africains d'exception à Dakar. Wax, bazin riche, bogolan, kente et indigo, sélectionnés à la main en Afrique de l'Ouest. Pour les grandes occasions et le quotidien qui a du caractère.</p>
+        <div class="name">Fallou Sagnsé <span class="num2">221</span></div>
+        <p>Boutique de tissus africains à Dakar. Wax, bazin riche, bogolan, kente et indigo, sélectionnés à la main en Afrique de l'Ouest.</p>
+        <div class="foot-social">
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">Ig</a>
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">Fb</a>
+          <a href="https://wa.me/221781006521" target="_blank" rel="noopener" aria-label="WhatsApp">Wa</a>
+        </div>
       </div>
       <div class="foot-col">
         <h4>Catégories</h4>
-        <ul>
-          <li><a href="wax.html">Wax &amp; Ankara</a></li>
-          <li><a href="bazin.html">Bazin Riche</a></li>
-          <li><a href="bogolan.html">Bogolan</a></li>
-          <li><a href="kente.html">Kente</a></li>
-          <li><a href="indigo.html">Indigo</a></li>
-        </ul>
-      </div>
-      <div class="foot-col">
-        <h4>Maison</h4>
-        <ul>
-          <li><a href="#story">Notre histoire</a></li>
-          <li><a href="#savoir-faire">Savoir-faire</a></li>
-          <li><a href="#testi">Nos clients</a></li>
-          <li><a href="#contact">Commander</a></li>
-        </ul>
+        <a href="wax.html">Wax &amp; Ankara</a>
+        <a href="bazin.html">Bazin Riche</a>
+        <a href="bogolan.html">Bogolan</a>
+        <a href="kente.html">Kente</a>
+        <a href="indigo.html">Indigo</a>
       </div>
       <div class="foot-col">
         <h4>Nous trouver</h4>
-        <div class="cl"><span class="k">⌖</span><a href="https://www.google.com/maps/search/?api=1&amp;query=March%C3%A9+HLM+Dakar" target="_blank" rel="noopener">Marché HLM<br>Dakar · Sénégal</a></div>
-        <div class="cl"><span class="k">☎</span><a href="tel:+221781006521">+221 78 100 65 21</a></div>
-        <div class="cl"><span class="k">✉</span><a href="mailto:contact@fallou-sagnse.sn">contact@fallou-sagnse.sn</a></div>
-        <div class="cl"><span class="k">◷</span><span>Lun&nbsp;–&nbsp;Sam · 9h&nbsp;–&nbsp;19h</span></div>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=March%C3%A9+HLM+Dakar" target="_blank" rel="noopener"><span class="k">⌖</span>Marché HLM, Dakar</a>
+        <a href="tel:+221781006521"><span class="k">☎</span>+221 78 100 65 21</a>
+        <a href="mailto:contact@fallou-sagnse.sn"><span class="k">✉</span>contact@fallou-sagnse.sn</a>
+        <div class="cl"><span class="k">◷</span>Lun – Sam · 9h – 19h</div>
       </div>
     </div>
     <div class="foot-bottom">
-      <div>© 2024 FALLOU SAGNSÉ 221 — Dakar, Sénégal · Tous droits réservés</div>
-      <div class="foot-social">
-        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">Ig</a>
-        <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">Fb</a>
-        <a href="https://wa.me/221781006521" target="_blank" rel="noopener" aria-label="WhatsApp">Wa</a>
-      </div>
+      <div>© 2024 FALLOU SAGNSÉ 221 — Dakar, Sénégal</div>
+      <div>Livraison Dakar 24h · Expédition internationale</div>
     </div>
   </div>
 </footer>
-
 <script>
 (function(){
-  var nav=document.getElementById('nav');
-  var topbarKs=document.querySelector('.kente-stripe'),topbarAn=document.querySelector('.announce');
-  function topbarH(){return (topbarKs?topbarKs.getBoundingClientRect().height:0)+(topbarAn?topbarAn.getBoundingClientRect().height:0);}
-  function onScroll(){var y=window.scrollY||window.pageYOffset;nav.style.top=Math.max(0,topbarH()-y)+'px';if(y>60){nav.classList.add('scrolled')}else{nav.classList.remove('scrolled')}}
+  var nav=document.querySelector('.topbar');
+  function onScroll(){if(window.scrollY>20){nav.classList.add('scrolled')}else{nav.classList.remove('scrolled')}}
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
-
-  var hero=document.querySelector('.hero');
-  requestAnimationFrame(function(){hero.classList.add('loaded')});
-
-  var burger=document.getElementById('burger');
-  var menu=document.getElementById('menu');
-  var backdrop=document.createElement('div');backdrop.className='menu-backdrop';document.body.appendChild(backdrop);
-  function openMenu(){menu.classList.add('open');burger.classList.add('open');backdrop.classList.add('show');document.body.style.overflow='hidden'}
-  function closeMenu(){menu.classList.remove('open');burger.classList.remove('open');backdrop.classList.remove('show');document.body.style.overflow=''}
-  burger.addEventListener('click',function(e){e.stopPropagation();if(menu.classList.contains('open')){closeMenu()}else{openMenu()}});
-  backdrop.addEventListener('click',closeMenu);
-  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMenu)});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMenu()}});
-
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
-  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  var burger=document.getElementById('burger'),clip=document.getElementById('menuClip'),backdrop=document.getElementById('backdrop');
+  function open(){clip.classList.add('show');burger.classList.add('open');backdrop.classList.add('show');document.body.style.overflow='hidden'}
+  function close(){clip.classList.remove('show');burger.classList.remove('open');backdrop.classList.remove('show');document.body.style.overflow=''}
+  if(burger){burger.addEventListener('click',function(e){e.stopPropagation();if(clip.classList.contains('show')){close()}else{open()}})}
+  if(backdrop){backdrop.addEventListener('click',close)}
+  document.querySelectorAll('.menu-drawer a').forEach(function(a){a.addEventListener('click',close)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){close()}});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -30px 0px'});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
-
-  var form=document.getElementById('ctaForm');
-  var ok=document.getElementById('ctaOk');
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var email=document.getElementById('ctaEmail');
-    if(email.value&&email.checkValidity()){form.style.display='none';ok.classList.add('show')}
-    else{email.focus()}
-  });
-
-  if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
-    window.addEventListener('scroll',function(){
-      var y=window.scrollY;
-      if(y<window.innerHeight){
-        var bg=document.querySelector('.hero-bg');
-        if(bg){bg.style.transform='scale('+(1+y*0.0004)+') translateY('+(y*0.18)+'px)';}
-      }
-    },{passive:true});
-  }
 })();
 </script>
 </body>
