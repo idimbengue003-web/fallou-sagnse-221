@@ -1,0 +1,639 @@
+{
+  "meta": {
+    "siteTitle": "FALLOU SAGNSÉ 221 — Tissus africains à Dakar",
+    "siteDescription": "Boutique de tissus africains à Dakar : wax, bazin riche, bogolan, kente et indigo. Sélectionnés à la main, livraison Dakar 24h et internationale.",
+    "lang": "fr",
+    "currency": "FCFA"
+  },
+  "brand": {
+    "eks": "EKS",
+    "name": "Fallou Sagnsé",
+    "num": "221"
+  },
+  "contact": {
+    "whatsapp": "221781006521",
+    "whatsappDisplay": "+221 78 100 65 21",
+    "phone": "+221781006521",
+    "phoneDisplay": "+221 78 100 65 21",
+    "email": "contact@fallou-sagnse.sn",
+    "address": "Marché HLM, Dakar",
+    "addressMapUrl": "https://www.google.com/maps/search/?api=1&query=March%C3%A9+HLM+Dakar",
+    "hours": "Lun – Sam · 9h – 19h"
+  },
+  "social": {
+    "instagram": "https://www.instagram.com/",
+    "facebook": "https://www.facebook.com/"
+  },
+  "hero": {
+    "badge": "Tissus africains · Dakar",
+    "titleMain": "L'Afrique,",
+    "titleEm": "tissée à la main",
+    "subtitle": "Wax, bazin riche, bogolan, kente et indigo — sélectionnés à la main en Afrique de l'Ouest. Choisissez une catégorie, commandez en un clic sur WhatsApp.",
+    "ctaPrimary": {
+      "text": "Voir les catégories",
+      "href": "#cats",
+      "arrow": "↓"
+    },
+    "ctaSecondary": {
+      "text": "WhatsApp"
+    },
+    "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/13622f815868.jpg",
+    "imageAlt": "Tissus africains FALLOU SAGNSÉ"
+  },
+  "homePhotos": [
+    {
+      "src": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6074a60cc05b.jpg",
+      "alt": "Tissu africain FALLOU SAGNSÉ"
+    },
+    {
+      "src": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/67cabd41412d.jpg",
+      "alt": "Tissu africain FALLOU SAGNSÉ"
+    },
+    {
+      "src": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/30fe7aba278e.jpg",
+      "alt": "Tissu africain FALLOU SAGNSÉ"
+    },
+    {
+      "src": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d7425b0d7375.jpg",
+      "alt": "Tissu africain FALLOU SAGNSÉ"
+    }
+  ],
+  "catsSection": {
+    "eyebrow": "Nos catégories",
+    "title": "Cinq familles de tissus",
+    "subtitle": "Chaque catégorie ouvre sa boutique : les pièces, les prix, le stock et un bouton pour commander."
+  },
+  "howSection": {
+    "eyebrow": "Commander",
+    "title": "Simple comme un message",
+    "steps": [
+      {
+        "n": "1",
+        "title": "Choisissez",
+        "text": "Sélectionnez votre tissu et sa catégorie dans la boutique."
+      },
+      {
+        "n": "2",
+        "title": "WhatsApp",
+        "text": "Cliquez sur « Commander ». Le message est déjà prêt, envoyé à Fallou."
+      },
+      {
+        "n": "3",
+        "title": "Livré",
+        "text": "Livraison 24h à Dakar, expédition internationale pour la diaspora."
+      }
+    ]
+  },
+  "footer": {
+    "about": "Boutique de tissus africains à Dakar. Wax, bazin riche, bogolan, kente et indigo, sélectionnés à la main en Afrique de l'Ouest.",
+    "bottomLeft": "© 2024 FALLOU SAGNSÉ 221 — Dakar, Sénégal",
+    "bottomRight": "Livraison Dakar 24h · Expédition internationale",
+    "colCategoriesTitle": "Catégories",
+    "colContactTitle": "Nous trouver"
+  },
+  "categories": [
+    {
+      "slug": "wax",
+      "num": "01",
+      "name": "Wax & Ankara",
+      "accent": "#B23A1B",
+      "h1Main": "Wax & Ankara",
+      "h1Em": "le pagne roi des célébrations",
+      "lead": "Coton imprimé à la cire, couleurs intenses qui parlent avant les mots. Le pagne des mariages, des baptêmes et des fêtes — et de tous les jours où l'on a quelque chose à dire.",
+      "description": "Wax & Ankara : pagne wax imprimé à la cire et Ankara, tissus africains flamboyants pour mariages, baptêmes et fêtes. FALLOU SAGNSÉ 221, Dakar.",
+      "waMessage": "Bonjour FALLOU SAGNSÉ, je suis intéressé(e) par vos tissus Wax & Ankara (pagne wax, Ankara). Pouvez-vous m'envoyer le catalogue et les tarifs ?",
+      "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/13622f815868.jpg",
+      "intro": {
+        "h2": "Le wax, éloquence en couleurs",
+        "paragraphs": [
+          "Le wax print est né de la rencontre entre la technique indonésienne du batik à la cire et le goût ouest-africain pour le motif parlant. Importé puis adopté, il est devenu, du Ghana au Sénégal et jusqu'au Nigeria, le langage textile des grandes occasions.",
+          "Sur un coton tissé serré, la cire est appliquée au cadre puis le tissu est plongé dans des bains de teinture successifs. Là où la cire tient, le tissu reste clair ; là où elle se fendille, la couleur s'infiltre en craquelures caractéristiques — signature du vrai wax. Chaque motif porte un nom, parfois un proverbe.",
+          "À Dakar, un wax ne se choisit pas au hasard : il commente l'événement. L'étoffe parle pour celui qui la porte. L'Ankara, sa cousine imprimée sans cire, en partage l'esprit festif à prix plus doux.",
+          "Chez FALLOU SAGNSÉ, nous sélectionnons nos wax chez les manufactures d'Afrique de l'Ouest, en 6 yards (le pagne entier), en surveillant la vivacité des couleurs et la régularité de l'impression."
+        ]
+      },
+      "facts": [
+        {
+          "k": "Matière",
+          "v": "Coton 100 %"
+        },
+        {
+          "k": "Largeur",
+          "v": "≈ 115 à 120 cm"
+        },
+        {
+          "k": "Laize pagne",
+          "v": "6 yards (≈ 5,50 m)"
+        },
+        {
+          "k": "Technique",
+          "v": "Impression à la cire (wax) / impression (Ankara)"
+        },
+        {
+          "k": "Origine",
+          "v": "Afrique de l'Ouest (Ghana, Côte d'Ivoire, Nigeria)"
+        },
+        {
+          "k": "Entretien",
+          "v": "Lavage à la main, eau froide ; repassage moyen ; éviter la javel"
+        }
+      ],
+      "usages": {
+        "h2": "Quand le porter, comment l'oser",
+        "items": [
+          {
+            "icon": "✦",
+            "title": "Mariages & célébrations",
+            "text": "Le pagne d'honneur, assorti au cortège et au thème."
+          },
+          {
+            "icon": "✂",
+            "title": "Baptêmes & fêtes",
+            "text": "Offrir un wax, c'est offrir un mot et un vœu."
+          },
+          {
+            "icon": "➤",
+            "title": "Quotidien chic",
+            "text": "Robe, ensemble, accessoire — du caractère chaque jour."
+          },
+          {
+            "icon": "⌂",
+            "title": "Décoration",
+            "text": "Coussins, nappes, tentures — l'Afrique à la maison."
+          }
+        ]
+      },
+      "quote": "Un wax, ça se choisit comme on choisit un mot : selon à qui on parle, et selon ce qu'on veut dire.",
+      "products": [
+        {
+          "name": "Pagne wax, bandes colorées",
+          "price": 9500,
+          "stock": "ok",
+          "stockLabel": "En stock",
+          "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/13622f815868.jpg",
+          "alt": "Pagne wax, bandes colorées"
+        },
+        {
+          "name": "Pagne wax coloré",
+          "price": 12000,
+          "stock": "ok",
+          "stockLabel": "En stock",
+          "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/f696fb8cdb1c.jpg",
+          "alt": "Pagne wax coloré"
+        },
+        {
+          "name": "Motif ankara",
+          "price": 14000,
+          "stock": "low",
+          "stockLabel": "Stock limité",
+          "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/9acd34caa9f7.jpg",
+          "alt": "Motif ankara"
+        },
+        {
+          "name": "Wax imprimé cire",
+          "price": 16500,
+          "stock": "order",
+          "stockLabel": "Sur commande",
+          "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/8ef576e9a9bd.jpg",
+          "alt": "Wax imprimé cire"
+        },
+        {
+          "name": "Tissu wax africain",
+          "price": 19000,
+          "stock": "ok",
+          "stockLabel": "En stock",
+          "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c3b860bd748d.jpeg",
+          "alt": "Tissu wax africain"
+        }
+      ]
+    },
+    {
+      "slug": "bazin",
+      "num": "02",
+      "name": "Bazin Riche",
+      "accent": "#102544",
+      "h1Main": "Bazin Riche",
+      "h1Em": "le drapé de gala",
+      "lead": "Coton damassé, teint puis martelé jusqu'à l'éclat soyeux. L'étoffe des grands boubous et des dimanches solennels — noir, bleu nuit, vert, bordeaux, sublimés par la lumière.",
+      "description": "Bazin Riche : coton damassé teint puis martelé, éclat soyeux pour grands boubous et cérémonies. FALLOU SAGNSÉ 221, Dakar.",
+      "waMessage": "Bonjour FALLOU SAGNSÉ, je cherche du bazin riche (grand boubou / gala). Pouvez-vous m'envoyer les couleurs disponibles et les tarifs ?",
+      "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6074a60cc05b.jpg",
+      "intro": {
+        "h2": "Le bazin riche, noblesse du drapé",
+        "paragraphs": [
+          "Le bazin riche est un coton damassé à l'armure complexe, qui révère la lumière. Originaire du Mali et adopté dans toute l'Afrique de l'Ouest, il est l'étoffe de prédilection du grand boubou, du takki et des tenues de cérémonie.",
+          "Sa noblesse vient du geste : après teinture — souvent par nouage pour obtenir des halos de couleur — le tissu est repassé au fer à marteler. Sous les coups répétés, la surface se lisse, les motifs damassés émergent en miroir, et l'étoffe gagne son éclat de soyeux.",
+          "Noir de gala, bleu nuit, vert émeraude, bordeaux, violet : le bazin riche aime les couleurs profondes, où la lumière dessine le motif. Le « bazin libre » ou bazin teint offre, lui, des dégradés nuageux très prisés.",
+          "À FALLOU SAGNSÉ, nous choisissons des bazins au tissage serré et au martelage soigné, pour un tombé impeccable et un éclat qui dure."
+        ]
+      },
+      "facts": [
+        {
+          "k": "Matière",
+          "v": "Coton damassé"
+        },
+        {
+          "k": "Largeur",
+          "v": "≈ 150 cm"
+        },
+        {
+          "k": "Poids",
+          "v": "Lourd (≈ 250–300 g/m²)"
+        },
+        {
+          "k": "Technique",
+          "v": "Teinture + repassage au fer à marteler"
+        },
+        {
+          "k": "Origine",
+          "v": "Mali (et Afrique de l'Ouest)"
+        },
+        {
+          "k": "Entretien",
+          "v": "Lavage à la main froid ; repassage doux côté envers ; ne pas tordre"
+        }
+      ],
+      "usages": {
+        "h2": "Quand le porter, comment l'oser",
+        "items": [
+          {
+            "icon": "✦",
+            "title": "Grand boubou",
+            "text": "La tenue du dimanche et des fêtes solennelles."
+          },
+          {
+            "icon": "✂",
+            "title": "Cérémonies & gala",
+            "text": "Mariages, Tabaski, conventions, remises."
+          },
+          {
+            "icon": "➤",
+            "title": "Tenue d'apparat",
+            "text": "Costume, takki, accessoires d'exception."
+          },
+          {
+            "icon": "⌂",
+            "title": "Décoration",
+            "text": "Drapés, jetés, housses pour l'intérieur."
+          }
+        ]
+      },
+      "quote": "Le bazin ne se porte pas, il se drape. Et quand il tombe bien, tout le reste suit.",
+      "products": [
+        {
+          "name": "Bazin riche damassé",
+          "price": 18000,
+          "stock": "ok",
+          "stockLabel": "En stock",
+          "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6074a60cc05b.jpg",
+          "alt": "Bazin riche damassé"
+        },
+        {
+          "name": "Bazin teint",
+          "price": 22000,
+          "stock": "ok",
+          "stockLabel": "En stock",
+          "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/9ff20626dce1.jpg",
+          "alt": "Bazin teint"
+        },
+        {
+          "name": "Étoffe bazin damassée",
+          "price": 26000,
+          "stock": "low",
+          "stockLabel": "Stock limité",
+          "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3184ce222fa5.jpg",
+          "alt": "Étoffe bazin damassée"
+        },
+        {
+          "name": "Bazin soyeux",
+          "price": 30000,
+          "stock": "order",
+          "stockLabel": "Sur commande",
+          "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c90dc98e6d7c.jpg",
+          "alt": "Bazin soyeux"
+        }
+      ]
+    },
+    {
+      "slug": "bogolan",
+      "num": "03",
+      "name": "Bogolan",
+      "accent": "#3D2415",
+      "h1Main": "Bogolan",
+      "h1Em": "la toile de terre",
+      "lead": "Coton de terre, teint à la boue du fleuve et aux écorces, motifs tracés à la main. Une écriture plus qu'un tissu : chaque signe raconte un proverbe, une lignée, un événement.",
+      "description": "Bogolan (mudcloth) : coton malien teint à la boue et aux écorces, motifs faits main chargés de sens. FALLOU SAGNSÉ 221, Dakar.",
+      "waMessage": "Bonjour FALLOU SAGNSÉ, je cherche du bogolan / mudcloth (pièce brute ou finition). Pouvez-vous m'envoyer les modèles disponibles ?",
+      "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/67cabd41412d.jpg",
+      "intro": {
+        "h2": "Le bogolan, écriture de terre",
+        "paragraphs": [
+          "Le bogolanfini — « tissu de boue » en bambara — est né chez les Bamana du Mali. Sur un coton tissé en bandes étroites puis cousues, l'artisan peint à la main des motifs géométriques chargés de sens, à l'aide de boue fermentée et de décoctions végétales.",
+          "La boue du fleuve, riche en fer, fixe le noir ; les écorces donnent les teintes brunes et ocres. Posé, séché, lavé, répété : chaque motif demande plusieurs passages et plusieurs jours. Le geste est lent, précis, transmis de génération en génération.",
+          "Loin d'être seulement décoratif, le bogolan est une langue. Crochets, damiers, zigzags renvoient à des proverbes, des événements vécus ou des appartenances. Porter un bogolan, c'est porter un récit.",
+          "FALLOU SAGNSÉ approvisionne ses bogolans auprès d'artisans maliens, en pièces brutes ou en finitions modernes (coussins, vestes, ponchos). Chaque pièce est unique."
+        ]
+      },
+      "facts": [
+        {
+          "k": "Matière",
+          "v": "Coton tissé main (bandes)"
+        },
+        {
+          "k": "Technique",
+          "v": "Teinture boue + végétale, peinture main"
+        },
+        {
+          "k": "Origine",
+          "v": "Mali (tradition Bamana)"
+        },
+        {
+          "k": "Couleurs",
+          "v": "Terre, ocre, noir, brun"
+        },
+        {
+          "k": "Entretien",
+          "v": "Lavage main très doux, eau froide ; séchage à plat"
+        },
+        {
+          "k": "Particularité",
+          "v": "Pièce unique, motifs faits main"
+        }
+      ],
+      "usages": {
+        "h2": "Quand l'utiliser, comment l'oser",
+        "items": [
+          {
+            "icon": "✦",
+            "title": "Décoration intérieure",
+            "text": "Coussins, jetés, tentures murales."
+          },
+          {
+            "icon": "✂",
+            "title": "Vêtement contemporain",
+            "text": "Vestes, ponchos, accessoires."
+          },
+          {
+            "icon": "➤",
+            "title": "Art de vivre",
+            "text": "Tableaux, paravents, objets de caractère."
+          },
+          {
+            "icon": "⌂",
+            "title": "Cadeau de sens",
+            "text": "Un récit à offrir, une histoire à porter."
+          }
+        ]
+      },
+      "quote": "Le bogolan ne se lit pas avec les yeux seulement : il se lit avec l'oreille, comme un proverbe qu'on raconte.",
+      "products": [
+        {
+          "name": "Bogolan peint main",
+          "price": 22000,
+          "stock": "ok",
+          "stockLabel": "En stock",
+          "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/67cabd41412d.jpg",
+          "alt": "Bogolan peint main"
+        },
+        {
+          "name": "Motif bogolan géométrique",
+          "price": 28000,
+          "stock": "ok",
+          "stockLabel": "En stock",
+          "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/f57905b771c1.jpg",
+          "alt": "Motif bogolan géométrique"
+        },
+        {
+          "name": "Toile de terre malienne",
+          "price": 34000,
+          "stock": "low",
+          "stockLabel": "Stock limité",
+          "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/714454855e67.jpg",
+          "alt": "Toile de terre malienne"
+        },
+        {
+          "name": "Bogolan contemporain",
+          "price": 40000,
+          "stock": "order",
+          "stockLabel": "Sur commande",
+          "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c72c02ec354e.jpg",
+          "alt": "Bogolan contemporain"
+        }
+      ]
+    },
+    {
+      "slug": "kente",
+      "num": "04",
+      "name": "Kente",
+      "accent": "#0E6B53",
+      "h1Main": "Kente",
+      "h1Em": "le tissage royal",
+      "lead": "Bandes de soie et de coton entrelacées à la main par les tisserands ashanti du Ghana. Chaque couleur et chaque motif porte un proverbe, un rang, une histoire. L'étoffe des rois, devenue symbole de toute la diaspora.",
+      "description": "Kente du Ghana : tissage main ashanti, soie et coton, motifs royaux symboliques. FALLOU SAGNSÉ 221, Dakar.",
+      "waMessage": "Bonjour FALLOU SAGNSÉ, je cherche du kente du Ghana (pièce de cérémonie ou étole). Pouvez-vous m'envoyer les modèles disponibles et les tarifs ?",
+      "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/30fe7aba278e.jpg",
+      "intro": {
+        "h2": "Le kente, tissage de rois",
+        "paragraphs": [
+          "Le kente est l'étoffe royale du peuple ashanti — et des Ewe —, au Ghana. Tissé à la main sur un métier à tisser à lanières, il est constitué de bandes étroites (≈ 10 cm) cousues côte à côte pour former un panneau aux motifs géométriques complexes.",
+          "Chaque motif porte un nom, un proverbe, un événement ou un rang social. « Oyokoman », « Sika futuro » (champ d'or), « Adwinasa » (tous les motifs épuisés)… La lecture d'un kente est celle d'une généalogie et d'une philosophie.",
+          "Les couleurs parlent aussi : le jaune pour la richesse et la royauté, le vert pour la croissance, le bleu pour la paix, le rouge pour le sacrifice. Historiquement tissé en soie, le kente moderne use soie et coton, parfois rayonne.",
+          "FALLOU SAGNSÉ importe ses kente directement du Ghana, en pièces de cérémonie ou en bandeaux, étoles et accessoires. Un tissage long et précis, où l'erreur d'une trame se voit."
+        ]
+      },
+      "facts": [
+        {
+          "k": "Matière",
+          "v": "Soie & coton (parfois rayonne)"
+        },
+        {
+          "k": "Technique",
+          "v": "Tissage main, bandes cousues"
+        },
+        {
+          "k": "Origine",
+          "v": "Ghana (Ashanti, Ewe)"
+        },
+        {
+          "k": "Motifs",
+          "v": "Nommés, symboliques"
+        },
+        {
+          "k": "Entretien",
+          "v": "Nettoyage à sec recommandé, ou lavage main très doux"
+        },
+        {
+          "k": "Usage",
+          "v": "Drapé d'honneur, étole, décoration"
+        }
+      ],
+      "usages": {
+        "h2": "Quand le porter, comment l'oser",
+        "items": [
+          {
+            "icon": "✦",
+            "title": "Cérémonie & honneur",
+            "text": "Drapé sur l'épaule, à la ashanti."
+          },
+          {
+            "icon": "✂",
+            "title": "Étoles & accessoires",
+            "text": "Bandeaux, nœuds, finitions précieuses."
+          },
+          {
+            "icon": "➤",
+            "title": "Symbole de fierté",
+            "text": "Diaspora, remises de diplômes, événements."
+          },
+          {
+            "icon": "⌂",
+            "title": "Décoration",
+            "text": "Panneaux muraux, tables, tentures."
+          }
+        ]
+      },
+      "quote": "Le kente ne se met pas, il se drape — comme une couronne d'étoffe. Et chaque motif est une parole de roi.",
+      "products": [
+        {
+          "name": "Kente ghanéen",
+          "price": 35000,
+          "stock": "ok",
+          "stockLabel": "En stock",
+          "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/30fe7aba278e.jpg",
+          "alt": "Kente ghanéen"
+        },
+        {
+          "name": "Motif kente tissé",
+          "price": 45000,
+          "stock": "ok",
+          "stockLabel": "En stock",
+          "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6240e3e9631f.jpg",
+          "alt": "Motif kente tissé"
+        },
+        {
+          "name": "Tissage ashanti",
+          "price": 60000,
+          "stock": "low",
+          "stockLabel": "Stock limité",
+          "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/9e23ba202e7e.jpg",
+          "alt": "Tissage ashanti"
+        },
+        {
+          "name": "Étoffe royale kente",
+          "price": 75000,
+          "stock": "order",
+          "stockLabel": "Sur commande",
+          "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7413b3260157.jpg",
+          "alt": "Étoffe royale kente"
+        }
+      ]
+    },
+    {
+      "slug": "indigo",
+      "num": "05",
+      "name": "Indigo",
+      "accent": "#1B3A6B",
+      "h1Main": "Indigo",
+      "h1Em": "le bleu de tradition",
+      "lead": "Teinture végétale aux mille nuances, du bleu nuit au bleu ciel, patinée par les mains des teinturières du Mali et du Nigeria. La mémoire textile de l'Afrique de l'Ouest, précieuse et profondément contemporaine.",
+      "description": "Indigo : teinture végétale d'Afrique de l'Ouest, bleus profonds et patinés faits main. FALLOU SAGNSÉ 221, Dakar.",
+      "waMessage": "Bonjour FALLOU SAGNSÉ, je cherche du tissu indigo (végétal / bazin indigo). Pouvez-vous m'envoyer les nuances disponibles et les tarifs ?",
+      "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d7425b0d7375.jpg",
+      "intro": {
+        "h2": "L'indigo, bleu de mémoire",
+        "paragraphs": [
+          "L'indigo est la teinture la plus ancienne et la plus précieuse d'Afrique de l'Ouest. Extraite de l'indigotier (indigofera), la pâte est fermentée dans des cuves, puis le tissu y est plongé — plusieurs fois pour les bleus profonds.",
+          "Chaque plongée approfondit le bleu ; entre deux, le tissu oxyde à l'air et vire du jaune-vert au bleu. Les teinturières du Mali et les Yoruba du Nigeria maîtrisent aussi les réserves (cousues, nouées, à la cire) qui font émerger motifs et halos sur le fond bleu.",
+          "Le « bazin indigo », teint puis martelé, en partage l'éclat. La basse-côte indigo, plus souple, sert drapés et boubous. Précieux, l'indigo peut légèrement « dégorger » au premier lavage — signe de sa teinture végétale authentique.",
+          "À FALLOU SAGNSÉ, nous proposons des indigos végétaux authentiques, du bleu nuit profond aux bleus patinés, en pièces uniques."
+        ]
+      },
+      "facts": [
+        {
+          "k": "Matière",
+          "v": "Coton (bazin ou basse-côte)"
+        },
+        {
+          "k": "Technique",
+          "v": "Teinture végétale (indigofera), réserves"
+        },
+        {
+          "k": "Origine",
+          "v": "Mali, Nigeria"
+        },
+        {
+          "k": "Nuances",
+          "v": "Bleu nuit à bleu ciel"
+        },
+        {
+          "k": "Entretien",
+          "v": "Lavage main froid et séparé ; fixer au vinaigre au 1er lavage"
+        },
+        {
+          "k": "Particularité",
+          "v": "Peut dégorger au 1er lavage (gage d'authenticité)"
+        }
+      ],
+      "usages": {
+        "h2": "Quand le porter, comment l'oser",
+        "items": [
+          {
+            "icon": "✦",
+            "title": "Boubous & drapés",
+            "text": "Basse-côte indigo, tenues traditionnelles."
+          },
+          {
+            "icon": "✂",
+            "title": "Bazin indigo",
+            "text": "Éclat martelé pour le gala et les cérémonies."
+          },
+          {
+            "icon": "➤",
+            "title": "Pièces modernes",
+            "text": "Vestes, chemises, accessoires contemporains."
+          },
+          {
+            "icon": "⌂",
+            "title": "Décoration",
+            "text": "Coussins, jetés, tentures teints à la main."
+          }
+        ]
+      },
+      "quote": "L'indigo ne se teint pas en un jour. C'est la couleur de la patience — et celle qui garde le mieux la mémoire.",
+      "products": [
+        {
+          "name": "Indigo teint main",
+          "price": 12000,
+          "stock": "ok",
+          "stockLabel": "En stock",
+          "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d7425b0d7375.jpg",
+          "alt": "Indigo teint main"
+        },
+        {
+          "name": "Tissu indigo végétal",
+          "price": 16000,
+          "stock": "ok",
+          "stockLabel": "En stock",
+          "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b7858ca590e8.jpg",
+          "alt": "Tissu indigo végétal"
+        },
+        {
+          "name": "Bleu indigo profond",
+          "price": 20000,
+          "stock": "low",
+          "stockLabel": "Stock limité",
+          "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/1fabbb33c053.jpg",
+          "alt": "Bleu indigo profond"
+        },
+        {
+          "name": "Étoffe indigo patinée",
+          "price": 24000,
+          "stock": "order",
+          "stockLabel": "Sur commande",
+          "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/59ddc22fc51f.jpg",
+          "alt": "Étoffe indigo patinée"
+        }
+      ]
+    }
+  ]
+}

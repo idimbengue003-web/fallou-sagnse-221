@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — FALLOU SAGNSÉ 221</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:#f6f4ef;color:#1a1410;line-height:1.5;-webkit-font-smoothing:antialiased}
+.abar{position:sticky;top:0;z-index:20;background:#1a1410;color:#fff;display:flex;align-items:center;gap:10px;padding:10px 14px;box-shadow:0 2px 12px rgba(0,0,0,.18);flex-wrap:wrap}
+.abar .ttl{font-weight:700;letter-spacing:.02em;font-size:15px}
+.abar .sp{flex:1}
+.abar .st{font-size:12px;color:#cfc4b3;max-width:34ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.abar a.mini{color:#fff;border:1px solid rgba(255,255,255,.32)}
+.abar button{background:#b23a1b;color:#fff;border:0;padding:9px 15px;border-radius:8px;font-weight:600;cursor:pointer;font-size:13px}
+.abar button.ghost{background:transparent;border:1px solid rgba(255,255,255,.3);color:#fff}
+.mini{background:#fff;border:1px solid #d8cfbf;color:#3a342e;padding:7px 11px;border-radius:7px;font-size:13px;cursor:pointer;font-weight:600;font-family:inherit}
+.mini:hover{border-color:#b23a1b;color:#b23a1b}
+.mini.danger{color:#b23a1b;border-color:#e6c3b8}
+.note{max-width:980px;margin:14px auto 0;padding:0 16px;font-size:12px;color:#6b6258}
+.note b{color:#b23a1b}
+.wrap{max-width:980px;margin:0 auto;padding:14px 16px 90px}
+#gate{max-width:540px;margin:42px auto;background:#fff;border-radius:14px;padding:28px;box-shadow:0 6px 24px rgba(0,0,0,.08)}
+#gate h2{font-size:21px;margin-bottom:8px}
+#gate p{font-size:14px;color:#6b6258;margin-bottom:14px}
+#gate ol{font-size:13px;color:#6b6258;margin:0 0 18px 20px;line-height:1.7}
+#gate input{width:100%;padding:11px;border:1px solid #eae1d4;border-radius:8px;font-size:14px;margin-bottom:12px;font-family:inherit}
+#gate code{background:#f0ece3;padding:1px 5px;border-radius:4px;font-size:12px}
+#gate .btn{width:100%;background:#b23a1b;color:#fff;border:0;padding:13px;border-radius:8px;font-weight:700;cursor:pointer;font-size:15px}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;background:#fff;border-radius:10px;padding:6px;margin-bottom:14px;box-shadow:0 2px 10px rgba(0,0,0,.06);position:sticky;top:60px;z-index:15}
+.tabs button{background:transparent;border:0;padding:9px 13px;border-radius:7px;font-weight:600;cursor:pointer;font-size:13.5px;color:#6b6258;font-family:inherit}
+.tabs button.active{background:#b23a1b;color:#fff}
+.panel{display:none;background:#fff;border-radius:12px;padding:18px;box-shadow:0 2px 10px rgba(0,0,0,.05);margin-bottom:16px}
+.panel.active{display:block}
+.panel h2,.ph2{font-size:17px;margin-bottom:14px;color:#1a1410}
+.sub{font-size:12px;font-weight:700;color:#b23a1b;text-transform:uppercase;letter-spacing:.06em;margin:18px 0 10px;padding-bottom:6px;border-bottom:1px solid #eae1d4}
+.sub:first-child{margin-top:0}
+.f{display:block;margin-bottom:11px}
+.f>span{display:block;font-size:13px;font-weight:600;margin-bottom:4px;color:#3a342e}
+.f>span i{font-weight:400;color:#9a9085;font-size:12px}
+.f input,.f textarea,.f select{width:100%;padding:9px 11px;border:1px solid #eae1d4;border-radius:8px;font-size:14px;font-family:inherit;background:#fff;color:#1a1410}
+.f textarea{resize:vertical;min-height:70px}
+.f input:focus,.f textarea:focus,.f select:focus{outline:0;border-color:#b23a1b;box-shadow:0 0 0 3px rgba(178,58,27,.12)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+.fimg{padding:12px;border:1px dashed #d8cfbf;border-radius:10px;margin-bottom:14px;background:#fbf9f4}
+.fimg .prev{width:100%;height:140px;object-fit:cover;border-radius:8px;margin:8px 0;background:#eae1d4;display:block}
+.fimg-btns{display:flex;gap:8px;flex-wrap:wrap}
+.rep{border:1px solid #eae1d4;border-radius:10px;padding:11px;margin-bottom:10px;background:#fbf9f4}
+.rep-head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.rep-head .ttl{font-weight:600;font-size:13.5px;flex:1}
+.rep-btns{display:flex;gap:5px;flex-wrap:wrap}
+.rep-btns .mini{font-size:12px;padding:5px 9px}
+.ccat{border:1px solid #eae1d4;border-radius:12px;margin-bottom:10px;overflow:hidden;background:#fff}
+.ccat>.summary{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;background:#fbf9f4;font-weight:700;user-select:none}
+.ccat>.summary .num{color:#b23a1b;font-size:12px}
+.ccat>.summary .nm{flex:1;font-size:15px}
+.ccat>.summary .sw{font-size:16px;color:#6b6258;transition:.2s}
+.ccat.open>.summary .sw{transform:rotate(180deg)}
+.ccat>.body{display:none;padding:14px}
+.ccat.open>.body{display:block}
+#log{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:#1a1410;color:#fff;padding:10px 18px;border-radius:999px;font-size:13px;z-index:30;opacity:0;transition:.3s;max-width:92vw;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+#log.show{opacity:1}
+#log.err{background:#8e2c13}
+#log.ok{background:#0e6b53}
+#pickbar{position:fixed;top:60px;left:0;right:0;background:#0e6b53;color:#fff;padding:10px 16px;font-size:13px;z-index:18;display:none;align-items:center;gap:12px;cursor:pointer}
+#pickbar.show{display:flex}
+#pickbar .x{margin-left:auto;text-decoration:underline}
+.media-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+.media-grid .m{cursor:pointer;border:2px solid transparent;border-radius:8px;overflow:hidden;background:#eae1d4}
+.media-grid .m:hover{border-color:#b23a1b}
+.media-grid .m img{width:100%;height:110px;object-fit:cover;display:block}
+.media-grid .m .p{font-size:10px;padding:4px 5px;color:#6b6258;word-break:break-all;background:#fff}
+.empty-media{grid-column:1/-1;color:#9a9085;font-size:13px;padding:20px;text-align:center}
+code.inl{background:#f0ece3;padding:1px 5px;border-radius:4px;font-size:12px}
+</style>
+</head>
+<body>
+<header class="abar">
+  <span class="ttl">Admin — EKS / FALLOU SAGNSÉ 221</span>
+  <span class="sp"></span>
+  <span class="st" id="stt"></span>
+  <a href="index.html" target="_blank" class="mini">Voir le site ↗</a>
+  <button data-action="save">💾 Enregistrer</button>
+  <button class="ghost" data-action="logout">Déconnexion</button>
+</header>
+
+<div id="gate">
+  <h2>Connexion à l'admin</h2>
+  <p>Pour modifier le site, il faut un <b>jeton d'accès GitHub</b>. Le dépôt est public, mais l'édition (sauvegarde + upload de photos) nécessite un jeton personnel.</p>
+  <ol>
+    <li>Sur GitHub : <i>Settings</i> → <i>Developer settings</i> → <i>Personal access tokens</i> → <i>Tokens (classic)</i>.</li>
+    <li><i>Generate new token (classic)</i> → cochez la case <b>repo</b> → générez.</li>
+    <li>Copiez le jeton (il commence par <code>ghp_</code>) et collez-le ci-dessous.</li>
+  </ol>
+  <input id="tok" type="password" placeholder="ghp_… (collez votre jeton GitHub ici)">
+  <button class="btn" data-action="login">Se connecter</button>
+  <p style="margin-top:12px;font-size:12px;color:#9a9085">Le jeton reste stocké dans votre navigateur (localStorage) et n'est envoyé qu'à l'API GitHub (api.github.com). Il ne quitte jamais votre machine.</p>
+</div>
+
+<div id="app" hidden>
+  <div class="note">Modifiez les champs ci-dessous puis cliquez <b>« Enregistrer »</b> (en haut). Le site se met à jour tout seul en ~1–2 min (GitHub Pages + régénération automatique).</div>
+  <div class="wrap">
+    <nav class="tabs">
+      <button data-action="tab" data-tab="marque">Marque & SEO</button>
+      <button data-action="tab" data-tab="contact">Contact</button>
+      <button data-action="tab" data-tab="accueil">Accueil</button>
+      <button data-action="tab" data-tab="categories">Catégories</button>
+      <button data-action="tab" data-tab="footer">Footer</button>
+      <button data-action="tab" data-tab="media">Médias</button>
+    </nav>
+    <main id="panels">
+      <div class="panel" id="pMarque"></div>
+      <div class="panel" id="pContact"></div>
+      <div class="panel" id="pAccueil"></div>
+      <div class="panel" id="pCategories"></div>
+      <div class="panel" id="pFooter"></div>
+      <div class="panel" id="pMedia"></div>
+    </main>
+  </div>
+</div>
+
+<div id="pickbar"><span id="pickbarTxt"></span><span class="x">Annuler ✕</span></div>
+<div id="log"></div>
+
+<script>
+"use strict";
+const CFG={owner:'idimbengue003-web',repo:'fallou-sagnse-221',branch:'main',dataPath:'data.json',assetsDir:'assets',site:'https://idimbengue003-web.github.io/fallou-sagnse-221/'};
+const API=`https://api.github.com/repos/${CFG.owner}/${CFG.repo}`;
+const TK='eks_github_token';
+const $=s=>document.querySelector(s);
+const $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const b64=s=>btoa(unescape(encodeURIComponent(s)));
+const unb64=b=>decodeURIComponent(escape(atob(String(b).replace(/\n/g,''))));
+function getPath(o,p){return p.split('.').reduce((a,k)=>a==null?a:a[k],o);}
+function setPath(o,p,v){const ks=p.split('.');let a=o;for(let i=0;i<ks.length-1;i++){const k=ks[i],nk=ks[i+1];a[k]=a[k]??(isNaN(Number(nk))?{}:[]);a=a[k];}a[ks[ks.length-1]]=v;}
+
+let state={token:localStorage.getItem(TK)||'',data:null,sha:null,imgTarget:null,picking:false,pickReturn:'marque'};
+let curTab='marque',logT;
+
+const KIND={
+  photo:()=>({src:'',alt:''}),
+  step:()=>({n:String(Date.now()).slice(-2),title:'Nouvelle étape',text:''}),
+  category:()=>({slug:'categorie-'+Math.random().toString(36).slice(2,5),num:String(Date.now()%100),name:'Nouvelle catégorie',accent:'#B23A1B',h1Main:'',h1Em:'',lead:'',description:'',waMessage:'',image:'',intro:{h2:'',paragraphs:['']},facts:[{k:'Matière',v:''}],usages:{h2:'',items:[{icon:'✦',title:'',text:''}]},quote:'',products:[{name:'Nouveau produit',price:10000,stock:'ok',stockLabel:'En stock',image:'',alt:'Nouveau produit'}]}),
+  product:()=>({name:'Nouveau produit',price:10000,stock:'ok',stockLabel:'En stock',image:'',alt:'Nouveau produit'}),
+  para:()=>'',
+  fact:()=>({k:'',v:''}),
+  usage:()=>({icon:'✦',title:'',text:''})
+};
+
+async function gh(method,path,body){
+  const r=await fetch(API+path,{method,headers:{Authorization:`token ${state.token}`,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'},body:body?JSON.stringify(body):undefined});
+  const t=await r.text();let j;try{j=JSON.parse(t)}catch{j=t}
+  if(!r.ok){const msg=(j&&j.message)||r.status+' '+r.statusText;throw msg;}
+  return j;
+}
+async function loadData(){
+  const j=await gh('GET',`/contents/${CFG.dataPath}?ref=${CFG.branch}`);
+  state.sha=j.sha;state.data=JSON.parse(unb64(j.content));
+  $('#stt').textContent='Connecté · '+state.data.categories.length+' catégories';
+  renderAll();
+}
+async function saveData(){
+  if(!state.data)return;
+  const files=renderFiles(state.data);
+  log('Génération + envoi de '+files.length+' fichiers…');
+  try{
+    const ref=await gh('GET',`/git/refs/heads/${CFG.branch}`);
+    const headSha=ref.object.sha;
+    const headCommit=await gh('GET',`/git/commits/${headSha}`);
+    const baseTree=headCommit.tree.sha;
+    const tree=[];
+    for(let i=0;i<files.length;i++){
+      const blob=await gh('POST','/git/blobs',{content:b64(files[i].content),encoding:'base64'});
+      tree.push({path:files[i].path,mode:'100644',type:'blob',sha:blob.sha});
+      log('  ✓ '+files[i].path+' ('+(i+1)+'/'+files.length+')');
+    }
+    const newTree=await gh('POST','/git/trees',{base_tree:baseTree,tree});
+    const newCommit=await gh('POST','/git/commits',{message:`Admin: mise à jour du contenu (${new Date().toLocaleString('fr-FR')})`,tree:newTree.sha,parents:[headSha]});
+    await gh('PATCH',`/git/refs/heads/${CFG.branch}`,{sha:newCommit.sha});
+    $('#stt').textContent='Enregistré ✓ · '+new Date().toLocaleTimeString('fr-FR');
+    log('✓ Enregistré ! Le site se met à jour sur GitHub Pages (~1 min).','ok');
+  }catch(e){log('✗ '+e,'err');}
+}
+function pickFile(accept){return new Promise(res=>{const i=document.createElement('input');i.type='file';if(accept)i.accept=accept;i.onchange=()=>res(i.files[0]);i.click();});}
+async function uploadFile(file){
+  if(!file)return null;
+  const ext=(file.name.match(/\.[a-z0-9]+$/i)||[''])[0].toLowerCase();
+  const base=file.name.replace(/\.[a-z0-9]+$/i,'').replace(/[^a-z0-9_-]+/gi,'-').toLowerCase().slice(0,40);
+  const name=`${base||'photo'}_${Math.random().toString(36).slice(2,8)}${ext}`;
+  const b64c=await new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result.split(',')[1]);fr.readAsDataURL(file);});
+  log('Upload '+name+'…');
+  try{
+    await gh('PUT',`/contents/${CFG.assetsDir}/${name}`,{message:`Admin: photo ${name}`,content:b64c,branch:CFG.branch});
+    log('✓ Photo uploadée : '+CFG.assetsDir+'/'+name,'ok');
+    return CFG.assetsDir+'/'+name;
+  }catch(e){log('✗ Upload : '+e,'err');throw e;}
+}
+async function listAssets(){try{const j=await gh('GET',`/contents/${CFG.assetsDir}?ref=${CFG.branch}`);return Array.isArray(j)?j.filter(x=>x.type==='file'):[];}catch{return[];}}
+
+// === Renderer : régénère les pages HTML depuis data.json (port JS du générateur Python) ===
+function wa(phone,text){return `https://wa.me/${encodeURIComponent(phone)}?text=${encodeURIComponent(text)}`;}
+function fmt(n){const cur=(state.data&&state.data.meta&&state.data.meta.currency)||'FCFA';return String(Number(n)).replace(/(\d)(?=(\d{3})+$)/g,'$1 ')+' '+cur;}
+function stockCls(s){return ['ok','low','order'].includes(s)?s:'order';}
+function renderHead(lang,title,desc,nav){return `<!DOCTYPE html>
+<html lang="${esc(lang)}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${esc(title)}</title>
+<meta name="description" content="${esc(desc)}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+${nav}`;}
+function buildNav(d){const b=d.brand;const links=d.categories.map(c=>`      <a href="${esc(c.slug)}.html">${esc(c.name)}</a>`).join('\n');const waBtn=`<a href="https://wa.me/${esc(d.contact.whatsapp)}" class="btn-wa" target="_blank" rel="noopener">WhatsApp</a>`;return `<nav class="topbar">
+  <div class="wrap topbar-inner">
+    <a href="index.html" class="brand">
+      <span class="eks">${esc(b.eks)}</span>
+      <span class="brand-row"><span class="name">${esc(b.name)}</span><span class="num">${esc(b.num)}</span></span>
+    </a>
+    <div class="nav-links-desktop">
+${links}
+      ${waBtn}
+    </div>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="menu-backdrop" id="backdrop"></div>
+<div class="menu-clip" id="menuClip">
+  <div class="menu-drawer" id="menu">
+${links}
+    ${waBtn}
+  </div>
+</div>`;}
+function buildFooter(d){const b=d.brand,ct=d.contact,so=d.social,ft=d.footer;const cats=d.categories.map(c=>`        <a href="${esc(c.slug)}.html">${esc(c.name)}</a>`).join('\n');return `<footer class="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="eks">${esc(b.eks)}</div>
+        <div class="name">${esc(b.name)} <span class="num2">${esc(b.num)}</span></div>
+        <p>${esc(ft.about)}</p>
+        <div class="foot-social">
+          <a href="${esc(so.instagram)}" target="_blank" rel="noopener" aria-label="Instagram">Ig</a>
+          <a href="${esc(so.facebook)}" target="_blank" rel="noopener" aria-label="Facebook">Fb</a>
+          <a href="https://wa.me/${esc(ct.whatsapp)}" target="_blank" rel="noopener" aria-label="WhatsApp">Wa</a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>${esc(ft.colCategoriesTitle)}</h4>
+${cats}
+      </div>
+      <div class="foot-col">
+        <h4>${esc(ft.colContactTitle)}</h4>
+        <a href="${esc(ct.addressMapUrl)}" target="_blank" rel="noopener"><span class="k">&#8982;</span>${esc(ct.address)}</a>
+        <a href="tel:${esc(ct.phone)}"><span class="k">&#9742;</span>${esc(ct.phoneDisplay)}</a>
+        <a href="mailto:${esc(ct.email)}"><span class="k">&#9993;</span>${esc(ct.email)}</a>
+        <div class="cl"><span class="k">&#9680;</span>${esc(ct.hours)}</div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>${esc(ft.bottomLeft)}</div>
+      <div>${esc(ft.bottomRight)}</div>
+    </div>
+  </div>
+</footer>`;}
+function buildProducts(cat,d){const WA=d.contact.whatsapp;const brandUp=d.brand.name.toUpperCase()+' '+d.brand.num;return cat.products.map(p=>{const waText=`Bonjour ${brandUp}, je souhaite commander : ${p.name} — ${fmt(p.price)}. Est-il disponible ?`;const link=wa(WA,waText);return `<article class="prod reveal">
+  <div class="ph"><img src="${esc(p.image)}" alt="${esc(p.alt)}" loading="lazy"></div>
+  <div class="body">
+    <div class="name">${esc(p.name)}</div>
+    <div class="price">${fmt(p.price)}</div>
+    <span class="stock ${stockCls(p.stock)}">${esc(p.stockLabel)}</span>
+    <a class="order" href="${link}" target="_blank" rel="noopener">Commander</a>
+  </div>
+</article>`;}).join('\n');}
+function buildFacts(cat){const rows=cat.facts.map(f=>`      <div class="fact"><span class="k">${esc(f.k)}</span><span class="v">${esc(f.v)}</span></div>`).join('\n');return `    <div class="facts-table">\n${rows}\n    </div>`;}
+function buildUsages(cat){return cat.usages.items.map(u=>`      <div class="usage"><div class="ic">${esc(u.icon)}</div><h4>${esc(u.title)}</h4><p>${esc(u.text)}</p></div>`).join('\n');}
+function buildIntro(cat){return cat.intro.paragraphs.map(p=>`      <p>${esc(p)}</p>`).join('\n');}
+function renderCategory(d,c){const WA=d.contact.whatsapp;const waLink=wa(WA,c.waMessage);const title=`${c.name} — ${d.brand.name.toUpperCase()} ${d.brand.num} · Dakar`;const nav=buildNav(d),footer=buildFooter(d);const body=`<header class="cat-head">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">Accueil</a><span class="sep">›</span><span>${esc(c.name)}</span></div>
+    <h1>${esc(c.h1Main)} <em>${esc(c.h1Em)}</em></h1>
+    <p class="lead">${esc(c.lead)}</p>
+    <a href="${waLink}" class="btn btn-primary wa-cat" target="_blank" rel="noopener">Commander en WhatsApp <span class="arrow">→</span></a>
+  </div>
+</header>
+
+<section class="cat-intro">
+  <div class="wrap">
+    <h2>${esc(c.intro.h2)}</h2>
+${buildIntro(c)}
+  </div>
+</section>
+
+<section class="facts">
+  <div class="wrap">
+${buildFacts(c)}
+  </div>
+</section>
+
+<section class="products" id="produits">
+  <div class="wrap">
+    <div class="section-bar"><span class="ln"></span><h2>La boutique</h2><span class="ln"></span></div>
+    <div class="prod-grid">
+${buildProducts(c,d)}
+    </div>
+  </div>
+</section>
+
+<section class="usages">
+  <div class="wrap">
+    <div class="section-bar"><span class="ln"></span><h2>${esc(c.usages.h2)}</h2><span class="ln"></span></div>
+    <div class="usages-grid">
+${buildUsages(c)}
+    </div>
+  </div>
+</section>
+
+<section class="quote">
+  <div class="wrap">
+    <blockquote>${esc(c.quote)}</blockquote>
+  </div>
+</section>`;return renderHead(d.meta.lang,title,c.description,nav)+body+'\n'+footer+'\n<script src="site.js" defer><\/script>\n</body>\n</html>';}
+function renderIndex(d){const h=d.hero,ch=d.catsSection,hw=d.howSection,WA=d.contact.whatsapp;const brandUp=d.brand.name.toUpperCase()+' '+d.brand.num;const nav=buildNav(d),footer=buildFooter(d);const photos=d.homePhotos.map(p=>`<figure><img src="${esc(p.src)}" alt="${esc(p.alt)}" loading="lazy"></figure>`).join('');const cats=d.categories.map(c=>`<a class="cat-card reveal" href="${esc(c.slug)}.html">
+  <div class="ph"><img src="${esc(c.image)}" alt="${esc(c.name)}" loading="lazy"></div>
+  <div class="info">
+    <div class="num">Catégorie ${esc(c.num)}</div>
+    <h3>${esc(c.name)}</h3>
+    <span class="go">Découvrir <span class="arrow">→</span></span>
+  </div>
+</a>`).join('\n');const how=hw.steps.map(s=>{const extra=(['1','2','3'].includes(s.n))?' d'+s.n:'';return `      <div class="how-step reveal${extra}"><div class="n">${esc(s.n)}</div><h4>${esc(s.title)}</h4><p>${esc(s.text)}</p></div>`;}).join('\n');const waHero=wa(WA,'Bonjour '+brandUp+', je souhaite découvrir vos tissus africains. Pouvez-vous m\'envoyer le catalogue ?');const body=`<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <span class="badge">${esc(h.badge)}</span>
+      <h1>${esc(h.titleMain)} <em>${esc(h.titleEm)}</em></h1>
+      <p class="sub">${esc(h.subtitle)}</p>
+      <div class="hero-cta">
+        <a href="${esc(h.ctaPrimary.href)}" class="btn btn-primary">${esc(h.ctaPrimary.text)} <span class="arrow">${esc(h.ctaPrimary.arrow||'')}</span></a>
+        <a href="${waHero}" class="btn btn-ghost" target="_blank" rel="noopener">${esc(h.ctaSecondary.text)}</a>
+      </div>
+    </div>
+    <div class="hero-img reveal d1"><img src="${esc(h.image)}" alt="${esc(h.imageAlt)}"></div>
+  </div>
+</header>
+
+<section class="photos">
+  <div class="wrap">
+    <div class="photos-grid">${photos}</div>
+  </div>
+</section>
+
+<section class="cats" id="cats">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">${esc(ch.eyebrow)}</span>
+      <h2>${esc(ch.title)}</h2>
+      <p>${esc(ch.subtitle)}</p>
+    </div>
+    <div class="cats-grid">${cats}</div>
+  </div>
+</section>
+
+<section class="how">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">${esc(hw.eyebrow)}</span>
+      <h2>${esc(hw.title)}</h2>
+    </div>
+    <div class="how-grid">
+${how}
+    </div>
+  </div>
+</section>
+
+`;return renderHead(d.meta.lang,d.meta.siteTitle,d.meta.siteDescription,nav)+body+footer+'\n<script src="site.js" defer><\/script>\n</body>\n</html>';}
+function renderFiles(d){const files=[{path:'data.json',content:JSON.stringify(d,null,2)}];files.push({path:'index.html',content:renderIndex(d)});d.categories.forEach(c=>files.push({path:c.slug+'.html',content:renderCategory(d,c)}));return files;}
+
+function fld(path,label,type='text',ph=''){const v=getPath(state.data,path);const val=type==='number'?(v??0):(v??'');return `<label class="f"><span>${esc(label)}</span><input type="${type}" data-path="${path}" value="${esc(val)}"${ph?` placeholder="${esc(ph)}"`:''}></label>`;}
+function area(path,label){const v=getPath(state.data,path)??'';const rows=Math.min(10,Math.max(3,String(v).split('\n').length+1));return `<label class="f"><span>${esc(label)}</span><textarea data-path="${path}" rows="${rows}">${esc(v)}</textarea></label>`;}
+function sel(path,label,opts){const v=getPath(state.data,path);return `<label class="f"><span>${esc(label)}</span><select data-path="${path}">${opts.map(o=>`<option value="${o.v}"${o.v===v?' selected':''}>${esc(o.l)}</option>`).join('')}</select></label>`;}
+function imgField(path,label){const v=getPath(state.data,path)||'';const src=v.startsWith('http')?v:(v?CFG.site+v:'');return `<div class="fimg"><label class="f"><span>${esc(label)} <i>(URL ou assets/…)</i></span><input type="text" data-path="${path}" value="${esc(v)}" placeholder="assets/photo.jpg ou https://…"></label><img class="prev" src="${esc(src)}" alt="" onerror="this.style.opacity=.3"><div class="fimg-btns"><button type="button" class="mini" data-action="upload" data-path="${path}">↑ Uploader</button><button type="button" class="mini" data-action="pick" data-path="${path}">▸ Choisir</button></div></div>`;}
+function addBtn(arr,kind,label){return `<button type="button" class="mini" data-action="add" data-arr="${arr}" data-kind="${kind}">${esc(label)}</button>`;}
+function rmBtn(arr,i){return `<button type="button" class="mini danger" data-action="rm" data-arr="${arr}" data-idx="${i}">✕ Suppr.</button>`;}
+function mvBtn(arr,i,dir){return `<button type="button" class="mini" data-action="${dir}" data-arr="${arr}" data-idx="${i}">${dir==='up'?'↑':'↓'}</button>`;}
+function repList(arr,itemFn){const a=getPath(state.data,arr)||[];return a.map((it,i)=>itemFn(it,i)).join('');}
+function head(arr,i,ttl,extra){return `<div class="rep-head"><span class="ttl">${esc(ttl)}</span><div class="rep-btns">${extra||''}</div></div>`;}
+
+function pMarque(){return `<div class="sub">Marque</div>
+  ${fld('brand.eks','EKS (au-dessus du nom)')}
+  ${fld('brand.name','Nom de la boutique')}
+  ${fld('brand.num','Badge (ex: 221)')}
+  <div class="sub">Titre & SEO</div>
+  ${fld('meta.siteTitle','Titre du site (onglet / SEO)')}
+  ${area('meta.siteDescription','Description SEO')}
+  <div class="grid2">${fld('meta.lang','Langue')}${fld('meta.currency','Devise')}</div>`;}
+
+function pContact(){return `<div class="sub">WhatsApp & téléphone</div>
+  ${fld('contact.whatsapp','WhatsApp — numéro international (ex: 221781006521)')}
+  ${fld('contact.whatsappDisplay','WhatsApp — affichage (ex: +221 78 100 65 21)')}
+  ${fld('contact.phone','Téléphone — lien (ex: +221781006521)')}
+  ${fld('contact.phoneDisplay','Téléphone — affichage')}
+  <div class="sub">Email & adresse</div>
+  ${fld('contact.email','Email')}
+  ${fld('contact.address','Adresse')}
+  ${fld('contact.addressMapUrl','Lien Google Maps')}
+  ${fld('contact.hours','Horaires')}
+  <div class="sub">Réseaux sociaux</div>
+  ${fld('social.instagram','Instagram (URL)')}
+  ${fld('social.facebook','Facebook (URL)')}`;}
+
+function pAccueil(){const h=state.data.hero;return `<div class="sub">Devanture (hero)</div>
+  ${fld('hero.badge','Badge')}
+  <div class="grid2">${fld('hero.titleMain','Titre — début')}${fld('hero.titleEm','Titre — emphase (italique accent)')}</div>
+  ${area('hero.subtitle','Sous-titre')}
+  <div class="grid2">${fld('hero.ctaPrimary.text','Bouton 1 — texte')}${fld('hero.ctaPrimary.href','Bouton 1 — lien')}</div>
+  <div class="grid2">${fld('hero.ctaPrimary.arrow','Bouton 1 — flèche')}${fld('hero.ctaSecondary.text','Bouton 2 — texte')}</div>
+  ${imgField('hero.image','Image devanture')}
+  ${fld('hero.imageAlt','Texte alternatif image')}
+  <div class="sub">Photos d'illustration (accueil)</div>
+  ${repList('homePhotos',(p,i)=>`<div class="rep">${head('homePhotos',i,'Photo '+(i+1),(i>0?mvBtn('homePhotos',i,'up'):'')+(i<state.data.homePhotos.length-1?mvBtn('homePhotos',i,'down'):'')+rmBtn('homePhotos',i))}${imgField(`homePhotos.${i}.src`,'Image')}${fld(`homePhotos.${i}.alt`,'Texte alternatif')}</div>`)}
+  ${addBtn('homePhotos','photo','+ Ajouter une photo')}
+  <div class="sub">Section « Catégories »</div>
+  ${fld('catsSection.eyebrow','Sur-titre')}${fld('catsSection.title','Titre')}${area('catsSection.subtitle','Sous-titre')}
+  <div class="sub">Section « Commander »</div>
+  ${fld('howSection.eyebrow','Sur-titre')}${fld('howSection.title','Titre')}
+  ${repList('howSection.steps',(s,i)=>`<div class="rep">${head('howSection.steps',i,'Étape '+(i+1),(i>0?mvBtn('howSection.steps',i,'up'):'')+(i<state.data.howSection.steps.length-1?mvBtn('howSection.steps',i,'down'):'')+rmBtn('howSection.steps',i))}<div class="grid2">${fld(`howSection.steps.${i}.n`,'Numéro')}${fld(`howSection.steps.${i}.title`,'Titre')}</div>${area(`howSection.steps.${i}.text`,'Texte')}</div>`)}
+  ${addBtn('howSection.steps','step','+ Ajouter une étape')}`;}
+
+function renderCat(i,c){return `<div class="ccat${i===0?' open':''}"><div class="summary" data-action="col"><span class="num">Cat. ${esc(c.num)}</span><span class="nm">${esc(c.name)||'(sans nom)'}</span><span class="sw">▾</span></div><div class="body">
+  <div class="sub">Identité</div>
+  <div class="grid2">${fld(`categories.${i}.slug`,'Slug (URL, ex: wax)')}${fld(`categories.${i}.num`,'Numéro')}</div>
+  <div class="grid2">${fld(`categories.${i}.name`,'Nom')}${fld(`categories.${i}.accent`,'Couleur d\u2019accent','color')}</div>
+  <div class="grid2">${fld(`categories.${i}.h1Main`,'Titre H1 — début')}${fld(`categories.${i}.h1Em`,'Titre H1 — emphase')}</div>
+  ${area(`categories.${i}.lead`,'Lead (intro courte)')}
+  ${area(`categories.${i}.description`,'Description SEO')}
+  ${area(`categories.${i}.waMessage`,'Message WhatsApp (catégorie)')}
+  ${imgField(`categories.${i}.image`,'Image catégorie (carte accueil)')}
+  <div class="sub">Introduction</div>
+  ${fld(`categories.${i}.intro.h2`,'Titre intro')}
+  ${repList(`categories.${i}.intro.paragraphs`,(p,j)=>`<div class="rep">${head(`categories.${i}.intro.paragraphs`,j,'Paragraphe '+(j+1),(j>0?mvBtn(`categories.${i}.intro.paragraphs`,j,'up'):'')+(j<c.intro.paragraphs.length-1?mvBtn(`categories.${i}.intro.paragraphs`,j,'down'):'')+rmBtn(`categories.${i}.intro.paragraphs`,j))}${area(`categories.${i}.intro.paragraphs.${j}`,'Paragraphe')}</div>`)}
+  ${addBtn(`categories.${i}.intro.paragraphs`,'para','+ Paragraphe')}
+  <div class="sub">Fiche technique</div>
+  ${repList(`categories.${i}.facts`,(f,j)=>`<div class="rep">${head(`categories.${i}.facts`,j,'Ligne '+(j+1),(j>0?mvBtn(`categories.${i}.facts`,j,'up'):'')+(j<c.facts.length-1?mvBtn(`categories.${i}.facts`,j,'down'):'')+rmBtn(`categories.${i}.facts`,j))}<div class="grid2">${fld(`categories.${i}.facts.${j}.k`,'Clé')}${fld(`categories.${i}.facts.${j}.v`,'Valeur')}</div></div>`)}
+  ${addBtn(`categories.${i}.facts`,'fact','+ Ligne fiche technique')}
+  <div class="sub">Boutique — produits</div>
+  ${repList(`categories.${i}.products`,(p,j)=>`<div class="rep">${head(`categories.${i}.products`,j,'Produit '+(j+1),(j>0?mvBtn(`categories.${i}.products`,j,'up'):'')+(j<c.products.length-1?mvBtn(`categories.${i}.products`,j,'down'):'')+rmBtn(`categories.${i}.products`,j))}${imgField(`categories.${i}.products.${j}.image`,'Photo produit')}${fld(`categories.${i}.products.${j}.name`,'Nom')}${fld(`categories.${i}.products.${j}.alt`,'Texte alternatif')}<div class="grid2">${fld(`categories.${i}.products.${j}.price`,'Prix (FCFA)','number')}${sel(`categories.${i}.products.${j}.stock`,'Stock',[{v:'ok',l:'En stock (ok)'},{v:'low',l:'Stock limité (low)'},{v:'order',l:'Sur commande (order)'}])}</div>${fld(`categories.${i}.products.${j}.stockLabel`,'Libellé stock (affiché)')}</div>`)}
+  ${addBtn(`categories.${i}.products`,'product','+ Produit')}
+  <div class="sub">Usages</div>
+  ${fld(`categories.${i}.usages.h2`,'Titre usages')}
+  ${repList(`categories.${i}.usages.items`,(u,j)=>`<div class="rep">${head(`categories.${i}.usages.items`,j,'Usage '+(j+1),(j>0?mvBtn(`categories.${i}.usages.items`,j,'up'):'')+(j<c.usages.items.length-1?mvBtn(`categories.${i}.usages.items`,j,'down'):'')+rmBtn(`categories.${i}.usages.items`,j))}<div class="grid2">${fld(`categories.${i}.usages.items.${j}.icon`,'Icône')}${fld(`categories.${i}.usages.items.${j}.title`,'Titre')}</div>${area(`categories.${i}.usages.items.${j}.text`,'Texte')}</div>`)}
+  ${addBtn(`categories.${i}.usages.items`,'usage','+ Usage')}
+  <div class="sub">Citation</div>
+  ${area(`categories.${i}.quote`,'Citation')}
+  </div></div>`;}
+
+function pCategories(){return state.data.categories.map((c,i)=>renderCat(i,c)).join('')+`<div style="margin-top:8px">${addBtn('categories','category','+ Ajouter une catégorie')}</div>`;}
+
+function pFooter(){return `<div class="sub">Pied de page</div>
+  ${area('footer.about','À propos (footer)')}
+  <div class="grid2">${fld('footer.colCategoriesTitle','Titre colonne catégories')}${fld('footer.colContactTitle','Titre colonne contact')}</div>
+  <div class="grid2">${fld('footer.bottomLeft','Bas — gauche')}${fld('footer.bottomRight','Bas — droite')}</div>`;}
+
+function pMedia(){return `<div class="sub">Bibliothèque de photos (assets/)</div>
+  <p style="font-size:13px;color:#6b6258;margin-bottom:12px">Uploadez vos photos ici. Ensuite, depuis n'importe quel champ image, cliquez <b>« ▸ Choisir »</b> pour l'insérer, ou collez le chemin <code class="inl">assets/nom.jpg</code> directement dans le champ.</p>
+  <button type="button" class="mini" data-action="media-upload" style="margin-bottom:14px">↑ Uploader une photo</button>
+  <div id="mediaGrid" class="media-grid"><div class="empty-media">Chargement…</div></div>`;}
+
+async function fillMedia(){
+  const el=$('#mediaGrid');if(!el)return;
+  el.innerHTML='<div class="empty-media">Chargement…</div>';
+  const items=await listAssets();
+  if(!items.length){el.innerHTML='<div class="empty-media">Aucune photo pour l\'instant. Uploadez-en une ↑</div>';return;}
+  el.innerHTML=items.map(it=>{const p=it.path;const src=it.download_url||(CFG.site+p);return `<div class="m" data-action="pick-insert" data-path="${esc(p)}" title="Cliquez pour insérer"><img src="${esc(src)}" alt="" loading="lazy"><div class="p">${esc(it.name)}</div></div>`;}).join('');
+}
+
+const TABS={marque:'#pMarque',contact:'#pContact',accueil:'#pAccueil',categories:'#pCategories',footer:'#pFooter',media:'#pMedia'};
+function renderAll(){if(!state.data)return;$('#pMarque').innerHTML=pMarque();$('#pContact').innerHTML=pContact();$('#pAccueil').innerHTML=pAccueil();$('#pCategories').innerHTML=pCategories();$('#pFooter').innerHTML=pFooter();$('#pMedia').innerHTML=pMedia();activateTab(curTab,false);}
+async function activateTab(t,scroll=true){
+  curTab=t;
+  $$('.tabs button').forEach(b=>b.classList.toggle('active',b.dataset.tab===t));
+  Object.values(TABS).forEach(s=>$(s).classList.remove('active'));
+  $(TABS[t]).classList.add('active');
+  if(t==='media')fillMedia();
+  if(scroll)window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function log(msg,type){const l=$('#log');l.textContent=msg;l.className='show '+(type||'');clearTimeout(logT);logT=setTimeout(()=>l.className='',4500);}
+function showPickbar(path){$('#pickbarTxt').textContent='📷 Choisissez une photo pour : '+path+'  (cliquez une image ci-dessous)';$('#pickbar').classList.add('show');}
+function hidePickbar(){$('#pickbar').classList.remove('show');state.picking=false;}
+
+function updatePrev(inp){const v=inp.value;const img=inp.closest('.fimg')&&inp.closest('.fimg').querySelector('.prev');if(img)img.src=v.startsWith('http')?v:(v?CFG.site+v:'');}
+
+document.addEventListener('input',e=>{const p=e.target.dataset&&e.target.dataset.path;if(p)setPath(state.data,p,e.target.value);});
+document.addEventListener('change',e=>{const p=e.target.dataset&&e.target.dataset.path;if(!p)return;setPath(state.data,p,e.target.value);if(e.target.closest('.fimg'))updatePrev(e.target);});
+
+document.addEventListener('click',async e=>{
+  const b=e.target.closest('[data-action]');if(!b)return;
+  const a=b.dataset.action;
+  try{
+    if(a==='login'){const t=$('#tok').value.trim();if(!t)return;state.token=t;localStorage.setItem(TK,t);showApp();await loadData();}
+    else if(a==='save'){await saveData();}
+    else if(a==='logout'){localStorage.removeItem(TK);state.token='';state.data=null;showGate();$('#stt').textContent='';log('Déconnecté.');}
+    else if(a==='tab'){activateTab(b.dataset.tab);}
+    else if(a==='col'){b.closest('.ccat').classList.toggle('open');}
+    else if(a==='upload'){const f=await pickFile('image/*');const p=await uploadFile(f);setPath(state.data,b.dataset.path,p);renderAll();}
+    else if(a==='pick'){state.imgTarget=b.dataset.path;state.picking=true;state.pickReturn=curTab;showPickbar(b.dataset.path);activateTab('media');}
+    else if(a==='pick-insert'){if(state.picking){setPath(state.data,state.imgTarget,b.dataset.path);hidePickbar();activateTab(state.pickReturn);renderAll();log('✓ Photo insérée.','ok');}else{try{await navigator.clipboard.writeText(b.dataset.path);log('Chemin copié : '+b.dataset.path,'ok');}catch{log('Chemin : '+b.dataset.path);}}}
+    else if(a==='cancelpick'||a===null&&b.id==='pickbar'){hidePickbar();}
+    else if(a==='media-upload'){const f=await pickFile('image/*');if(f){const p=await uploadFile(f);fillMedia();if(state.picking){setPath(state.data,state.imgTarget,p);hidePickbar();activateTab(state.pickReturn);renderAll();log('✓ Photo uploadée et insérée.','ok');}}}
+    else if(a==='add'){const it=KIND[b.dataset.kind]();getPath(state.data,b.dataset.arr).push(it);renderAll();}
+    else if(a==='rm'){const arr=getPath(state.data,b.dataset.arr);arr.splice(+b.dataset.idx,1);renderAll();}
+    else if(a==='up'||a==='down'){const arr=getPath(state.data,b.dataset.arr);const i=+b.dataset.idx,j=i+(a==='up'?-1:1);if(j>=0&&j<arr.length){const t=arr[j];arr[j]=arr[i];arr[i]=t;renderAll();}}
+  }catch(err){log('✗ '+err,'err');}
+});
+
+function showGate(){$('#gate').hidden=false;$('#app').hidden=true;}
+function showApp(){$('#gate').hidden=true;$('#app').hidden=false;}
+
+async function init(){
+  $('#pickbar').addEventListener('click',()=>{if(state.picking){hidePickbar();activateTab(state.pickReturn);}});
+  if(state.token){showApp();try{await loadData();}catch(e){log('✗ '+e+' — jeton invalide ?','err');showGate();}}
+  else{showGate();}
+}
+init();
+</script>
+</body>
+</html>
