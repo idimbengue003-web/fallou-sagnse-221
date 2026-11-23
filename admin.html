@@ -131,6 +131,7 @@ const TK='eks_github_token';
 const $=s=>document.querySelector(s);
 const $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const slugify=s=>{s=(s||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'');s=s.replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');return s||'categorie';};
 const b64=s=>btoa(unescape(encodeURIComponent(s)));
 const unb64=b=>decodeURIComponent(escape(atob(String(b).replace(/\n/g,''))));
 function getPath(o,p){return p.split('.').reduce((a,k)=>a==null?a:a[k],o);}
@@ -176,6 +177,18 @@ async function saveData(){
       tree.push({path:files[i].path,mode:'100644',type:'blob',sha:blob.sha});
       log('  ✓ '+files[i].path+' ('+(i+1)+'/'+files.length+')');
     }
+    // nettoyer les pages .html orphelines (catégories renommées/supprimées)
+    try{
+      const root=await gh('GET',`/contents/?ref=${CFG.branch}`);
+      const keep=new Set(files.map(f=>f.path).concat(['index.html','admin.html']));
+      let orphans=0;
+      (Array.isArray(root)?root:[]).forEach(it=>{
+        if(it.type==='file'&&it.path.endsWith('.html')&&!keep.has(it.path)){
+          tree.push({path:it.path,mode:'100644',type:'blob',sha:null});orphans++;
+        }
+      });
+      if(orphans)log('  🗑 '+orphans+' page orpheline supprimée');
+    }catch(e){}
     const newTree=await gh('POST','/git/trees',{base_tree:baseTree,tree});
     const newCommit=await gh('POST','/git/commits',{message:`Admin: mise à jour du contenu (${new Date().toLocaleString('fr-FR')})`,tree:newTree.sha,parents:[headSha]});
     await gh('PATCH',`/git/refs/heads/${CFG.branch}`,{sha:newCommit.sha});
@@ -217,7 +230,7 @@ function renderHead(lang,title,desc,nav){return `<!DOCTYPE html>
 </head>
 <body>
 ${nav}`;}
-function buildNav(d){const b=d.brand;const links=d.categories.map(c=>`      <a href="${esc(c.slug)}.html">${esc(c.name)}</a>`).join('\n');const waBtn=`<a href="https://wa.me/${esc(d.contact.whatsapp)}" class="btn-wa" target="_blank" rel="noopener">WhatsApp</a>`;return `<nav class="topbar">
+function buildNav(d){const b=d.brand;const links=d.categories.map(c=>`      <a href="${esc(slugify(c.slug))}.html">${esc(c.name)}</a>`).join('\n');const waBtn=`<a href="https://wa.me/${esc(d.contact.whatsapp)}" class="btn-wa" target="_blank" rel="noopener">WhatsApp</a>`;return `<nav class="topbar">
   <div class="wrap topbar-inner">
     <a href="index.html" class="brand">
       <span class="eks">${esc(b.eks)}</span>
@@ -237,7 +250,7 @@ ${links}
     ${waBtn}
   </div>
 </div>`;}
-function buildFooter(d){const b=d.brand,ct=d.contact,so=d.social,ft=d.footer;const cats=d.categories.map(c=>`        <a href="${esc(c.slug)}.html">${esc(c.name)}</a>`).join('\n');return `<footer class="footer">
+function buildFooter(d){const b=d.brand,ct=d.contact,so=d.social,ft=d.footer;const cats=d.categories.map(c=>`        <a href="${esc(slugify(c.slug))}.html">${esc(c.name)}</a>`).join('\n');return `<footer class="footer">
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
@@ -325,14 +338,21 @@ ${buildUsages(c)}
     <blockquote>${esc(c.quote)}</blockquote>
   </div>
 </section>`;return renderHead(d.meta.lang,title,c.description,nav)+body+'\n'+footer+'\n<script src="site.js" defer><\/script>\n</body>\n</html>';}
-function renderIndex(d){const h=d.hero,ch=d.catsSection,hw=d.howSection,WA=d.contact.whatsapp;const brandUp=d.brand.name.toUpperCase()+' '+d.brand.num;const nav=buildNav(d),footer=buildFooter(d);const photos=d.homePhotos.map(p=>`<figure><img src="${esc(p.src)}" alt="${esc(p.alt)}" loading="lazy"></figure>`).join('');const cats=d.categories.map(c=>`<a class="cat-card reveal" href="${esc(c.slug)}.html">
+function renderIndex(d){const h=d.hero,ch=d.catsSection,hw=d.howSection,WA=d.contact.whatsapp;const brandUp=d.brand.name.toUpperCase()+' '+d.brand.num;const nav=buildNav(d),footer=buildFooter(d);const photos=d.homePhotos.map(p=>`<figure><img src="${esc(p.src)}" alt="${esc(p.alt)}" loading="lazy"></figure>`).join('');const cats=d.categories.map(c=>`<a class="cat-card reveal" href="${esc(slugify(c.slug))}.html">
   <div class="ph"><img src="${esc(c.image)}" alt="${esc(c.name)}" loading="lazy"></div>
   <div class="info">
     <div class="num">Catégorie ${esc(c.num)}</div>
     <h3>${esc(c.name)}</h3>
     <span class="go">Découvrir <span class="arrow">→</span></span>
   </div>
-</a>`).join('\n');const how=hw.steps.map(s=>{const extra=(['1','2','3'].includes(s.n))?' d'+s.n:'';return `      <div class="how-step reveal${extra}"><div class="n">${esc(s.n)}</div><h4>${esc(s.title)}</h4><p>${esc(s.text)}</p></div>`;}).join('\n');const waHero=wa(WA,'Bonjour '+brandUp+', je souhaite découvrir vos tissus africains. Pouvez-vous m\'envoyer le catalogue ?');const body=`<header class="hero" id="top">
+</a>`).join('\n');const how=hw.steps.map(s=>{const extra=(['1','2','3'].includes(s.n))?' d'+s.n:'';return `      <div class="how-step reveal${extra}"><div class="n">${esc(s.n)}</div><h4>${esc(s.title)}</h4><p>${esc(s.text)}</p></div>`;}).join('\n');const waHero=wa(WA,'Bonjour '+brandUp+', je souhaite découvrir vos tissus africains. Pouvez-vous m\'envoyer le catalogue ?');const slImgs=(d.slider&&d.slider.images)||[];const slSlides=slImgs.map((im,i)=>`    <figure class="slider-slide" data-i="${i}"><img src="${esc(im.src)}" alt="${esc(im.alt)}" loading="eager" decoding="async"><div class="slider-veil"></div></figure>`).join('\n');const slDots=slImgs.map(()=>'<span></span>').join('');const sliderHtml=slImgs.length?`<section class="slider" id="slider" aria-label="Galerie">
+  <div class="slider-pin">
+${slSlides}
+    <div class="slider-dots">${slDots}</div>
+  </div>
+</section>
+
+`:'';const body=`<header class="hero" id="top">
   <div class="wrap hero-grid">
     <div class="hero-text">
       <span class="badge">${esc(h.badge)}</span>
@@ -347,7 +367,7 @@ function renderIndex(d){const h=d.hero,ch=d.catsSection,hw=d.howSection,WA=d.con
   </div>
 </header>
 
-<section class="photos">
+${sliderHtml}<section class="photos">
   <div class="wrap">
     <div class="photos-grid">${photos}</div>
   </div>
@@ -377,7 +397,7 @@ ${how}
 </section>
 
 `;return renderHead(d.meta.lang,d.meta.siteTitle,d.meta.siteDescription,nav)+body+footer+'\n<script src="site.js" defer><\/script>\n</body>\n</html>';}
-function renderFiles(d){const files=[{path:'data.json',content:JSON.stringify(d,null,2)}];files.push({path:'index.html',content:renderIndex(d)});d.categories.forEach(c=>files.push({path:c.slug+'.html',content:renderCategory(d,c)}));return files;}
+function renderFiles(d){const files=[{path:'data.json',content:JSON.stringify(d,null,2)}];files.push({path:'index.html',content:renderIndex(d)});d.categories.forEach(c=>files.push({path:slugify(c.slug)+'.html',content:renderCategory(d,c)}));return files;}
 
 function fld(path,label,type='text',ph=''){const v=getPath(state.data,path);const val=type==='number'?(v??0):(v??'');return `<label class="f"><span>${esc(label)}</span><input type="${type}" data-path="${path}" value="${esc(val)}"${ph?` placeholder="${esc(ph)}"`:''}></label>`;}
 function area(path,label){const v=getPath(state.data,path)??'';const rows=Math.min(10,Math.max(3,String(v).split('\n').length+1));return `<label class="f"><span>${esc(label)}</span><textarea data-path="${path}" rows="${rows}">${esc(v)}</textarea></label>`;}
@@ -412,7 +432,7 @@ function pContact(){return `<div class="sub">WhatsApp & téléphone</div>
   ${fld('social.instagram','Instagram (URL)')}
   ${fld('social.facebook','Facebook (URL)')}`;}
 
-function pAccueil(){const h=state.data.hero;return `<div class="sub">Devanture (hero)</div>
+function pAccueil(){const h=state.data.hero;state.data.slider=state.data.slider||{images:[]};return `<div class="sub">Devanture (hero)</div>
   ${fld('hero.badge','Badge')}
   <div class="grid2">${fld('hero.titleMain','Titre — début')}${fld('hero.titleEm','Titre — emphase (italique accent)')}</div>
   ${area('hero.subtitle','Sous-titre')}
@@ -420,6 +440,10 @@ function pAccueil(){const h=state.data.hero;return `<div class="sub">Devanture (
   <div class="grid2">${fld('hero.ctaPrimary.arrow','Bouton 1 — flèche')}${fld('hero.ctaSecondary.text','Bouton 2 — texte')}</div>
   ${imgField('hero.image','Image devanture')}
   ${fld('hero.imageAlt','Texte alternatif image')}
+  <div class="sub">Slider plein écran (défilé au scroll)</div>
+  <p style="font-size:12px;color:#6b6258;margin-bottom:10px">Images qui défilent en plein écran avec un fondu doux quand on descend la page. Placé juste après la description, en haut de l'accueil. (3 images recommandées.)</p>
+  ${repList('slider.images',(p,i)=>`<div class="rep">${head('slider.images',i,'Slide '+(i+1),(i>0?mvBtn('slider.images',i,'up'):'')+(i<state.data.slider.images.length-1?mvBtn('slider.images',i,'down'):'')+rmBtn('slider.images',i))}${imgField(`slider.images.${i}.src`,'Image plein écran')}${fld(`slider.images.${i}.alt`,'Texte alternatif')}</div>`)}
+  ${addBtn('slider.images','photo','+ Ajouter une image au slider')}
   <div class="sub">Photos d'illustration (accueil)</div>
   ${repList('homePhotos',(p,i)=>`<div class="rep">${head('homePhotos',i,'Photo '+(i+1),(i>0?mvBtn('homePhotos',i,'up'):'')+(i<state.data.homePhotos.length-1?mvBtn('homePhotos',i,'down'):'')+rmBtn('homePhotos',i))}${imgField(`homePhotos.${i}.src`,'Image')}${fld(`homePhotos.${i}.alt`,'Texte alternatif')}</div>`)}
   ${addBtn('homePhotos','photo','+ Ajouter une photo')}

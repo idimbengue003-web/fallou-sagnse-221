@@ -3,7 +3,7 @@
   --bg:#FFFFFF;--surface:#FFFFFF;--ink:#1A1410;--muted:#6B6258;--line:#EAE1D4;
   --accent:#B23A1B;--accent-deep:#8E2C13;--accent-soft:#F6E9DF;
   --ok:#0E6B53;--ok-soft:#E6F4EE;
-  --radius:16px;--radius-sm:12px;
+  --radius:26px;--radius-sm:20px;
   --serif:'Fraunces',Georgia,serif;--sans:'Outfit',system-ui,-apple-system,sans-serif;
   --max:1120px;
 }
@@ -183,6 +183,22 @@ a{color:inherit;text-decoration:none}
 .foot-social a{width:36px;height:36px;border-radius:50%;border:1px solid rgba(234,225,212,.25);display:flex;align-items:center;justify-content:center;font-size:12px;transition:.25s}
 .foot-social a:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 .foot-bottom{border-top:1px solid rgba(234,225,212,.15);margin-top:30px;padding-top:16px;font-size:12px;color:rgba(234,225,212,.55);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+/* Slider plein ecran (scroll-driven crossfade) */
+.slider{height:330vh;position:relative;z-index:1}
+.slider-pin{position:sticky;top:0;height:100vh;overflow:hidden;background:#1A1410}
+.slider-slide{position:absolute;inset:0;opacity:0;will-change:opacity,transform}
+.slider-slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);transform-origin:center}
+.slider-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,20,16,.30) 0%,rgba(26,20,16,0) 30%,rgba(26,20,16,0) 58%,rgba(26,20,16,.45) 100%)}
+.slider-dots{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);display:flex;gap:9px;z-index:4}
+.slider-dots span{width:26px;height:4px;border-radius:999px;background:rgba(255,255,255,.35);transition:background .35s,transform .35s}
+.slider-dots span.on{background:#fff;transform:scaleX(1.4)}
+@media(prefers-reduced-motion:reduce){
+  .slider{height:auto}
+  .slider-pin{position:static;height:auto;display:flex;flex-direction:column}
+  .slider-slide{position:relative;height:72vh;opacity:1}
+  .slider-dots{display:none}
+}
 
 /* Reveal */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}

@@ -40,6 +40,22 @@
     "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/13622f815868.jpg",
     "imageAlt": "Tissus africains FALLOU SAGNSÉ"
   },
+  "slider": {
+    "images": [
+      {
+        "src": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/1598e5789ef4.jpg",
+        "alt": "Femme en robe wax FALLOU SAGNSÉ"
+      },
+      {
+        "src": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/4a970dcf5bf6.jpg",
+        "alt": "Femme en bazin riche brodé"
+      },
+      {
+        "src": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/58a2e248cdf4.jpg",
+        "alt": "Femme en robe africaine élégante"
+      }
+    ]
+  },
   "homePhotos": [
     {
       "src": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6074a60cc05b.jpg",
@@ -93,7 +109,7 @@
   },
   "categories": [
     {
-      "slug": "Dentelle ",
+      "slug": "dentelle",
       "num": "01",
       "name": "Dentelle & djipure",
       "accent": "#B23A1B",
