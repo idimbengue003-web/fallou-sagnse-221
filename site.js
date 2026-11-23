@@ -11,6 +11,14 @@
   document.addEventListener('keydown',function(e){if(e.key==='Escape'){close()}});
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -30px 0px'});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  document.querySelectorAll('.prod').forEach(function(card){
+    var thumbs=card.querySelectorAll('.prod-thumbs .thumb');if(!thumbs.length)return;
+    var main=card.querySelector('.prod-main');if(!main)return;
+    thumbs.forEach(function(t){t.addEventListener('click',function(){
+      thumbs.forEach(function(x){x.classList.remove('on')});t.classList.add('on');
+      main.src=t.dataset.src;var im=t.querySelector('img');if(im)main.alt=im.alt;
+    })});
+  });
   var sl=document.getElementById('slider');
   if(sl&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
     var slSlide=sl.querySelectorAll('.slider-slide'),slImg=sl.querySelectorAll('.slider-slide img'),slDot=sl.querySelectorAll('.slider-dots span');

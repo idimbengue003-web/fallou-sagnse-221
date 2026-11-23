@@ -105,6 +105,7 @@ code.inl{background:#f0ece3;padding:1px 5px;border-radius:4px;font-size:12px}
       <button data-action="tab" data-tab="marque">Marque & SEO</button>
       <button data-action="tab" data-tab="contact">Contact</button>
       <button data-action="tab" data-tab="accueil">Accueil</button>
+      <button data-action="tab" data-tab="ajout">＋ Ajouter un produit</button>
       <button data-action="tab" data-tab="categories">Catégories</button>
       <button data-action="tab" data-tab="footer">Footer</button>
       <button data-action="tab" data-tab="media">Médias</button>
@@ -113,6 +114,7 @@ code.inl{background:#f0ece3;padding:1px 5px;border-radius:4px;font-size:12px}
       <div class="panel" id="pMarque"></div>
       <div class="panel" id="pContact"></div>
       <div class="panel" id="pAccueil"></div>
+      <div class="panel" id="pAjout"></div>
       <div class="panel" id="pCategories"></div>
       <div class="panel" id="pFooter"></div>
       <div class="panel" id="pMedia"></div>
@@ -281,8 +283,8 @@ ${cats}
     </div>
   </div>
 </footer>`;}
-function buildProducts(cat,d){const WA=d.contact.whatsapp;const brandUp=d.brand.name.toUpperCase()+' '+d.brand.num;return cat.products.map(p=>{const waText=`Bonjour ${brandUp}, je souhaite commander : ${p.name} — ${fmt(p.price)}. Est-il disponible ?`;const link=wa(WA,waText);return `<article class="prod reveal">
-  <div class="ph"><img src="${esc(p.image)}" alt="${esc(p.alt)}" loading="lazy"></div>
+function buildProducts(cat,d){const WA=d.contact.whatsapp;const brandUp=d.brand.name.toUpperCase()+' '+d.brand.num;return cat.products.map(p=>{const waText=`Bonjour ${brandUp}, je souhaite commander : ${p.name} — ${fmt(p.price)}. Est-il disponible ?`;const link=wa(WA,waText);const gal=p.gallery||[];const imgs=gal.length?[{src:p.image,alt:p.alt}].concat(gal.map(g=>({src:g.src,alt:g.alt||''}))):[];const thumbs=imgs.length?`\n  <div class="prod-thumbs">`+imgs.map((im,i)=>`<button type="button" class="thumb${i===0?' on':''}" data-src="${esc(im.src)}"><img src="${esc(im.src)}" alt="${esc(im.alt)}" loading="lazy"></button>`).join('')+`</div>`:'';return `<article class="prod reveal">
+  <div class="ph"><img class="prod-main" src="${esc(p.image)}" alt="${esc(p.alt)}" loading="lazy"></div>${thumbs}
   <div class="body">
     <div class="name">${esc(p.name)}</div>
     <div class="price">${fmt(p.price)}</div>
@@ -481,6 +483,32 @@ function renderCat(i,c){return `<div class="ccat${i===0?' open':''}"><div class=
   ${area(`categories.${i}.quote`,'Citation')}
   </div></div>`;}
 
+// === Panneau « Ajouter un produit » (espace unique : catégorie + photo + galerie + tout) ===
+function dfld(key,label,type='text',ph=''){const v=getPath(state.draft,key);const val=type==='number'?(v??''):(v??'');return `<label class="f"><span>${esc(label)}</span><input type="${type}" data-dpath="${key}" value="${esc(val)}"${ph?` placeholder="${esc(ph)}"`:''}></label>`;}
+function dsel(key,label,opts){const v=getPath(state.draft,key);return `<label class="f"><span>${esc(label)}</span><select data-dpath="${key}">${opts.map(o=>`<option value="${o.v}"${o.v===v?' selected':''}>${esc(o.l)}</option>`).join('')}</select></label>`;}
+function dimg(key,label){const v=getPath(state.draft,key)||'';const src=v.startsWith('http')?v:(v?CFG.site+v:'');return `<div class="fimg"><label class="f"><span>${esc(label)} <i>(URL ou assets/…)</i></span><input type="text" data-dpath="${key}" value="${esc(v)}" placeholder="assets/photo.jpg ou https://…"></label><img class="prev" src="${esc(src)}" alt="" onerror="this.style.opacity=.3"><div class="fimg-btns"><button type="button" class="mini" data-action="dupload" data-dtarget="${key}">↑ Uploader</button><button type="button" class="mini" data-action="dpick" data-dtarget="${key}">▸ Choisir</button></div></div>`;}
+function dadd(arr,kind,label){return `<button type="button" class="mini" data-action="dadd" data-arr="${arr}" data-kind="${kind}">${esc(label)}</button>`;}
+function drm(arr,i){return `<button type="button" class="mini danger" data-action="drm" data-arr="${arr}" data-idx="${i}">✕</button>`;}
+function dmv(arr,i,dir){return `<button type="button" class="mini" data-action="d${dir}" data-arr="${arr}" data-idx="${i}">${dir==='up'?'↑':'↓'}</button>`;}
+function pAjout(){
+  if(!state.draft)state.draft={cat:(state.data.categories[0]||{}).slug||'',image:'',name:'',price:'',stock:'ok',stockLabel:'En stock',alt:'',gallery:[]};
+  const d=state.draft;
+  const cats=state.data.categories.map(c=>`<option value="${esc(c.slug)}"${c.slug===d.cat?' selected':''}>${esc(c.name)}</option>`).join('');
+  const gal=d.gallery.map((g,i)=>`<div class="rep">${head('gallery',i,'Photo '+(i+1),(i>0?dmv('gallery',i,'up'):'')+(i<d.gallery.length-1?dmv('gallery',i,'down'):'')+drm('gallery',i))}${dimg('gallery.'+i+'.src','Photo supplémentaire')}</div>`).join('');
+  return `<div class="sub">＋ Ajouter un produit</div>
+  <p style="font-size:13px;color:#6b6258;margin-bottom:14px">Un seul espace : choisissez la <b>catégorie</b>, la <b>photo principale</b> (et optionnellement d'autres <b>photos</b> en galerie), remplissez les infos, puis cliquez <b>« Ajouter ce produit »</b>. Il est ajouté à la catégorie choisie. Pensez ensuite à <b>« Enregistrer »</b> (en haut) pour publier.</p>
+  <label class="f"><span>Catégorie</span><select data-dpath="cat"><option value="">— Choisir —</option>${cats}</select></label>
+  ${dimg('image','Photo principale du produit')}
+  ${dfld('name','Nom du produit')}
+  <div class="grid2">${dfld('price','Prix (FCFA)','number')}${dsel('stock','Stock',[{v:'ok',l:'En stock (ok)'},{v:'low',l:'Stock limité (low)'},{v:'order',l:'Sur commande (order)'}])}</div>
+  ${dfld('stockLabel','Libellé stock (affiché)')}
+  ${dfld('alt','Texte alternatif photo','text','Laisser vide = reprend le nom')}
+  <div class="sub" style="margin-top:14px">Photos supplémentaires (galerie — optionnel)</div>
+  ${gal}
+  ${dadd('gallery','photo','+ Ajouter une photo à la galerie')}
+  <div style="margin-top:18px"><button type="button" class="btn btn-primary" data-action="commit-product" style="width:100%;justify-content:center">＋ Ajouter ce produit</button></div>`;
+}
+
 function pCategories(){return state.data.categories.map((c,i)=>renderCat(i,c)).join('')+`<div style="margin-top:8px">${addBtn('categories','category','+ Ajouter une catégorie')}</div>`;}
 
 function pFooter(){return `<div class="sub">Pied de page</div>
@@ -501,8 +529,8 @@ async function fillMedia(){
   el.innerHTML=items.map(it=>{const p=it.path;const src=it.download_url||(CFG.site+p);return `<div class="m" data-action="pick-insert" data-path="${esc(p)}" title="Cliquez pour insérer"><img src="${esc(src)}" alt="" loading="lazy"><div class="p">${esc(it.name)}</div></div>`;}).join('');
 }
 
-const TABS={marque:'#pMarque',contact:'#pContact',accueil:'#pAccueil',categories:'#pCategories',footer:'#pFooter',media:'#pMedia'};
-function renderAll(){if(!state.data)return;$('#pMarque').innerHTML=pMarque();$('#pContact').innerHTML=pContact();$('#pAccueil').innerHTML=pAccueil();$('#pCategories').innerHTML=pCategories();$('#pFooter').innerHTML=pFooter();$('#pMedia').innerHTML=pMedia();activateTab(curTab,false);}
+const TABS={marque:'#pMarque',contact:'#pContact',accueil:'#pAccueil',ajout:'#pAjout',categories:'#pCategories',footer:'#pFooter',media:'#pMedia'};
+function renderAll(){if(!state.data)return;$('#pMarque').innerHTML=pMarque();$('#pContact').innerHTML=pContact();$('#pAccueil').innerHTML=pAccueil();$('#pAjout').innerHTML=pAjout();$('#pCategories').innerHTML=pCategories();$('#pFooter').innerHTML=pFooter();$('#pMedia').innerHTML=pMedia();activateTab(curTab,false);}
 async function activateTab(t,scroll=true){
   curTab=t;
   $$('.tabs button').forEach(b=>b.classList.toggle('active',b.dataset.tab===t));
@@ -518,8 +546,8 @@ function hidePickbar(){$('#pickbar').classList.remove('show');state.picking=fals
 
 function updatePrev(inp){const v=inp.value;const img=inp.closest('.fimg')&&inp.closest('.fimg').querySelector('.prev');if(img)img.src=v.startsWith('http')?v:(v?CFG.site+v:'');}
 
-document.addEventListener('input',e=>{const p=e.target.dataset&&e.target.dataset.path;if(p)setPath(state.data,p,e.target.value);});
-document.addEventListener('change',e=>{const p=e.target.dataset&&e.target.dataset.path;if(!p)return;setPath(state.data,p,e.target.value);if(e.target.closest('.fimg'))updatePrev(e.target);});
+document.addEventListener('input',e=>{const p=e.target.dataset&&e.target.dataset.path;if(p)setPath(state.data,p,e.target.value);const dp=e.target.dataset&&e.target.dataset.dpath;if(dp)setPath(state.draft,dp,e.target.value);});
+document.addEventListener('change',e=>{const p=e.target.dataset&&e.target.dataset.path;if(p){setPath(state.data,p,e.target.value);if(e.target.closest('.fimg'))updatePrev(e.target);}const dp=e.target.dataset&&e.target.dataset.dpath;if(dp){setPath(state.draft,dp,e.target.value);if(e.target.closest('.fimg'))updatePrev(e.target);}});
 
 document.addEventListener('click',async e=>{
   const b=e.target.closest('[data-action]');if(!b)return;
@@ -532,12 +560,33 @@ document.addEventListener('click',async e=>{
     else if(a==='col'){b.closest('.ccat').classList.toggle('open');}
     else if(a==='upload'){const f=await pickFile('image/*');const p=await uploadFile(f);setPath(state.data,b.dataset.path,p);renderAll();}
     else if(a==='pick'){state.imgTarget=b.dataset.path;state.picking=true;state.pickReturn=curTab;showPickbar(b.dataset.path);activateTab('media');}
-    else if(a==='pick-insert'){if(state.picking){setPath(state.data,state.imgTarget,b.dataset.path);hidePickbar();activateTab(state.pickReturn);renderAll();log('✓ Photo insérée.','ok');}else{try{await navigator.clipboard.writeText(b.dataset.path);log('Chemin copié : '+b.dataset.path,'ok');}catch{log('Chemin : '+b.dataset.path);}}}
+    else if(a==='pick-insert'){if(state.picking){const t=state.imgTarget;if(t&&typeof t==='object'){setPath(state.draft,t.dpath,b.dataset.path);}else{setPath(state.data,state.imgTarget,b.dataset.path);}hidePickbar();activateTab(state.pickReturn);renderAll();log('✓ Photo insérée.','ok');}else{try{await navigator.clipboard.writeText(b.dataset.path);log('Chemin copié : '+b.dataset.path,'ok');}catch{log('Chemin : '+b.dataset.path);}}}
     else if(a==='cancelpick'||a===null&&b.id==='pickbar'){hidePickbar();}
-    else if(a==='media-upload'){const f=await pickFile('image/*');if(f){const p=await uploadFile(f);fillMedia();if(state.picking){setPath(state.data,state.imgTarget,p);hidePickbar();activateTab(state.pickReturn);renderAll();log('✓ Photo uploadée et insérée.','ok');}}}
+    else if(a==='media-upload'){const f=await pickFile('image/*');if(f){const p=await uploadFile(f);fillMedia();if(state.picking){const t=state.imgTarget;if(t&&typeof t==='object'){setPath(state.draft,t.dpath,p);}else{setPath(state.data,state.imgTarget,p);}hidePickbar();activateTab(state.pickReturn);renderAll();log('✓ Photo uploadée et insérée.','ok');}}}
     else if(a==='add'){const it=KIND[b.dataset.kind]();getPath(state.data,b.dataset.arr).push(it);renderAll();}
     else if(a==='rm'){const arr=getPath(state.data,b.dataset.arr);arr.splice(+b.dataset.idx,1);renderAll();}
     else if(a==='up'||a==='down'){const arr=getPath(state.data,b.dataset.arr);const i=+b.dataset.idx,j=i+(a==='up'?-1:1);if(j>=0&&j<arr.length){const t=arr[j];arr[j]=arr[i];arr[i]=t;renderAll();}}
+    else if(a==='dupload'){const f=await pickFile('image/*');const p=await uploadFile(f);setPath(state.draft,b.dataset.dtarget,p);renderAll();}
+    else if(a==='dpick'){state.imgTarget={dpath:b.dataset.dtarget};state.picking=true;state.pickReturn=curTab;showPickbar(b.dataset.dtarget);activateTab('media');}
+    else if(a==='dadd'){const it=KIND[b.dataset.kind]();getPath(state.draft,b.dataset.arr).push(it);renderAll();}
+    else if(a==='drm'){const arr=getPath(state.draft,b.dataset.arr);arr.splice(+b.dataset.idx,1);renderAll();}
+    else if(a==='dup'||a==='ddown'){const arr=getPath(state.draft,b.dataset.arr);const i=+b.dataset.idx,j=i+(a==='dup'?-1:1);if(j>=0&&j<arr.length){const t=arr[j];arr[j]=arr[i];arr[i]=t;renderAll();}}
+    else if(a==='commit-product'){
+      const d=state.draft||{};
+      if(!d.cat){log('✗ Choisissez une catégorie.','err');return;}
+      if(!d.image){log('✗ Ajoutez la photo principale.','err');return;}
+      if(!(d.name||'').trim()){log('✗ Donnez un nom au produit.','err');return;}
+      const cat=state.data.categories.find(c=>c.slug===d.cat);
+      if(!cat){log('✗ Catégorie introuvable.','err');return;}
+      const prod={name:d.name.trim(),price:Number(d.price)||0,stock:d.stock||'order',stockLabel:d.stockLabel||'Sur commande',image:d.image,alt:(d.alt||'').trim()||d.name.trim(),gallery:(d.gallery||[]).filter(g=>g&&g.src).map(g=>({src:g.src,alt:g.alt||''}))};
+      cat.products.push(prod);
+      const idx=state.data.categories.indexOf(cat);
+      log('✓ Produit ajouté à « '+cat.name+' » ('+cat.products.length+' produits). Cliquez « Enregistrer » pour publier.','ok');
+      state.draft={cat:d.cat,image:'',name:'',price:'',stock:'ok',stockLabel:'En stock',alt:'',gallery:[]};
+      renderAll();
+      activateTab('categories');
+      setTimeout(()=>{const el=document.querySelectorAll('.ccat')[idx];if(el){el.classList.add('open');el.scrollIntoView({behavior:'smooth',block:'start'});}},60);
+    }
   }catch(err){log('✗ '+err,'err');}
 });
 
