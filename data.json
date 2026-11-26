@@ -27,7 +27,7 @@
   "hero": {
     "badge": "Tissus africains · Dakar",
     "titleMain": "L'Afrique,",
-    "titleEm": "tissée à la main",
+    "titleEm": "tissée avec des matériels de dernière génération accompagné d’un travail de finition faite a la main ",
     "subtitle": "Wax, bazin riche, bogolan, kente et indigo — sélectionnés à la main en Afrique de l'Ouest. Choisissez une catégorie, commandez en un clic sur WhatsApp.",
     "ctaPrimary": {
       "text": "Voir les catégories",
@@ -42,14 +42,6 @@
   },
   "slider": {
     "images": [
-      {
-        "src": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/1598e5789ef4.jpg",
-        "alt": "Femme en robe wax FALLOU SAGNSÉ"
-      },
-      {
-        "src": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/4a970dcf5bf6.jpg",
-        "alt": "Femme en bazin riche brodé"
-      },
       {
         "src": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/58a2e248cdf4.jpg",
         "alt": "Femme en robe africaine élégante"
@@ -224,7 +216,7 @@
       ]
     },
     {
-      "slug": "bazin",
+      "slug": "",
       "num": "02",
       "name": "Bazin Riche",
       "accent": "#102544",
