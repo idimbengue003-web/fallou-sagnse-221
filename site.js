@@ -19,10 +19,4 @@
       main.src=t.dataset.src;var im=t.querySelector('img');if(im)main.alt=im.alt;
     })});
   });
-  var sl=document.getElementById('slider');
-  if(sl&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    var slSlide=sl.querySelectorAll('.slider-slide'),slImg=sl.querySelectorAll('.slider-slide img'),slDot=sl.querySelectorAll('.slider-dots span');
-    function slUpd(){var r=sl.getBoundingClientRect(),vh=window.innerHeight;var p=(0-r.top)/(r.height-vh);p=p<0?0:p>1?1:p;var n=slSlide.length;for(var i=0;i<n;i++){var c=n>1?i/(n-1):0;var op=Math.abs(p-c)*2;op=op>1?0:1-op;slSlide[i].style.opacity=op.toFixed(3);slImg[i].style.transform='scale('+(1.02+0.08*op).toFixed(3)+')';if(slDot[i])slDot[i].classList.toggle('on',op>0.5);}}
-    var slT;function slOn(){cancelAnimationFrame(slT);slT=requestAnimationFrame(slUpd);}window.addEventListener('scroll',slOn,{passive:true});window.addEventListener('resize',slOn);slUpd();
-  }
 })();

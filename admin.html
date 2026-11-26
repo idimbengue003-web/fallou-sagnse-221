@@ -347,29 +347,28 @@ function renderIndex(d){const h=d.hero,ch=d.catsSection,hw=d.howSection,WA=d.con
     <h3>${esc(c.name)}</h3>
     <span class="go">Découvrir <span class="arrow">→</span></span>
   </div>
-</a>`).join('\n');const how=hw.steps.map(s=>{const extra=(['1','2','3'].includes(s.n))?' d'+s.n:'';return `      <div class="how-step reveal${extra}"><div class="n">${esc(s.n)}</div><h4>${esc(s.title)}</h4><p>${esc(s.text)}</p></div>`;}).join('\n');const waHero=wa(WA,'Bonjour '+brandUp+', je souhaite découvrir vos tissus africains. Pouvez-vous m\'envoyer le catalogue ?');const slImgs=(d.slider&&d.slider.images)||[];const slSlides=slImgs.map((im,i)=>`    <figure class="slider-slide" data-i="${i}"><img src="${esc(im.src)}" alt="${esc(im.alt)}" loading="eager" decoding="async"><div class="slider-veil"></div></figure>`).join('\n');const slDots=slImgs.map(()=>'<span></span>').join('');const sliderHtml=slImgs.length?`<section class="slider" id="slider" aria-label="Galerie">
-  <div class="slider-pin">
-${slSlides}
-    <div class="slider-dots">${slDots}</div>
-  </div>
-</section>
-
-`:'';const body=`<header class="hero" id="top">
-  <div class="wrap hero-grid">
+</a>`).join('\n');const how=hw.steps.map(s=>{const extra=(['1','2','3'].includes(s.n))?' d'+s.n:'';return `      <div class="how-step reveal${extra}"><div class="n">${esc(s.n)}</div><h4>${esc(s.title)}</h4><p>${esc(s.text)}</p></div>`;}).join('\n');const waHero=wa(WA,'Bonjour '+brandUp+', je souhaite découvrir vos tissus africains. Pouvez-vous m\'envoyer le catalogue ?');const body=`<header class="hero" id="top">
+  <div class="hero-bg"><img src="${esc(h.image)}" alt="${esc(h.imageAlt)}"></div>
+  <div class="hero-veil"></div>
+  <div class="wrap hero-inner">
     <div class="hero-text">
-      <span class="badge">${esc(h.badge)}</span>
+      <span class="hero-kicker">${esc(h.badge)}</span>
       <h1>${esc(h.titleMain)} <em>${esc(h.titleEm)}</em></h1>
       <p class="sub">${esc(h.subtitle)}</p>
       <div class="hero-cta">
         <a href="${esc(h.ctaPrimary.href)}" class="btn btn-primary">${esc(h.ctaPrimary.text)} <span class="arrow">${esc(h.ctaPrimary.arrow||'')}</span></a>
         <a href="${waHero}" class="btn btn-ghost" target="_blank" rel="noopener">${esc(h.ctaSecondary.text)}</a>
       </div>
+      <ul class="hero-feats">
+        <li><span class="dot"></span>Sélection à la main</li>
+        <li><span class="dot"></span>Commande WhatsApp</li>
+        <li><span class="dot"></span>Dakar · Sénégal</li>
+      </ul>
     </div>
-    <div class="hero-img reveal d1"><img src="${esc(h.image)}" alt="${esc(h.imageAlt)}"></div>
   </div>
 </header>
 
-${sliderHtml}<section class="photos">
+<section class="photos">
   <div class="wrap">
     <div class="photos-grid">${photos}</div>
   </div>
@@ -434,7 +433,7 @@ function pContact(){return `<div class="sub">WhatsApp & téléphone</div>
   ${fld('social.instagram','Instagram (URL)')}
   ${fld('social.facebook','Facebook (URL)')}`;}
 
-function pAccueil(){const h=state.data.hero;state.data.slider=state.data.slider||{images:[]};return `<div class="sub">Devanture (hero)</div>
+function pAccueil(){const h=state.data.hero;return `<div class="sub">Devanture (hero)</div>
   ${fld('hero.badge','Badge')}
   <div class="grid2">${fld('hero.titleMain','Titre — début')}${fld('hero.titleEm','Titre — emphase (italique accent)')}</div>
   ${area('hero.subtitle','Sous-titre')}
@@ -442,10 +441,6 @@ function pAccueil(){const h=state.data.hero;state.data.slider=state.data.slider|
   <div class="grid2">${fld('hero.ctaPrimary.arrow','Bouton 1 — flèche')}${fld('hero.ctaSecondary.text','Bouton 2 — texte')}</div>
   ${imgField('hero.image','Image devanture')}
   ${fld('hero.imageAlt','Texte alternatif image')}
-  <div class="sub">Slider plein écran (défilé au scroll)</div>
-  <p style="font-size:12px;color:#6b6258;margin-bottom:10px">Images qui défilent en plein écran avec un fondu doux quand on descend la page. Placé juste après la description, en haut de l'accueil. (3 images recommandées.)</p>
-  ${repList('slider.images',(p,i)=>`<div class="rep">${head('slider.images',i,'Slide '+(i+1),(i>0?mvBtn('slider.images',i,'up'):'')+(i<state.data.slider.images.length-1?mvBtn('slider.images',i,'down'):'')+rmBtn('slider.images',i))}${imgField(`slider.images.${i}.src`,'Image plein écran')}${fld(`slider.images.${i}.alt`,'Texte alternatif')}</div>`)}
-  ${addBtn('slider.images','photo','+ Ajouter une image au slider')}
   <div class="sub">Photos d'illustration (accueil)</div>
   ${repList('homePhotos',(p,i)=>`<div class="rep">${head('homePhotos',i,'Photo '+(i+1),(i>0?mvBtn('homePhotos',i,'up'):'')+(i<state.data.homePhotos.length-1?mvBtn('homePhotos',i,'down'):'')+rmBtn('homePhotos',i))}${imgField(`homePhotos.${i}.src`,'Image')}${fld(`homePhotos.${i}.alt`,'Texte alternatif')}</div>`)}
   ${addBtn('homePhotos','photo','+ Ajouter une photo')}
