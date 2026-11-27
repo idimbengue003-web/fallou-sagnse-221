@@ -3,8 +3,8 @@
   function onScroll(){if(window.scrollY>20){nav.classList.add('scrolled')}else{nav.classList.remove('scrolled')}}
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
   var burger=document.getElementById('burger'),clip=document.getElementById('menuClip'),backdrop=document.getElementById('backdrop');
-  function open(){clip.classList.add('show');burger.classList.add('open');backdrop.classList.add('show');document.body.style.overflow='hidden'}
-  function close(){clip.classList.remove('show');burger.classList.remove('open');backdrop.classList.remove('show');document.body.style.overflow=''}
+  function open(){clip.classList.add('show');burger.classList.add('open');backdrop.classList.add('show');document.body.style.overflow='hidden';nav.classList.add('menu-open')}
+  function close(){clip.classList.remove('show');burger.classList.remove('open');backdrop.classList.remove('show');document.body.style.overflow='';nav.classList.remove('menu-open')}
   if(burger){burger.addEventListener('click',function(e){e.stopPropagation();if(clip.classList.contains('show')){close()}else{open()}})}
   if(backdrop){backdrop.addEventListener('click',close)}
   document.querySelectorAll('.menu-drawer a').forEach(function(a){a.addEventListener('click',close)});
