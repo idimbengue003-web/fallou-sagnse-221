@@ -50,11 +50,11 @@
   },
   "homePhotos": [
     {
-      "src": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6074a60cc05b.jpg",
+      "src": "assets/img_6291_ad5gzp.webp",
       "alt": "Tissu africain FALLOU SAGNSÉ"
     },
     {
-      "src": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/67cabd41412d.jpg",
+      "src": "assets/img_6292_6zsldz.png",
       "alt": "Tissu africain FALLOU SAGNSÉ"
     },
     {
@@ -218,14 +218,14 @@
     {
       "slug": "categorie",
       "num": "02",
-      "name": "Dentelle ",
+      "name": "Bazin Riche",
       "accent": "#102544",
-      "h1Main": "Dentelle ",
+      "h1Main": "Bazin Riche",
       "h1Em": "le drapé de gala",
       "lead": "Coton damassé, teint puis martelé jusqu'à l'éclat soyeux. L'étoffe des grands boubous et des dimanches solennels — noir, bleu nuit, vert, bordeaux, sublimés par la lumière.",
       "description": "Bazin Riche : coton damassé teint puis martelé, éclat soyeux pour grands boubous et cérémonies. FALLOU SAGNSÉ 221, Dakar.",
       "waMessage": "Bonjour FALLOU SAGNSÉ, je cherche du bazin riche (grand boubou / gala). Pouvez-vous m'envoyer les couleurs disponibles et les tarifs ?",
-      "image": "assets/img_6272_omerxb.jpeg",
+      "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6074a60cc05b.jpg",
       "intro": {
         "h2": "Le bazin riche, noblesse du drapé",
         "paragraphs": [
@@ -323,16 +323,16 @@
       ]
     },
     {
-      "slug": "Perlage ",
+      "slug": "bogolan",
       "num": "03",
-      "name": "Perlage ",
+      "name": "Bogolan",
       "accent": "#3D2415",
-      "h1Main": "Perlage ",
+      "h1Main": "Bogolan",
       "h1Em": "la toile de terre",
       "lead": "Coton de terre, teint à la boue du fleuve et aux écorces, motifs tracés à la main. Une écriture plus qu'un tissu : chaque signe raconte un proverbe, une lignée, un événement.",
       "description": "Bogolan (mudcloth) : coton malien teint à la boue et aux écorces, motifs faits main chargés de sens. FALLOU SAGNSÉ 221, Dakar.",
       "waMessage": "Bonjour FALLOU SAGNSÉ, je cherche du bogolan / mudcloth (pièce brute ou finition). Pouvez-vous m'envoyer les modèles disponibles ?",
-      "image": "assets/img_6279_vsxsko.jpeg",
+      "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/67cabd41412d.jpg",
       "intro": {
         "h2": "Le bogolan, écriture de terre",
         "paragraphs": [
@@ -430,16 +430,16 @@
       ]
     },
     {
-      "slug": "Perlage inde",
+      "slug": "kente",
       "num": "04",
-      "name": "Perlage inde",
+      "name": "Kente",
       "accent": "#0E6B53",
-      "h1Main": "Perlage inde",
+      "h1Main": "Kente",
       "h1Em": "le tissage royal",
       "lead": "Bandes de soie et de coton entrelacées à la main par les tisserands ashanti du Ghana. Chaque couleur et chaque motif porte un proverbe, un rang, une histoire. L'étoffe des rois, devenue symbole de toute la diaspora.",
       "description": "Kente du Ghana : tissage main ashanti, soie et coton, motifs royaux symboliques. FALLOU SAGNSÉ 221, Dakar.",
       "waMessage": "Bonjour FALLOU SAGNSÉ, je cherche du kente du Ghana (pièce de cérémonie ou étole). Pouvez-vous m'envoyer les modèles disponibles et les tarifs ?",
-      "image": "assets/img_6286_9po45u.jpeg",
+      "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/30fe7aba278e.jpg",
       "intro": {
         "h2": "Le kente, tissage de rois",
         "paragraphs": [
@@ -537,16 +537,16 @@
       ]
     },
     {
-      "slug": "Brocard ",
+      "slug": "indigo",
       "num": "05",
-      "name": "Brocard ",
+      "name": "Indigo",
       "accent": "#1B3A6B",
-      "h1Main": "Brocard ",
+      "h1Main": "Indigo",
       "h1Em": "le bleu de tradition",
       "lead": "Teinture végétale aux mille nuances, du bleu nuit au bleu ciel, patinée par les mains des teinturières du Mali et du Nigeria. La mémoire textile de l'Afrique de l'Ouest, précieuse et profondément contemporaine.",
       "description": "Indigo : teinture végétale d'Afrique de l'Ouest, bleus profonds et patinés faits main. FALLOU SAGNSÉ 221, Dakar.",
       "waMessage": "Bonjour FALLOU SAGNSÉ, je cherche du tissu indigo (végétal / bazin indigo). Pouvez-vous m'envoyer les nuances disponibles et les tarifs ?",
-      "image": "assets/img_6273_ns8zxj.jpeg",
+      "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d7425b0d7375.jpg",
       "intro": {
         "h2": "L'indigo, bleu de mémoire",
         "paragraphs": [
