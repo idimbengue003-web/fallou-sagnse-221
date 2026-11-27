@@ -225,7 +225,7 @@
       "lead": "Coton damassé, teint puis martelé jusqu'à l'éclat soyeux. L'étoffe des grands boubous et des dimanches solennels — noir, bleu nuit, vert, bordeaux, sublimés par la lumière.",
       "description": "Bazin Riche : coton damassé teint puis martelé, éclat soyeux pour grands boubous et cérémonies. FALLOU SAGNSÉ 221, Dakar.",
       "waMessage": "Bonjour FALLOU SAGNSÉ, je cherche du bazin riche (grand boubou / gala). Pouvez-vous m'envoyer les couleurs disponibles et les tarifs ?",
-      "image": "assets/img_6272_5kietm.jpeg",
+      "image": "assets/img_6272_omtwbx.jpeg",
       "intro": {
         "h2": "Le bazin riche, noblesse du drapé",
         "paragraphs": [
@@ -323,16 +323,16 @@
       ]
     },
     {
-      "slug": "bogolan",
+      "slug": "Tissu perlage ",
       "num": "03",
-      "name": "Bogolan",
+      "name": "Tissu perlage",
       "accent": "#3D2415",
-      "h1Main": "Bogolan",
+      "h1Main": "Tissu perlage ",
       "h1Em": "la toile de terre",
       "lead": "Coton de terre, teint à la boue du fleuve et aux écorces, motifs tracés à la main. Une écriture plus qu'un tissu : chaque signe raconte un proverbe, une lignée, un événement.",
       "description": "Bogolan (mudcloth) : coton malien teint à la boue et aux écorces, motifs faits main chargés de sens. FALLOU SAGNSÉ 221, Dakar.",
       "waMessage": "Bonjour FALLOU SAGNSÉ, je cherche du bogolan / mudcloth (pièce brute ou finition). Pouvez-vous m'envoyer les modèles disponibles ?",
-      "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/67cabd41412d.jpg",
+      "image": "assets/img_6279_av62se.jpeg",
       "intro": {
         "h2": "Le bogolan, écriture de terre",
         "paragraphs": [
