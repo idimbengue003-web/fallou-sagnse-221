@@ -537,16 +537,16 @@
       ]
     },
     {
-      "slug": "",
+      "slug": "Brocard ",
       "num": "05",
-      "name": "Indigo",
+      "name": "Brocard ",
       "accent": "#1B3A6B",
-      "h1Main": "Indigo",
+      "h1Main": "Brocard ",
       "h1Em": "le bleu de tradition",
       "lead": "Teinture végétale aux mille nuances, du bleu nuit au bleu ciel, patinée par les mains des teinturières du Mali et du Nigeria. La mémoire textile de l'Afrique de l'Ouest, précieuse et profondément contemporaine.",
       "description": "Indigo : teinture végétale d'Afrique de l'Ouest, bleus profonds et patinés faits main. FALLOU SAGNSÉ 221, Dakar.",
       "waMessage": "Bonjour FALLOU SAGNSÉ, je cherche du tissu indigo (végétal / bazin indigo). Pouvez-vous m'envoyer les nuances disponibles et les tarifs ?",
-      "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d7425b0d7375.jpg",
+      "image": "assets/img_6290_8z7h2j.jpeg",
       "intro": {
         "h2": "L'indigo, bleu de mémoire",
         "paragraphs": [
@@ -640,6 +640,51 @@
           "stockLabel": "Sur commande",
           "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/59ddc22fc51f.jpg",
           "alt": "Étoffe indigo patinée"
+        }
+      ]
+    },
+    {
+      "slug": "categorie-6or",
+      "num": "6",
+      "name": "Nouvelle catégorie",
+      "accent": "#B23A1B",
+      "h1Main": "",
+      "h1Em": "",
+      "lead": "",
+      "description": "",
+      "waMessage": "",
+      "image": "",
+      "intro": {
+        "h2": "",
+        "paragraphs": [
+          ""
+        ]
+      },
+      "facts": [
+        {
+          "k": "Matière",
+          "v": ""
+        }
+      ],
+      "usages": {
+        "h2": "",
+        "items": [
+          {
+            "icon": "✦",
+            "title": "",
+            "text": ""
+          }
+        ]
+      },
+      "quote": "",
+      "products": [
+        {
+          "name": "Nouveau produit",
+          "price": 10000,
+          "stock": "ok",
+          "stockLabel": "En stock",
+          "image": "",
+          "alt": "Nouveau produit"
         }
       ]
     }
