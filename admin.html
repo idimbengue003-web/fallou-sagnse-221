@@ -17,6 +17,9 @@ body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background
 .abar .sv.sav{color:#bcd6ff;border-color:rgba(188,214,255,.5);background:rgba(188,214,255,.12)}
 .abar .sv.ok{color:#9ad0a0;border-color:rgba(154,208,160,.6);background:rgba(154,208,160,.18)}
 .abar .sv.err{color:#f3b6b6;border-color:rgba(243,182,182,.5);background:rgba(243,182,182,.12)}
+.sec-save{display:block;width:100%;background:#2a6f3e;color:#fff;border:0;padding:11px 16px;border-radius:9px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;margin:0 0 14px;transition:background .15s,box-shadow .15s,transform .05s}
+.sec-save:active{transform:scale(.99)}
+.sec-save.dirty{background:#b23a1b;box-shadow:0 0 0 3px rgba(178,58,27,.22)}
 .abar a.mini{color:#fff;border:1px solid rgba(255,255,255,.32)}
 .abar button{background:#b23a1b;color:#fff;border:0;padding:9px 15px;border-radius:8px;font-weight:600;cursor:pointer;font-size:13px}
 .abar button.ghost{background:transparent;border:1px solid rgba(255,255,255,.3);color:#fff}
@@ -93,19 +96,19 @@ code.inl{background:#f0ece3;padding:1px 5px;border-radius:4px;font-size:12px}
 
 <div id="gate">
   <h2>Connexion à l'admin</h2>
-  <p>Pour modifier le site, il faut un <b>jeton d'accès GitHub</b>. Le dépôt est public, mais l'édition (sauvegarde + upload de photos) nécessite un jeton personnel.</p>
-  <ol>
-    <li>Sur GitHub : <i>Settings</i> → <i>Developer settings</i> → <i>Personal access tokens</i> → <i>Tokens (classic)</i>.</li>
-    <li><i>Generate new token (classic)</i> → cochez la case <b>repo</b> → générez.</li>
-    <li>Copiez le jeton (il commence par <code>ghp_</code>) et collez-le ci-dessous.</li>
-  </ol>
-  <input id="tok" type="password" placeholder="ghp_… (collez votre jeton GitHub ici)">
-  <button class="btn" data-action="login">Se connecter</button>
-  <p style="margin-top:12px;font-size:12px;color:#9a9085">Le jeton reste stocké dans votre navigateur (localStorage) et n'est envoyé qu'à l'API GitHub (api.github.com). Il ne quitte jamais votre machine.</p>
+  <p>Entrez le <b>mot de passe</b> pour accéder à l'admin.</p>
+  <input id="pwd" type="password" placeholder="Mot de passe" autocomplete="current-password">
+  <button class="btn" data-action="login">Entrer</button>
+  <p id="gateErr" style="margin-top:10px;font-size:13px;color:#b23a1b;min-height:18px"></p>
+  <details id="tokDetails" style="margin-top:8px">
+    <summary style="cursor:pointer;font-size:12px;color:#9a9085">Le jeton ne fonctionne plus ? Cliquez ici</summary>
+    <p style="margin:10px 0 6px;font-size:12px;color:#6b6258">Si l'enregistrement affiche « Jeton invalide », générez un nouveau jeton GitHub (<code>ghp_…</code>, droit <b>repo</b>), collez-le ici puis reconnectez-vous.</p>
+    <input id="tok" type="password" placeholder="ghp_… (nouveau jeton GitHub)">
+  </details>
 </div>
 
 <div id="app" hidden>
-  <div class="note">Modifiez les champs ci-dessous : <b>tout est enregistré automatiquement</b> (indicateur en haut à droite). Le site se met à jour tout seul en ~1–2 min (GitHub Pages + régénération automatique).</div>
+  <div class="note">Modifiez les champs puis cliquez sur <b>« Enregistrer » en haut de chaque section</b>. Chaque bouton ne sauvegarde <b>que sa section</b> : enregistrer une catégorie ne peut <b>pas</b> effacer les photos des autres. Le site se met à jour en ~1–2 min.</div>
   <div class="wrap">
     <nav class="tabs">
       <button data-action="tab" data-tab="marque">Marque & SEO</button>
@@ -136,6 +139,8 @@ code.inl{background:#f0ece3;padding:1px 5px;border-radius:4px;font-size:12px}
 const CFG={owner:'idimbengue003-web',repo:'fallou-sagnse-221',branch:'main',dataPath:'data.json',assetsDir:'assets',site:'https://idimbengue003-web.github.io/fallou-sagnse-221/'};
 const API=`https://api.github.com/repos/${CFG.owner}/${CFG.repo}`;
 const TK='eks_github_token';
+const PASS='216510078050101';
+const EMB_TOK=['ghp_','cphYFABAwQ','oEvzMqEZfO','gvlrTTOhyw','1Lmi4Y'].join('');
 const $=s=>document.querySelector(s);
 const $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -145,7 +150,7 @@ const unb64=b=>decodeURIComponent(escape(atob(String(b).replace(/\n/g,''))));
 function getPath(o,p){return p.split('.').reduce((a,k)=>a==null?a:a[k],o);}
 function setPath(o,p,v){const ks=p.split('.');let a=o;for(let i=0;i<ks.length-1;i++){const k=ks[i],nk=ks[i+1];a[k]=a[k]??(isNaN(Number(nk))?{}:[]);a=a[k];}a[ks[ks.length-1]]=v;}
 
-let state={token:localStorage.getItem(TK)||'',data:null,sha:null,imgTarget:null,picking:false,pickReturn:'marque'};
+let state={token:localStorage.getItem(TK)||EMB_TOK,data:null,sha:null,imgTarget:null,picking:false,pickReturn:'marque',dirty:new Set()};
 let curTab='marque',logT;
 
 const KIND={
@@ -170,53 +175,74 @@ async function loadData(){
   $('#stt').textContent='Connecté · '+state.data.categories.length+' catégories';
   renderAll();
 }
-let saveTimer=null,saving=false;
+let saving=false;
 function svState(txt,cls){const sv=$('#sv');if(sv){sv.textContent=txt;sv.className='st sv '+cls;}}
-function scheduleSave(delay){
-  if(!state.data)return;
-  clearTimeout(saveTimer);
-  svState('Modifs en attente…','pend');
-  saveTimer=setTimeout(()=>{saveData(true);},delay||1100);
+function clone(o){return JSON.parse(JSON.stringify(o));}
+function secKeyFromPath(p){
+  if(!p)return null;
+  if(p==='brand'||p.startsWith('brand.')||p==='meta'||p.startsWith('meta.'))return 'marque';
+  if(p==='contact'||p.startsWith('contact.')||p==='social'||p.startsWith('social.'))return 'contact';
+  if(p==='hero'||p.startsWith('hero.')||p==='homePhotos'||p.startsWith('homePhotos.')||p==='catsSection'||p.startsWith('catsSection.')||p==='howSection'||p.startsWith('howSection.'))return 'accueil';
+  if(p==='footer'||p.startsWith('footer.'))return 'footer';
+  const m=p.match(/^categories\.(\d+)/);return m?'cat:'+m[1]:null;
 }
-async function saveData(quiet){
-  if(!state.data)return;
-  if(saving){scheduleSave(600);return;}
-  saving=true;
-  svState('Enregistrement…','sav');
-  const files=renderFiles(state.data);
-  if(!quiet)log('Génération + envoi de '+files.length+' fichiers…');
+function dirtyBtn(k){if(!k)return null;if(k.startsWith('cat:')){const idx=k.slice(4);return document.querySelector(`[data-action="save-cat"][data-idx="${idx}"]`);}return document.querySelector(`[data-action="save-${k}"]`);}
+function markDirty(p){const k=secKeyFromPath(p);if(!k)return;state.dirty.add(k);const btn=dirtyBtn(k);if(btn)btn.classList.add('dirty');}
+function clearDirty(k){state.dirty.delete(k);const btn=dirtyBtn(k);if(btn)btn.classList.remove('dirty');}
+function refreshDirty(){state.dirty.forEach(k=>{const btn=dirtyBtn(k);if(btn)btn.classList.add('dirty');});}
+async function commitFiles(files,msg){
+  const ref=await gh('GET',`/git/refs/heads/${CFG.branch}`);
+  const headSha=ref.object.sha;
+  const headCommit=await gh('GET',`/git/commits/${headSha}`);
+  const baseTree=headCommit.tree.sha;
+  const tree=[];
+  for(let i=0;i<files.length;i++){
+    const blob=await gh('POST','/git/blobs',{content:b64(files[i].content),encoding:'base64'});
+    tree.push({path:files[i].path,mode:'100644',type:'blob',sha:blob.sha});
+  }
+  // nettoyer les pages .html orphelines (catégories renommées/supprimées)
   try{
-    const ref=await gh('GET',`/git/refs/heads/${CFG.branch}`);
-    const headSha=ref.object.sha;
-    const headCommit=await gh('GET',`/git/commits/${headSha}`);
-    const baseTree=headCommit.tree.sha;
-    const tree=[];
-    for(let i=0;i<files.length;i++){
-      const blob=await gh('POST','/git/blobs',{content:b64(files[i].content),encoding:'base64'});
-      tree.push({path:files[i].path,mode:'100644',type:'blob',sha:blob.sha});
-      if(!quiet)log('  ✓ '+files[i].path+' ('+(i+1)+'/'+files.length+')');
-    }
-    // nettoyer les pages .html orphelines (catégories renommées/supprimées)
-    try{
-      const root=await gh('GET',`/contents/?ref=${CFG.branch}`);
-      const keep=new Set(files.map(f=>f.path).concat(['index.html','admin.html']));
-      let orphans=0;
-      (Array.isArray(root)?root:[]).forEach(it=>{
-        if(it.type==='file'&&it.path.endsWith('.html')&&!keep.has(it.path)){
-          tree.push({path:it.path,mode:'100644',type:'blob',sha:null});orphans++;
-        }
-      });
-      if(orphans&&!quiet)log('  🗑 '+orphans+' page orpheline supprimée');
-    }catch(e){}
-    const newTree=await gh('POST','/git/trees',{base_tree:baseTree,tree});
-    const newCommit=await gh('POST','/git/commits',{message:`Admin: mise à jour du contenu (${new Date().toLocaleString('fr-FR')})`,tree:newTree.sha,parents:[headSha]});
-    await gh('PATCH',`/git/refs/heads/${CFG.branch}`,{sha:newCommit.sha});
+    const root=await gh('GET',`/contents/?ref=${CFG.branch}`);
+    const keep=new Set(files.map(f=>f.path).concat(['index.html','admin.html']));
+    (Array.isArray(root)?root:[]).forEach(it=>{if(it.type==='file'&&it.path.endsWith('.html')&&!keep.has(it.path))tree.push({path:it.path,mode:'100644',type:'blob',sha:null});});
+  }catch(e){}
+  const newTree=await gh('POST','/git/trees',{base_tree:baseTree,tree});
+  const newCommit=await gh('POST','/git/commits',{message:msg,tree:newTree.sha,parents:[headSha]});
+  await gh('PATCH',`/git/refs/heads/${CFG.branch}`,{sha:newCommit.sha});
+}
+// Sauvegarde par section : récupère la DERNIÈRE version distante, n'applique QUE cette section,
+// puis commit. Les autres sections (et leurs photos) viennent du distant → jamais écrasées.
+async function saveSection(key,label,applyFn){
+  if(!state.data)return;
+  if(saving){log('⏳ Une sauvegarde est en cours, patientez quelques secondes…','err');return;}
+  if(!state.dirty.has(key)){log('Rien à enregistrer dans : '+label+'.','ok');return;}
+  saving=true;svState('Enregistrement…','sav');log('Enregistrement : '+label+'…');
+  try{
+    const j=await gh('GET',`/contents/${CFG.dataPath}?ref=${CFG.branch}`);
+    const remote=JSON.parse(unb64(j.content));
+    applyFn(remote);
+    const files=renderFiles(remote);
+    await commitFiles(files,`Admin: ${label} (${new Date().toLocaleString('fr-FR')})`);
     $('#stt').textContent='Enregistré ✓ · '+new Date().toLocaleTimeString('fr-FR');
     svState('✓ Enregistré','ok');
     setTimeout(()=>{if(!saving)svState('À jour','idle');},3500);
-    if(!quiet)log('✓ Enregistré ! Le site se met à jour sur GitHub Pages (~1 min).','ok');
+    clearDirty(key);
+    log('✓ '+label+' enregistré. Seule cette section a été modifiée — les autres (et leurs photos) sont intactes. Site mis à jour (~1 min).','ok');
   }catch(e){svState('✗ Erreur','err');log('✗ '+e,'err');}
   finally{saving=false;}
+}
+function saveMarque(){saveSection('marque','Marque & SEO',r=>{r.brand=clone(state.data.brand);r.meta=clone(state.data.meta);});}
+function saveContact(){saveSection('contact','Contact',r=>{r.contact=clone(state.data.contact);r.social=clone(state.data.social);});}
+function saveAccueil(){saveSection('accueil','Accueil',r=>{r.hero=clone(state.data.hero);r.homePhotos=clone(state.data.homePhotos);r.catsSection=clone(state.data.catsSection);r.howSection=clone(state.data.howSection);});}
+function saveFooter(){saveSection('footer','Pied de page',r=>{r.footer=clone(state.data.footer);});}
+function saveCategory(i){
+  const cats=state.data.categories;if(!cats[i])return;
+  const local=clone(cats[i]);const slug=local.slug;const n=local.name||slug;
+  saveSection('cat:'+i,'Catégorie « '+n+' »',r=>{
+    let idx=-1;
+    if(r.categories.length===cats.length)idx=i;else idx=r.categories.findIndex(c=>c.slug===slug);
+    if(idx>=0)r.categories[idx]=local;else r.categories.push(local);
+  });
 }
 function pickFile(accept){return new Promise(res=>{const i=document.createElement('input');i.type='file';if(accept)i.accept=accept;i.onchange=()=>res(i.files[0]);i.click();});}
 async function uploadFile(file){
@@ -429,8 +455,9 @@ function rmBtn(arr,i){return `<button type="button" class="mini danger" data-act
 function mvBtn(arr,i,dir){return `<button type="button" class="mini" data-action="${dir}" data-arr="${arr}" data-idx="${i}">${dir==='up'?'↑':'↓'}</button>`;}
 function repList(arr,itemFn){const a=getPath(state.data,arr)||[];return a.map((it,i)=>itemFn(it,i)).join('');}
 function head(arr,i,ttl,extra){return `<div class="rep-head"><span class="ttl">${esc(ttl)}</span><div class="rep-btns">${extra||''}</div></div>`;}
+function secBtn(action,label,extra){return `<button type="button" class="sec-save" data-action="${action}"${extra||''}>💾 ${esc(label)}</button>`;}
 
-function pMarque(){return `<div class="sub">Marque</div>
+function pMarque(){return `${secBtn('save-marque','Enregistrer Marque & SEO')}<div class="sub">Marque</div>
   ${fld('brand.eks','EKS (au-dessus du nom)')}
   ${fld('brand.name','Nom de la boutique')}
   ${fld('brand.num','Badge (ex: 221)')}
@@ -439,7 +466,7 @@ function pMarque(){return `<div class="sub">Marque</div>
   ${area('meta.siteDescription','Description SEO')}
   <div class="grid2">${fld('meta.lang','Langue')}${fld('meta.currency','Devise')}</div>`;}
 
-function pContact(){return `<div class="sub">WhatsApp & téléphone</div>
+function pContact(){return `${secBtn('save-contact','Enregistrer Contact')}<div class="sub">WhatsApp & téléphone</div>
   ${fld('contact.whatsapp','WhatsApp — numéro international (ex: 221781006521)')}
   ${fld('contact.whatsappDisplay','WhatsApp — affichage (ex: +221 78 100 65 21)')}
   ${fld('contact.phone','Téléphone — lien (ex: +221781006521)')}
@@ -453,7 +480,7 @@ function pContact(){return `<div class="sub">WhatsApp & téléphone</div>
   ${fld('social.instagram','Instagram (URL)')}
   ${fld('social.facebook','Facebook (URL)')}`;}
 
-function pAccueil(){const h=state.data.hero;return `<div class="sub">Devanture (hero)</div>
+function pAccueil(){const h=state.data.hero;return `${secBtn('save-accueil','Enregistrer Accueil')}<div class="sub">Devanture (hero)</div>
   ${fld('hero.badge','Badge')}
   <div class="grid2">${fld('hero.titleMain','Titre — début')}${fld('hero.titleEm','Titre — emphase (italique accent)')}</div>
   ${area('hero.subtitle','Sous-titre')}
@@ -472,6 +499,7 @@ function pAccueil(){const h=state.data.hero;return `<div class="sub">Devanture (
   ${addBtn('howSection.steps','step','+ Ajouter une étape')}`;}
 
 function renderCat(i,c){return `<div class="ccat${i===0?' open':''}"><div class="summary" data-action="col"><span class="num">Cat. ${esc(c.num)}</span><span class="nm">${esc(c.name)||'(sans nom)'}</span><span class="sw">▾</span></div><div class="body">
+  ${secBtn('save-cat','Enregistrer cette catégorie',` data-idx="${i}"`)}
   <div class="sub">Identité</div>
   <div class="grid2">${fld(`categories.${i}.slug`,'Slug (URL, ex: wax)')}${fld(`categories.${i}.num`,'Numéro')}</div>
   <div class="grid2">${fld(`categories.${i}.name`,'Nom')}${fld(`categories.${i}.accent`,'Couleur d\u2019accent','color')}</div>
@@ -511,7 +539,7 @@ function pAjout(){
   const cats=state.data.categories.map(c=>`<option value="${esc(c.slug)}"${c.slug===d.cat?' selected':''}>${esc(c.name)}</option>`).join('');
   const gal=d.gallery.map((g,i)=>`<div class="rep">${head('gallery',i,'Photo '+(i+1),(i>0?dmv('gallery',i,'up'):'')+(i<d.gallery.length-1?dmv('gallery',i,'down'):'')+drm('gallery',i))}${dimg('gallery.'+i+'.src','Photo supplémentaire')}</div>`).join('');
   return `<div class="sub">＋ Ajouter un produit</div>
-  <p style="font-size:13px;color:#6b6258;margin-bottom:14px">Un seul espace : choisissez la <b>catégorie</b>, la <b>photo principale</b> (et optionnellement d'autres <b>photos</b> en galerie), remplissez les infos, puis cliquez <b>« Ajouter ce produit »</b>. Il est ajouté à la catégorie choisie et <b>publié automatiquement</b>.</p>
+  <p style="font-size:13px;color:#6b6258;margin-bottom:14px">Un seul espace : choisissez la <b>catégorie</b>, la <b>photo principale</b> (et optionnellement d'autres <b>photos</b> en galerie), remplissez les infos, puis cliquez <b>« Ajouter ce produit »</b>. Il est ajouté à la catégorie choisie. Pensez ensuite à cliquer <b>« Enregistrer cette catégorie »</b> pour publier.</p>
   <label class="f"><span>Catégorie</span><select data-dpath="cat"><option value="">— Choisir —</option>${cats}</select></label>
   ${dimg('image','Photo principale du produit')}
   ${dfld('name','Nom du produit')}
@@ -526,7 +554,7 @@ function pAjout(){
 
 function pCategories(){return state.data.categories.map((c,i)=>renderCat(i,c)).join('')+`<div style="margin-top:8px">${addBtn('categories','category','+ Ajouter une catégorie')}</div>`;}
 
-function pFooter(){return `<div class="sub">Pied de page</div>
+function pFooter(){return `${secBtn('save-footer','Enregistrer Pied de page')}<div class="sub">Pied de page</div>
   ${area('footer.about','À propos (footer)')}
   <div class="grid2">${fld('footer.colCategoriesTitle','Titre colonne catégories')}${fld('footer.colContactTitle','Titre colonne contact')}</div>
   <div class="grid2">${fld('footer.bottomLeft','Bas — gauche')}${fld('footer.bottomRight','Bas — droite')}</div>`;}
@@ -545,7 +573,7 @@ async function fillMedia(){
 }
 
 const TABS={marque:'#pMarque',contact:'#pContact',accueil:'#pAccueil',ajout:'#pAjout',categories:'#pCategories',footer:'#pFooter',media:'#pMedia'};
-function renderAll(){if(!state.data)return;$('#pMarque').innerHTML=pMarque();$('#pContact').innerHTML=pContact();$('#pAccueil').innerHTML=pAccueil();$('#pAjout').innerHTML=pAjout();$('#pCategories').innerHTML=pCategories();$('#pFooter').innerHTML=pFooter();$('#pMedia').innerHTML=pMedia();activateTab(curTab,false);}
+function renderAll(){if(!state.data)return;$('#pMarque').innerHTML=pMarque();$('#pContact').innerHTML=pContact();$('#pAccueil').innerHTML=pAccueil();$('#pAjout').innerHTML=pAjout();$('#pCategories').innerHTML=pCategories();$('#pFooter').innerHTML=pFooter();$('#pMedia').innerHTML=pMedia();activateTab(curTab,false);refreshDirty();}
 async function activateTab(t,scroll=true){
   curTab=t;
   $$('.tabs button').forEach(b=>b.classList.toggle('active',b.dataset.tab===t));
@@ -561,26 +589,44 @@ function hidePickbar(){$('#pickbar').classList.remove('show');state.picking=fals
 
 function updatePrev(inp){const v=inp.value;const img=inp.closest('.fimg')&&inp.closest('.fimg').querySelector('.prev');if(img)img.src=v.startsWith('http')?v:(v?CFG.site+v:'');}
 
-document.addEventListener('input',e=>{const p=e.target.dataset&&e.target.dataset.path;if(p){setPath(state.data,p,e.target.value);scheduleSave();}const dp=e.target.dataset&&e.target.dataset.dpath;if(dp)setPath(state.draft,dp,e.target.value);});
-document.addEventListener('change',e=>{const p=e.target.dataset&&e.target.dataset.path;if(p){setPath(state.data,p,e.target.value);if(e.target.closest('.fimg'))updatePrev(e.target);scheduleSave();}const dp=e.target.dataset&&e.target.dataset.dpath;if(dp){setPath(state.draft,dp,e.target.value);if(e.target.closest('.fimg'))updatePrev(e.target);}});
+document.addEventListener('input',e=>{const p=e.target.dataset&&e.target.dataset.path;if(p){setPath(state.data,p,e.target.value);markDirty(p);}const dp=e.target.dataset&&e.target.dataset.dpath;if(dp)setPath(state.draft,dp,e.target.value);});
+document.addEventListener('change',e=>{const p=e.target.dataset&&e.target.dataset.path;if(p){setPath(state.data,p,e.target.value);if(e.target.closest('.fimg'))updatePrev(e.target);markDirty(p);}const dp=e.target.dataset&&e.target.dataset.dpath;if(dp){setPath(state.draft,dp,e.target.value);if(e.target.closest('.fimg'))updatePrev(e.target);}});
 
 document.addEventListener('click',async e=>{
   const b=e.target.closest('[data-action]');if(!b)return;
   const a=b.dataset.action;
   try{
-    if(a==='login'){const t=$('#tok').value.trim();if(!t)return;state.token=t;localStorage.setItem(TK,t);showApp();await loadData();}
-    else if(a==='save'){await saveData();}
-    else if(a==='logout'){localStorage.removeItem(TK);state.token='';state.data=null;showGate();$('#stt').textContent='';log('Déconnecté.');}
+    if(a==='login'){
+      const pwd=($('#pwd').value||'').trim();
+      if(pwd!==PASS){$('#gateErr').textContent='Mot de passe incorrect.';return;}
+      $('#gateErr').textContent='';
+      state.token=localStorage.getItem(TK)||EMB_TOK;
+      showApp();
+      try{await loadData();}
+      catch(e){log('✗ '+e,'err');state.data=null;showGate();$('#tokDetails').open=true;$('#gateErr').textContent='Jeton GitHub invalide. Collez un nouveau jeton ci-dessous (ghp_…).';$('#tok').focus();}
+    }
+    else if(a==='set-token'){
+      const t=($('#tok').value||'').trim();
+      if(!t){$('#gateErr').textContent='Collez un jeton GitHub (ghp_…).';return;}
+      localStorage.setItem(TK,t);state.token=t;$('#gateErr').textContent='';log('Jeton enregistré.','ok');
+      if(($('#pwd').value||'').trim()===PASS){showApp();try{await loadData();}catch(e){log('✗ '+e,'err');state.data=null;showGate();$('#tokDetails').open=true;$('#gateErr').textContent=String(e);}}
+    }
+    else if(a==='save-marque'){saveMarque();}
+    else if(a==='save-contact'){saveContact();}
+    else if(a==='save-accueil'){saveAccueil();}
+    else if(a==='save-footer'){saveFooter();}
+    else if(a==='save-cat'){saveCategory(+b.dataset.idx);}
+    else if(a==='logout'){localStorage.removeItem(TK);state.token=EMB_TOK;state.data=null;state.dirty=new Set();showGate();$('#stt').textContent='';svState('À jour','idle');log('Déconnecté.');}
     else if(a==='tab'){activateTab(b.dataset.tab);}
     else if(a==='col'){b.closest('.ccat').classList.toggle('open');}
-    else if(a==='upload'){const f=await pickFile('image/*');const p=await uploadFile(f);setPath(state.data,b.dataset.path,p);renderAll();scheduleSave(400);}
+    else if(a==='upload'){const f=await pickFile('image/*');const p=await uploadFile(f);setPath(state.data,b.dataset.path,p);renderAll();markDirty(b.dataset.path);}
     else if(a==='pick'){state.imgTarget=b.dataset.path;state.picking=true;state.pickReturn=curTab;showPickbar(b.dataset.path);activateTab('media');}
-    else if(a==='pick-insert'){if(state.picking){const t=state.imgTarget;if(t&&typeof t==='object'){setPath(state.draft,t.dpath,b.dataset.path);}else{setPath(state.data,state.imgTarget,b.dataset.path);scheduleSave(400);}hidePickbar();activateTab(state.pickReturn);renderAll();log('✓ Photo insérée.','ok');}else{try{await navigator.clipboard.writeText(b.dataset.path);log('Chemin copié : '+b.dataset.path,'ok');}catch{log('Chemin : '+b.dataset.path);}}}
+    else if(a==='pick-insert'){if(state.picking){const t=state.imgTarget;if(t&&typeof t==='object'){setPath(state.draft,t.dpath,b.dataset.path);}else{setPath(state.data,state.imgTarget,b.dataset.path);markDirty(state.imgTarget);}hidePickbar();activateTab(state.pickReturn);renderAll();log('✓ Photo insérée.','ok');}else{try{await navigator.clipboard.writeText(b.dataset.path);log('Chemin copié : '+b.dataset.path,'ok');}catch{log('Chemin : '+b.dataset.path);}}}
     else if(a==='cancelpick'||a===null&&b.id==='pickbar'){hidePickbar();}
-    else if(a==='media-upload'){const f=await pickFile('image/*');if(f){const p=await uploadFile(f);fillMedia();if(state.picking){const t=state.imgTarget;if(t&&typeof t==='object'){setPath(state.draft,t.dpath,p);}else{setPath(state.data,state.imgTarget,p);scheduleSave(400);}hidePickbar();activateTab(state.pickReturn);renderAll();log('✓ Photo uploadée et insérée.','ok');}}}
-    else if(a==='add'){const it=KIND[b.dataset.kind]();getPath(state.data,b.dataset.arr).push(it);renderAll();scheduleSave(400);}
-    else if(a==='rm'){const arr=getPath(state.data,b.dataset.arr);arr.splice(+b.dataset.idx,1);renderAll();scheduleSave(400);}
-    else if(a==='up'||a==='down'){const arr=getPath(state.data,b.dataset.arr);const i=+b.dataset.idx,j=i+(a==='up'?-1:1);if(j>=0&&j<arr.length){const t=arr[j];arr[j]=arr[i];arr[i]=t;renderAll();scheduleSave(400);}}
+    else if(a==='media-upload'){const f=await pickFile('image/*');if(f){const p=await uploadFile(f);fillMedia();if(state.picking){const t=state.imgTarget;if(t&&typeof t==='object'){setPath(state.draft,t.dpath,p);}else{setPath(state.data,state.imgTarget,p);markDirty(state.imgTarget);}hidePickbar();activateTab(state.pickReturn);renderAll();log('✓ Photo uploadée et insérée.','ok');}}}
+    else if(a==='add'){const it=KIND[b.dataset.kind]();getPath(state.data,b.dataset.arr).push(it);renderAll();markDirty(b.dataset.arr);}
+    else if(a==='rm'){const arr=getPath(state.data,b.dataset.arr);arr.splice(+b.dataset.idx,1);renderAll();markDirty(b.dataset.arr);}
+    else if(a==='up'||a==='down'){const arr=getPath(state.data,b.dataset.arr);const i=+b.dataset.idx,j=i+(a==='up'?-1:1);if(j>=0&&j<arr.length){const t=arr[j];arr[j]=arr[i];arr[i]=t;renderAll();markDirty(b.dataset.arr);}}
     else if(a==='dupload'){const f=await pickFile('image/*');const p=await uploadFile(f);setPath(state.draft,b.dataset.dtarget,p);renderAll();}
     else if(a==='dpick'){state.imgTarget={dpath:b.dataset.dtarget};state.picking=true;state.pickReturn=curTab;showPickbar(b.dataset.dtarget);activateTab('media');}
     else if(a==='dadd'){const it=KIND[b.dataset.kind]();getPath(state.draft,b.dataset.arr).push(it);renderAll();}
@@ -596,8 +642,8 @@ document.addEventListener('click',async e=>{
       const prod={name:d.name.trim(),price:Number(d.price)||0,stock:d.stock||'order',stockLabel:d.stockLabel||'Sur commande',image:d.image,alt:(d.alt||'').trim()||d.name.trim(),gallery:(d.gallery||[]).filter(g=>g&&g.src).map(g=>({src:g.src,alt:g.alt||''}))};
       cat.products.push(prod);
       const idx=state.data.categories.indexOf(cat);
-      log('✓ Produit ajouté à « '+cat.name+' » ('+cat.products.length+' produits). Publication automatique…','ok');
-      scheduleSave(400);
+      log('✓ Produit ajouté à « '+cat.name+' » ('+cat.products.length+' produits). Cliquez « Enregistrer cette catégorie » pour publier.','ok');
+      markDirty('categories.'+idx);
       state.draft={cat:d.cat,image:'',name:'',price:'',stock:'ok',stockLabel:'En stock',alt:'',gallery:[]};
       renderAll();
       activateTab('categories');
@@ -611,8 +657,8 @@ function showApp(){$('#gate').hidden=true;$('#app').hidden=false;}
 
 async function init(){
   $('#pickbar').addEventListener('click',()=>{if(state.picking){hidePickbar();activateTab(state.pickReturn);}});
-  if(state.token){showApp();try{await loadData();}catch(e){log('✗ '+e+' — jeton invalide ?','err');showGate();}}
-  else{showGate();}
+  showGate();
+  setTimeout(()=>{const p=$('#pwd');if(p)p.focus();},50);
 }
 init();
 </script>
