@@ -101,7 +101,7 @@
   },
   "categories": [
     {
-      "slug": "djipure",
+      "slug": "Djipure ",
       "num": "01",
       "name": "djipure",
       "accent": "#B23A1B",
@@ -323,7 +323,7 @@
       ]
     },
     {
-      "slug": "perlage",
+      "slug": "Perlage ",
       "num": "03",
       "name": "Perlage ",
       "accent": "#3D2415",
@@ -430,7 +430,7 @@
       ]
     },
     {
-      "slug": "perlage-inde",
+      "slug": "Perlage inde",
       "num": "04",
       "name": "Perlage inde",
       "accent": "#0E6B53",
@@ -537,7 +537,7 @@
       ]
     },
     {
-      "slug": "brocard",
+      "slug": "Brocard ",
       "num": "05",
       "name": "Brocard ",
       "accent": "#1B3A6B",
@@ -645,15 +645,15 @@
     },
     {
       "slug": "categorie-5p5",
-      "num": "24",
-      "name": "Nouvelle catégorie",
+      "num": "6",
+      "name": "Getzner",
       "accent": "#B23A1B",
-      "h1Main": "",
+      "h1Main": "Getzner",
       "h1Em": "",
       "lead": "",
       "description": "",
       "waMessage": "",
-      "image": "",
+      "image": "assets/img_6296_ey2pmb.jpeg",
       "intro": {
         "h2": "",
         "paragraphs": [
