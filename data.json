@@ -101,7 +101,7 @@
   },
   "categories": [
     {
-      "slug": "Djipure ",
+      "slug": "djipure",
       "num": "01",
       "name": "djipure",
       "accent": "#B23A1B",
@@ -323,7 +323,7 @@
       ]
     },
     {
-      "slug": "Perlage ",
+      "slug": "perlage",
       "num": "03",
       "name": "Perlage ",
       "accent": "#3D2415",
@@ -430,7 +430,7 @@
       ]
     },
     {
-      "slug": "Perlage inde",
+      "slug": "perlage-inde",
       "num": "04",
       "name": "Perlage inde",
       "accent": "#0E6B53",
@@ -537,7 +537,7 @@
       ]
     },
     {
-      "slug": "Brocard ",
+      "slug": "brocard",
       "num": "05",
       "name": "Brocard ",
       "accent": "#1B3A6B",

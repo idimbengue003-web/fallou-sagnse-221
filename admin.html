@@ -11,6 +11,12 @@ body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background
 .abar .ttl{font-weight:700;letter-spacing:.02em;font-size:15px}
 .abar .sp{flex:1}
 .abar .st{font-size:12px;color:#cfc4b3;max-width:34ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.abar .sv{font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.28);white-space:nowrap;cursor:default}
+.abar .sv.idle{color:#9ad0a0;border-color:rgba(154,208,160,.5);background:rgba(154,208,160,.12)}
+.abar .sv.pend{color:#e8b06a;border-color:rgba(232,176,106,.5);background:rgba(232,176,106,.12)}
+.abar .sv.sav{color:#bcd6ff;border-color:rgba(188,214,255,.5);background:rgba(188,214,255,.12)}
+.abar .sv.ok{color:#9ad0a0;border-color:rgba(154,208,160,.6);background:rgba(154,208,160,.18)}
+.abar .sv.err{color:#f3b6b6;border-color:rgba(243,182,182,.5);background:rgba(243,182,182,.12)}
 .abar a.mini{color:#fff;border:1px solid rgba(255,255,255,.32)}
 .abar button{background:#b23a1b;color:#fff;border:0;padding:9px 15px;border-radius:8px;font-weight:600;cursor:pointer;font-size:13px}
 .abar button.ghost{background:transparent;border:1px solid rgba(255,255,255,.3);color:#fff}
@@ -81,7 +87,7 @@ code.inl{background:#f0ece3;padding:1px 5px;border-radius:4px;font-size:12px}
   <span class="sp"></span>
   <span class="st" id="stt"></span>
   <a href="index.html" target="_blank" class="mini">Voir le site ↗</a>
-  <button data-action="save">💾 Enregistrer</button>
+  <span class="st sv idle" id="sv">À jour</span>
   <button class="ghost" data-action="logout">Déconnexion</button>
 </header>
 
@@ -99,7 +105,7 @@ code.inl{background:#f0ece3;padding:1px 5px;border-radius:4px;font-size:12px}
 </div>
 
 <div id="app" hidden>
-  <div class="note">Modifiez les champs ci-dessous puis cliquez <b>« Enregistrer »</b> (en haut). Le site se met à jour tout seul en ~1–2 min (GitHub Pages + régénération automatique).</div>
+  <div class="note">Modifiez les champs ci-dessous : <b>tout est enregistré automatiquement</b> (indicateur en haut à droite). Le site se met à jour tout seul en ~1–2 min (GitHub Pages + régénération automatique).</div>
   <div class="wrap">
     <nav class="tabs">
       <button data-action="tab" data-tab="marque">Marque & SEO</button>
@@ -164,10 +170,21 @@ async function loadData(){
   $('#stt').textContent='Connecté · '+state.data.categories.length+' catégories';
   renderAll();
 }
-async function saveData(){
+let saveTimer=null,saving=false;
+function svState(txt,cls){const sv=$('#sv');if(sv){sv.textContent=txt;sv.className='st sv '+cls;}}
+function scheduleSave(delay){
   if(!state.data)return;
+  clearTimeout(saveTimer);
+  svState('Modifs en attente…','pend');
+  saveTimer=setTimeout(()=>{saveData(true);},delay||1100);
+}
+async function saveData(quiet){
+  if(!state.data)return;
+  if(saving){scheduleSave(600);return;}
+  saving=true;
+  svState('Enregistrement…','sav');
   const files=renderFiles(state.data);
-  log('Génération + envoi de '+files.length+' fichiers…');
+  if(!quiet)log('Génération + envoi de '+files.length+' fichiers…');
   try{
     const ref=await gh('GET',`/git/refs/heads/${CFG.branch}`);
     const headSha=ref.object.sha;
@@ -177,7 +194,7 @@ async function saveData(){
     for(let i=0;i<files.length;i++){
       const blob=await gh('POST','/git/blobs',{content:b64(files[i].content),encoding:'base64'});
       tree.push({path:files[i].path,mode:'100644',type:'blob',sha:blob.sha});
-      log('  ✓ '+files[i].path+' ('+(i+1)+'/'+files.length+')');
+      if(!quiet)log('  ✓ '+files[i].path+' ('+(i+1)+'/'+files.length+')');
     }
     // nettoyer les pages .html orphelines (catégories renommées/supprimées)
     try{
@@ -189,14 +206,17 @@ async function saveData(){
           tree.push({path:it.path,mode:'100644',type:'blob',sha:null});orphans++;
         }
       });
-      if(orphans)log('  🗑 '+orphans+' page orpheline supprimée');
+      if(orphans&&!quiet)log('  🗑 '+orphans+' page orpheline supprimée');
     }catch(e){}
     const newTree=await gh('POST','/git/trees',{base_tree:baseTree,tree});
     const newCommit=await gh('POST','/git/commits',{message:`Admin: mise à jour du contenu (${new Date().toLocaleString('fr-FR')})`,tree:newTree.sha,parents:[headSha]});
     await gh('PATCH',`/git/refs/heads/${CFG.branch}`,{sha:newCommit.sha});
     $('#stt').textContent='Enregistré ✓ · '+new Date().toLocaleTimeString('fr-FR');
-    log('✓ Enregistré ! Le site se met à jour sur GitHub Pages (~1 min).','ok');
-  }catch(e){log('✗ '+e,'err');}
+    svState('✓ Enregistré','ok');
+    setTimeout(()=>{if(!saving)svState('À jour','idle');},3500);
+    if(!quiet)log('✓ Enregistré ! Le site se met à jour sur GitHub Pages (~1 min).','ok');
+  }catch(e){svState('✗ Erreur','err');log('✗ '+e,'err');}
+  finally{saving=false;}
 }
 function pickFile(accept){return new Promise(res=>{const i=document.createElement('input');i.type='file';if(accept)i.accept=accept;i.onchange=()=>res(i.files[0]);i.click();});}
 async function uploadFile(file){
@@ -491,7 +511,7 @@ function pAjout(){
   const cats=state.data.categories.map(c=>`<option value="${esc(c.slug)}"${c.slug===d.cat?' selected':''}>${esc(c.name)}</option>`).join('');
   const gal=d.gallery.map((g,i)=>`<div class="rep">${head('gallery',i,'Photo '+(i+1),(i>0?dmv('gallery',i,'up'):'')+(i<d.gallery.length-1?dmv('gallery',i,'down'):'')+drm('gallery',i))}${dimg('gallery.'+i+'.src','Photo supplémentaire')}</div>`).join('');
   return `<div class="sub">＋ Ajouter un produit</div>
-  <p style="font-size:13px;color:#6b6258;margin-bottom:14px">Un seul espace : choisissez la <b>catégorie</b>, la <b>photo principale</b> (et optionnellement d'autres <b>photos</b> en galerie), remplissez les infos, puis cliquez <b>« Ajouter ce produit »</b>. Il est ajouté à la catégorie choisie. Pensez ensuite à <b>« Enregistrer »</b> (en haut) pour publier.</p>
+  <p style="font-size:13px;color:#6b6258;margin-bottom:14px">Un seul espace : choisissez la <b>catégorie</b>, la <b>photo principale</b> (et optionnellement d'autres <b>photos</b> en galerie), remplissez les infos, puis cliquez <b>« Ajouter ce produit »</b>. Il est ajouté à la catégorie choisie et <b>publié automatiquement</b>.</p>
   <label class="f"><span>Catégorie</span><select data-dpath="cat"><option value="">— Choisir —</option>${cats}</select></label>
   ${dimg('image','Photo principale du produit')}
   ${dfld('name','Nom du produit')}
@@ -541,8 +561,8 @@ function hidePickbar(){$('#pickbar').classList.remove('show');state.picking=fals
 
 function updatePrev(inp){const v=inp.value;const img=inp.closest('.fimg')&&inp.closest('.fimg').querySelector('.prev');if(img)img.src=v.startsWith('http')?v:(v?CFG.site+v:'');}
 
-document.addEventListener('input',e=>{const p=e.target.dataset&&e.target.dataset.path;if(p)setPath(state.data,p,e.target.value);const dp=e.target.dataset&&e.target.dataset.dpath;if(dp)setPath(state.draft,dp,e.target.value);});
-document.addEventListener('change',e=>{const p=e.target.dataset&&e.target.dataset.path;if(p){setPath(state.data,p,e.target.value);if(e.target.closest('.fimg'))updatePrev(e.target);}const dp=e.target.dataset&&e.target.dataset.dpath;if(dp){setPath(state.draft,dp,e.target.value);if(e.target.closest('.fimg'))updatePrev(e.target);}});
+document.addEventListener('input',e=>{const p=e.target.dataset&&e.target.dataset.path;if(p){setPath(state.data,p,e.target.value);scheduleSave();}const dp=e.target.dataset&&e.target.dataset.dpath;if(dp)setPath(state.draft,dp,e.target.value);});
+document.addEventListener('change',e=>{const p=e.target.dataset&&e.target.dataset.path;if(p){setPath(state.data,p,e.target.value);if(e.target.closest('.fimg'))updatePrev(e.target);scheduleSave();}const dp=e.target.dataset&&e.target.dataset.dpath;if(dp){setPath(state.draft,dp,e.target.value);if(e.target.closest('.fimg'))updatePrev(e.target);}});
 
 document.addEventListener('click',async e=>{
   const b=e.target.closest('[data-action]');if(!b)return;
@@ -553,14 +573,14 @@ document.addEventListener('click',async e=>{
     else if(a==='logout'){localStorage.removeItem(TK);state.token='';state.data=null;showGate();$('#stt').textContent='';log('Déconnecté.');}
     else if(a==='tab'){activateTab(b.dataset.tab);}
     else if(a==='col'){b.closest('.ccat').classList.toggle('open');}
-    else if(a==='upload'){const f=await pickFile('image/*');const p=await uploadFile(f);setPath(state.data,b.dataset.path,p);renderAll();}
+    else if(a==='upload'){const f=await pickFile('image/*');const p=await uploadFile(f);setPath(state.data,b.dataset.path,p);renderAll();scheduleSave(400);}
     else if(a==='pick'){state.imgTarget=b.dataset.path;state.picking=true;state.pickReturn=curTab;showPickbar(b.dataset.path);activateTab('media');}
-    else if(a==='pick-insert'){if(state.picking){const t=state.imgTarget;if(t&&typeof t==='object'){setPath(state.draft,t.dpath,b.dataset.path);}else{setPath(state.data,state.imgTarget,b.dataset.path);}hidePickbar();activateTab(state.pickReturn);renderAll();log('✓ Photo insérée.','ok');}else{try{await navigator.clipboard.writeText(b.dataset.path);log('Chemin copié : '+b.dataset.path,'ok');}catch{log('Chemin : '+b.dataset.path);}}}
+    else if(a==='pick-insert'){if(state.picking){const t=state.imgTarget;if(t&&typeof t==='object'){setPath(state.draft,t.dpath,b.dataset.path);}else{setPath(state.data,state.imgTarget,b.dataset.path);scheduleSave(400);}hidePickbar();activateTab(state.pickReturn);renderAll();log('✓ Photo insérée.','ok');}else{try{await navigator.clipboard.writeText(b.dataset.path);log('Chemin copié : '+b.dataset.path,'ok');}catch{log('Chemin : '+b.dataset.path);}}}
     else if(a==='cancelpick'||a===null&&b.id==='pickbar'){hidePickbar();}
-    else if(a==='media-upload'){const f=await pickFile('image/*');if(f){const p=await uploadFile(f);fillMedia();if(state.picking){const t=state.imgTarget;if(t&&typeof t==='object'){setPath(state.draft,t.dpath,p);}else{setPath(state.data,state.imgTarget,p);}hidePickbar();activateTab(state.pickReturn);renderAll();log('✓ Photo uploadée et insérée.','ok');}}}
-    else if(a==='add'){const it=KIND[b.dataset.kind]();getPath(state.data,b.dataset.arr).push(it);renderAll();}
-    else if(a==='rm'){const arr=getPath(state.data,b.dataset.arr);arr.splice(+b.dataset.idx,1);renderAll();}
-    else if(a==='up'||a==='down'){const arr=getPath(state.data,b.dataset.arr);const i=+b.dataset.idx,j=i+(a==='up'?-1:1);if(j>=0&&j<arr.length){const t=arr[j];arr[j]=arr[i];arr[i]=t;renderAll();}}
+    else if(a==='media-upload'){const f=await pickFile('image/*');if(f){const p=await uploadFile(f);fillMedia();if(state.picking){const t=state.imgTarget;if(t&&typeof t==='object'){setPath(state.draft,t.dpath,p);}else{setPath(state.data,state.imgTarget,p);scheduleSave(400);}hidePickbar();activateTab(state.pickReturn);renderAll();log('✓ Photo uploadée et insérée.','ok');}}}
+    else if(a==='add'){const it=KIND[b.dataset.kind]();getPath(state.data,b.dataset.arr).push(it);renderAll();scheduleSave(400);}
+    else if(a==='rm'){const arr=getPath(state.data,b.dataset.arr);arr.splice(+b.dataset.idx,1);renderAll();scheduleSave(400);}
+    else if(a==='up'||a==='down'){const arr=getPath(state.data,b.dataset.arr);const i=+b.dataset.idx,j=i+(a==='up'?-1:1);if(j>=0&&j<arr.length){const t=arr[j];arr[j]=arr[i];arr[i]=t;renderAll();scheduleSave(400);}}
     else if(a==='dupload'){const f=await pickFile('image/*');const p=await uploadFile(f);setPath(state.draft,b.dataset.dtarget,p);renderAll();}
     else if(a==='dpick'){state.imgTarget={dpath:b.dataset.dtarget};state.picking=true;state.pickReturn=curTab;showPickbar(b.dataset.dtarget);activateTab('media');}
     else if(a==='dadd'){const it=KIND[b.dataset.kind]();getPath(state.draft,b.dataset.arr).push(it);renderAll();}
@@ -576,7 +596,8 @@ document.addEventListener('click',async e=>{
       const prod={name:d.name.trim(),price:Number(d.price)||0,stock:d.stock||'order',stockLabel:d.stockLabel||'Sur commande',image:d.image,alt:(d.alt||'').trim()||d.name.trim(),gallery:(d.gallery||[]).filter(g=>g&&g.src).map(g=>({src:g.src,alt:g.alt||''}))};
       cat.products.push(prod);
       const idx=state.data.categories.indexOf(cat);
-      log('✓ Produit ajouté à « '+cat.name+' » ('+cat.products.length+' produits). Cliquez « Enregistrer » pour publier.','ok');
+      log('✓ Produit ajouté à « '+cat.name+' » ('+cat.products.length+' produits). Publication automatique…','ok');
+      scheduleSave(400);
       state.draft={cat:d.cat,image:'',name:'',price:'',stock:'ok',stockLabel:'En stock',alt:'',gallery:[]};
       renderAll();
       activateTab('categories');
