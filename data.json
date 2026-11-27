@@ -68,7 +68,7 @@
   ],
   "catsSection": {
     "eyebrow": "Nos catégories",
-    "title": "Nos catégories de tissus",
+    "title": "Cinq familles de tissus",
     "subtitle": "Chaque catégorie ouvre sa boutique : les pièces, les prix, le stock et un bouton pour commander."
   },
   "howSection": {
@@ -218,9 +218,9 @@
     {
       "slug": "categorie",
       "num": "02",
-      "name": "Bazin Riche",
+      "name": "Dentelle ",
       "accent": "#102544",
-      "h1Main": "Bazin Riche",
+      "h1Main": "Dentelle ",
       "h1Em": "le drapé de gala",
       "lead": "Coton damassé, teint puis martelé jusqu'à l'éclat soyeux. L'étoffe des grands boubous et des dimanches solennels — noir, bleu nuit, vert, bordeaux, sublimés par la lumière.",
       "description": "Bazin Riche : coton damassé teint puis martelé, éclat soyeux pour grands boubous et cérémonies. FALLOU SAGNSÉ 221, Dakar.",
