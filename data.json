@@ -323,16 +323,16 @@
       ]
     },
     {
-      "slug": "",
+      "slug": "Perlage ",
       "num": "03",
-      "name": "Bogolan",
+      "name": "Perlage ",
       "accent": "#3D2415",
-      "h1Main": "Bogolan",
+      "h1Main": "Perlage ",
       "h1Em": "la toile de terre",
       "lead": "Coton de terre, teint à la boue du fleuve et aux écorces, motifs tracés à la main. Une écriture plus qu'un tissu : chaque signe raconte un proverbe, une lignée, un événement.",
       "description": "Bogolan (mudcloth) : coton malien teint à la boue et aux écorces, motifs faits main chargés de sens. FALLOU SAGNSÉ 221, Dakar.",
       "waMessage": "Bonjour FALLOU SAGNSÉ, je cherche du bogolan / mudcloth (pièce brute ou finition). Pouvez-vous m'envoyer les modèles disponibles ?",
-      "image": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/67cabd41412d.jpg",
+      "image": "assets/img_6279_ohxkvj.jpeg",
       "intro": {
         "h2": "Le bogolan, écriture de terre",
         "paragraphs": [
@@ -430,7 +430,7 @@
       ]
     },
     {
-      "slug": "kente",
+      "slug": "",
       "num": "04",
       "name": "Kente",
       "accent": "#0E6B53",
