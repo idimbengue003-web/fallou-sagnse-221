@@ -1,7 +1,7 @@
 {
   "meta": {
     "siteTitle": "EKS BOUTIQUE KEUR SERIGNE FALLOU ",
-    "siteDescription": "Boutique de tissus africains à dentelle,djipure,brocard,perlage et inde Sélectionnés à la main, livraison Dakar 24h et internationale.",
+    "siteDescription": "Boutique de tissus africains à Dakar : wax, bazin riche, bogolan, kente et indigo. Sélectionnés à la main, livraison Dakar 24h et internationale.",
     "lang": "fr",
     "currency": "FCFA"
   },
@@ -50,25 +50,25 @@
   },
   "homePhotos": [
     {
-      "src": "assets/img_6292_hnil0d.png",
+      "src": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6074a60cc05b.jpg",
       "alt": "Tissu africain FALLOU SAGNSÉ"
     },
     {
-      "src": "assets/img_6294_a408gj.jpeg",
+      "src": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/67cabd41412d.jpg",
       "alt": "Tissu africain FALLOU SAGNSÉ"
     },
     {
-      "src": "assets/img_6293_m6qlip.jpeg",
+      "src": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/30fe7aba278e.jpg",
       "alt": "Tissu africain FALLOU SAGNSÉ"
     },
     {
-      "src": "assets/img_6291_3stfrb.webp",
+      "src": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d7425b0d7375.jpg",
       "alt": "Tissu africain FALLOU SAGNSÉ"
     }
   ],
   "catsSection": {
     "eyebrow": "Nos catégories",
-    "title": "Nos catégories de tissus",
+    "title": "Cinq familles de tissus",
     "subtitle": "Chaque catégorie ouvre sa boutique : les pièces, les prix, le stock et un bouton pour commander."
   },
   "howSection": {
@@ -101,7 +101,7 @@
   },
   "categories": [
     {
-      "slug": "Djipure",
+      "slug": "Djipure ",
       "num": "01",
       "name": "djipure",
       "accent": "#B23A1B",
@@ -218,7 +218,7 @@
     {
       "slug": "categorie",
       "num": "02",
-      "name": "Bazin Riche",
+      "name": "De",
       "accent": "#102544",
       "h1Main": "Bazin Riche",
       "h1Em": "le drapé de gala",
